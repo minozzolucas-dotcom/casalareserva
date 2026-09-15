@@ -1,0 +1,1077 @@
+// Worker: casa8-la-reserva-b-invest
+// Serve o controle da casa Zezico Peçanha 605 · rev 10.10
+// Última atualização: 14/09/2026
+
+const HTML = `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Controle — Residência 8 · La Reserva II-B · Rev. 7</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f1115; --panel:#171a20; --panel2:#1d2129; --line:#2a2f3a;
+  --txt:#e6e9ef; --dim:#98a0b0; --dim2:#6f7787;
+  --warm:#e8a25c; --ok:#6fbf8b; --alert:#e0705f; --cool:#8fb8d4; --purple:#a98fd4;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font-family:Inter,system-ui,sans-serif;font-size:15px;line-height:1.6}
+.wrap{max-width:1120px;margin:0 auto;padding:32px 22px 80px}
+h1,h2,h3,h4{font-family:Archivo,sans-serif;margin:0}
+h1{font-size:32px;font-weight:800;letter-spacing:-.02em}
+h2{font-size:20px;font-weight:800;letter-spacing:-.01em;margin:0 0 4px}
+h3{font-size:15px;font-weight:700;color:var(--warm);text-transform:uppercase;letter-spacing:.08em;margin:0 0 10px}
+h4{font-size:14px;font-weight:700;margin:0 0 6px}
+p{margin:0 0 12px}
+a{color:var(--cool)}
+.hero{background:linear-gradient(140deg,#1a1f2b,#12151b);border:1px solid var(--line);border-radius:16px;padding:26px 26px 22px;margin-bottom:26px}
+.hero .sub{color:var(--dim);font-size:14px;margin-top:6px}
+.rev{display:inline-block;background:var(--warm);color:#1a1207;font-weight:800;font-size:12px;padding:3px 10px;border-radius:20px;letter-spacing:.06em;font-family:Archivo}
+sec,section{display:block}
+section{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:18px}
+.grid{display:grid;gap:12px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.g4{grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+.kpi{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:14px}
+.kpi span,.kpi .l{display:block;font-size:11px;color:var(--dim2);text-transform:uppercase;letter-spacing:.08em;font-weight:600;margin-bottom:4px}
+.kpi b,.kpi .v{display:block;font-family:Archivo;font-size:22px;font-weight:800;letter-spacing:-.02em;line-height:1.2}
+.kpi small,.kpi .d{display:block;font-size:12px;color:var(--dim);margin-top:5px;line-height:1.45}
+.kpi h4{font-size:13px;color:var(--txt);margin-bottom:6px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:6px 0 4px}
+th{text-align:left;font-family:Archivo;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim2);font-weight:700;padding:8px 10px;border-bottom:1px solid var(--line)}
+td{padding:9px 10px;border-bottom:1px solid #21252e;vertical-align:top}
+tr:last-child td{border-bottom:none}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+tbody tr:hover{background:#1b1f27}
+.tot td{font-weight:700;border-top:1px solid var(--line);background:#1b1f27}
+.pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px;font-family:Archivo;letter-spacing:.04em;white-space:nowrap}
+.pill.ok{background:rgba(111,191,139,.16);color:var(--ok)}
+.pill.go{background:rgba(143,184,212,.16);color:var(--cool)}
+.pill.no{background:rgba(224,112,95,.16);color:var(--alert)}
+.pill.warm{background:rgba(232,162,92,.16);color:var(--warm)}
+.pill.new{background:rgba(169,143,212,.18);color:var(--purple)}
+.note{border-left:3px solid var(--warm);background:rgba(232,162,92,.06);padding:12px 14px;border-radius:0 8px 8px 0;margin:12px 0;font-size:14px}
+.note.bad{border-color:var(--alert);background:rgba(224,112,95,.07)}
+.note.good{border-color:var(--ok);background:rgba(111,191,139,.06)}
+.note.info{border-color:var(--cool);background:rgba(143,184,212,.06)}
+.note.new{border-color:var(--purple);background:rgba(169,143,212,.07)}
+ul{margin:0 0 12px;padding-left:20px}
+li{margin-bottom:7px}
+.mono{font-variant-numeric:tabular-nums}
+.sep{height:1px;background:var(--line);margin:18px 0}
+.foot{color:var(--dim2);font-size:12px;text-align:center;margin-top:30px;line-height:1.7}
+.clock{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.clock div{background:rgba(0,0,0,.28);border:1px solid var(--line);border-radius:10px;padding:10px 14px;min-width:132px}
+.clock em{display:block;font-style:normal;font-size:11px;color:var(--dim2);text-transform:uppercase;letter-spacing:.07em;font-weight:600}
+.clock strong{display:block;font-family:Archivo;font-size:19px;font-weight:800;margin-top:2px}
+.d0{color:var(--alert)}.d1{color:var(--warm)}.d2{color:var(--ok)}
+.tag{font-size:11px;color:var(--dim2);font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+@media(max-width:640px){h1{font-size:25px}.wrap{padding:20px 14px 60px}table{font-size:13px}td,th{padding:7px 6px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="hero">
+  <span class="rev">REV. 10.10 · <b>14/09/2026 · dom</b> · <b>§12B agora inclui CAIXA R$ 1.700 (est.) + condomínio R$ 700 mensais</b> · pico set/26 R$ 19.275 · platô out–jan R$ 15.311 · total R$ 645.572</span>
+  <h1 style="margin-top:12px">Residência 8 · La Reserva II-B</h1>
+  <div class="sub">Av. Zezico Peçanha, 605 — Itapetinga — Atibaia/SP · CEP 12946-372 · matr. 158.854 · 137,39 m²<br>
+  <b>Estado em 14/09/2026 (dom):</b> imóvel <b>QUITADO</b> · energia LIGADA · pedra + cooktop + ACs + fechadura + Adelco (arandelas + banheiros) + piso Destro + boxes dos banheiros — <b>tudo INSTALADO</b>. <b>Semana pesada de compras:</b> +R$ 15.799 em cortinas (6× cartão), Spa Inflável Rome (10× Master 3619), carrinho ML (6 cadeiras Gruvyer + mesa 130cm + luminária + lâmpada RGB), aspirador. <b>Falta:</b> espaço gourmet (LYME) · projeto planejados entrega ~28/09 · contratar marcenaria (~R$ 65k) em outubro. Total do projeto do bolso: <b>R$ 644.040</b> · pago R$ 477.129 (74%) · falta à vista só R$ 4.000 (MO deck).</div>
+  <div class="clock">
+    <div><em>Imóvel</em><strong class="d2">✓ QUITADO</strong><span class="tag">02/09 · R$ 411k do bolso</span></div>
+    <div><em>Piso · Adelco · boxes</em><strong class="d2">✓ INSTALADOS</strong><span class="tag">semana 08-13/09</span></div>
+    <div><em>Compras da semana</em><strong class="d1">+R$ 15.799</strong><span class="tag">cortinas + Spa + carrinho ML</span></div>
+    <div><em>Espaço gourmet · LYME</em><strong class="d1">pendente</strong><span class="tag">último item de esquadria</span></div>
+    <div><em>Projeto planejados</em><strong class="d2">✓ PAGO 2ª</strong><span class="tag">entrega ~28/09</span></div>
+  </div>
+</div>
+<!-- ============ 1. O QUE MUDOU ============ -->
+<section>
+  <h3>1 · Histórico de revisões</h3>
+  <table>
+    <tr><td style="width:120px"><span class="pill new">10.10</span></td><td><b>§12B agora inclui as 2 despesas RECORRENTES mensais.</b> <b>Financiamento CAIXA</b> — 1ª parcela <b>21/09 (dom)</b>, R$ 1.700/mês estimado (SAC 420× de R$ 143.966,50 — faixa real R$ 1.435–1.602 dependendo da taxa; ajusto quando cair o boleto). <b>Condomínio + energia áreas comuns + fundo de obra</b> — R$ 700 fixo todo dia 15, começando set/26. <b>Impacto:</b> +R$ 2.400/mês permanentes no fluxo. Pico set/26 R$ 16.875 → <b>R$ 19.275</b>. Platô out/26–jan/27 R$ 12.911 → <b>R$ 15.311</b>. <b>Total do projeto do bolso não muda (R$ 645.572)</b> — CAIXA e condomínio não entram no orçamento do fit-out (são dívida e recorrente).</td></tr>
+    <tr><td style="width:120px"><span class="pill new">10.9</span></td><td><b>§12B refeita SEM marcenaria (como pediu).</b> A grade agora tem só os 18 parcelamentos ativos, sem provisão futura. <b>Pico se desloca:</b> antes era nov/26 R$ 19.411 (com marcenaria); agora é <b>set/26 R$ 16.875</b> (mês de arrancada, tudo começando), depois platô em <b>R$ 12.911/mês por 4 meses (out/26 → jan/27)</b> e curva descendente até set/27. Quando você contratar a marcenaria, adiciono o bloco de volta na §12B.</td></tr>
+    <tr><td style="width:120px"><span class="pill ok">10.8</span></td><td><b>NOVA SEÇÃO §12B · Fluxo mensal de parcelamentos.</b> Consolidei todos os 18 parcelamentos ativos + marcenaria futura em 2 tabelas: (A) item por item com total, condição, meio, 1ª parcela; (B) desembolso mês a mês de ago/26 a set/27. <b>Cronograma real:</b> ago/26 R$ 2.299 · set/26 R$ 16.875 · out/26 R$ 12.911 · <b>nov/26 R$ 19.411 (PICO)</b> · dez/26 R$ 19.411 · jan/27 R$ 19.411 · reduz gradualmente até set/27 fechar. <b>Pico coincide com a marcenaria entrando</b> (R$ 6.500) + boiler + LYME + cortinas + Spa + carrinho ML todos ativos simultaneamente. Datas de início são premissas (fatura fecha ~1 mês depois da compra) — me avisa se algum item começar diferente.</td></tr>
+    <tr><td style="width:120px"><span class="pill ok">10.7</span></td><td><b>3º box pequeno LYME confirmado: R$ 1.531,83 (fora do contrato 1412 original).</b> Total do projeto R$ 644.040 → R$ 645.572. Boiler solar EcoSol marcado como <b>INSTALADO</b>.</td></tr>
+    <tr><td style="width:120px"><span class="pill ok">10.6</span></td><td><b>Semana de gasto pesado: +R$ 15.799 em compras.</b> <b>Cortinas fechadas:</b> R$ 6.725 em 6× cartão (2 sala Wave cinza + 3 quartos Voil branco + escritório Blackout gelo). <b>Compras ML:</b> Spa Inflável Rome 1180L R$ 6.780 (10× Master 3619) · carrinho ML R$ 1.864 (6 cadeiras Gruvyer + mesa industrial 130cm + luminária Luczeng + lâmpada RGB) · aspirador Arno X-Pert R$ 430 parte cartão. <b>Projeto planejados 2ª parcela PAGA (R$ 2.500).</b> <b>Status:</b> piso instalado ✓ · box banheiros instalados ✓ · falta espaço gourmet LYME. <b>Total do projeto: R$ 628.241 → R$ 644.040.</b> "Falta à vista" agora tem apenas R$ 4.000 (só MO deck).</td></tr>
+    <tr><td style="width:120px"><span class="pill ok">10.4</span></td><td><b>Adelco eletricista PAGO R$ 3.500 em 05/09 (arandelas + instalação dos banheiros). Buraco do §7 encerrado.</b> Corrigi meu erro de interpretação da rev 8.6: os "R$ 2.000 do eletricista" eram cotação, não pagamento — o real foi R$ 3.500 pago no sábado, cobrindo <b>arandelas + instalação de todos os itens de banheiro</b>. <b>Total do projeto R$ 626.741 → R$ 628.241 (+R$ 1.500).</b> Migrou de parcelado (estimativa) pra à vista (real). <b>Limpeza da 1ª página:</b> arquivei do §2 tudo que já foi feito (Elektro, Feijor, Cooktop, ACs, Fechadura, emolumentos, quitação Rodrigo, Adelco, CAIXA/Prefeitura). Só sobraram no relógio os 4 itens de execução real que faltam: <b>piso 08/09 · forno aguarda marc. · projeto planejados ~28/09 · marcenaria ~out</b>. <b>Novo:</b> internet Impacto Telecom 600 MB por R$ 109,90/mês (despesa recorrente, fora do orçamento do fit-out).</td></tr>
+    <tr><td style="width:120px"><span class="pill ok">10.3</span></td><td><b>Correção: AC instalação R$ 3.247 foi PIX à vista em 31/08, não parcelado.</b> Migrou de "◐ parcelado em curso" → "✓ pago à vista". <b>Total do projeto INALTERADO (R$ 626.741)</b> — só realocou entre as caixas: pago à vista R$ 467.882 → R$ 471.129, e comprado parcelado R$ 87.359 → R$ 84.112.</td></tr>
+    <tr><td style="width:120px"><span class="pill ok">🔌 10.2</span></td><td><b>ELEKTRO LIGOU A ENERGIA hoje 03/09 — UC 49211331, nota 202610548330123-3.</b> Pedido feito 11/08 → concluído 03/09 = <b>23 dias corridos</b>, atraso de 10 dias vs previsto 24/08. Mas chegou <b>antes do próximo bloqueio real</b>, que era o eletricista de sábado 05/09 — se tivesse atrasado mais, a instalação de luminárias + banheiros teria que ser remarcada. A divergência de logradouro (Zezico Peçanha × Avenida Atibaia) reconciliou na prática. <b>Destrava:</b> boiler solar (precisa de apoio elétrico), operação dos ACs, e o eletricista de sábado. <b>Uma coisa a confirmar:</b> os ACs foram instalados em ~26/08 antes da energia — estavam operacionais aguardando ou o instalador testou com gerador?</td></tr>
+    <tr><td style="width:120px"><span class="pill ok">10.1</span></td><td><b>Semana produtiva — 5 updates de status (nenhum mexe em dinheiro).</b> <b>Cooktop B+D INSTALADO</b> ✓ (fecha o item destravado desde a rev 7.4). <b>Forno Midea chegou</b>, aguarda marcenaria (~28/09) pra embutir. <b>Piso Destro ENTREGUE</b> — <b>nivelamento com argamassa 04/09</b> (aplica o nivelante de R$ 509 da rev 9.4), <b>instalação 08/09</b>. <b>2 colchões Zidi (King + Queen) chegaram</b> — bases baú ainda pendentes. <b>Sábado 05/09 o eletricista fecha os banheiros + luminárias</b> — resolve o "buraco do §7" (a MO do muro que caiu). <b>⚠ Confirmar:</b> a instalação dos banheiros está incluída nos R$ 2.000 das arandelas ou é adicional? Se for adicional, vira linha nova.</td></tr>
+    <tr><td style="width:120px"><span class="pill ok">10.0</span></td><td><b>Foto completa da casa lançada.</b> Você me lembrou das 2 entradas anteriores que eu nunca tinha visto: <b>R$ 50.000 + R$ 150.000 = R$ 200.000 pagos antes</b> de tudo. Isso muda a leitura do imóvel: <b>total pago do bolso no imóvel = R$ 411.034</b> (entradas 200k + Rodrigo em agosto 60k + quitação hoje 151.034). Somando FGTS R$ 545k + financiamento CAIXA R$ 143.966,50 (420× SAC) = <b>R$ 1.100.000 da casa</b>. <b>Total do projeto (só do bolso) sobe de R$ 426.741 → R$ 626.741.</b> FGTS e CAIXA seguem fora do controle (recursos/dívida à parte). Ver bloco explicativo no §1B com a decomposição completa.</td></tr>
+    <tr><td style="width:120px"><span class="pill ok">🏠 9.9</span></td><td><b>IMÓVEL QUITADO em 02/09/2026 — R$ 151.034 pagos ao Rodrigo via Pix.</b> Total pago ao Rodrigo: R$ 60k (agosto, 2 tranches) + R$ 151.034 (hoje) = <b>R$ 211.034 integrais</b>. Zero de saldo. <b>A caixa "falta à vista" despencou de R$ 157.534 → R$ 6.500</b> — sobram só projeto dos planejados R$ 2.500 + MO deck R$ 4.000. <b>Financeiramente, a compra do imóvel está encerrada.</b> O que sobra do projeto é obra e enxoval. <b>Próximo passo:</b> receber recibo de quitação do Rodrigo por escrito (crítico pra escritura).</td></tr>
+    <tr><td style="width:120px"><span class="pill ok">9.8</span></td><td><b>Compra ML de 01/09 destrinchada — era 1 preto + 3 brancos, não 4 pretos como estava descrito.</b> A compra dos R$ 223,44 do bloco de registro (§1B) É a compra da imagem 2. Composição real: 1× plafon preto 24W (R$ 40,52) + 3× painel branco 40W (R$ 59,32 cada), produtos R$ 254,90 − desconto R$ 34,29 − cupons R$ 2,13 + frete R$ 4,96 = <b>R$ 223,44 pago com saldo Mercado Pago</b>. <b>Nada muda no total do projeto</b> (saldo ML já era "fora do orçamento"). <b>Contagem de plafons brancos 40W:</b> 8 originais (Visa 0700) + 3 novos (ML) = <b>11 no total</b>.</td></tr>
+    <tr><td style="width:120px"><span class="pill new">9.7</span></td><td><b>Devolução: Kit 8× spots GU10 + 8× lâmpadas MR16 preto — R$ 136,33 estornados no Visa 0700.</b> Estava na compra original de R$ 1.506 (§3E). Linha das luminárias caiu de R$ 1.506 → <b>R$ 1.369,67 líquido</b>. Total do projeto R$ 426.877 → <b>R$ 426.741</b>. <b>Premissa aplicada:</b> reembolso no cartão (não troca por outro item) — me avisa se foi diferente. <b>⚠ Pendente:</b> os 3 plafons brancos 40W entregues em 02/09 (imagem 2) — são compras novas ou já estão no bloco ML de R$ 223,44? Ver pergunta no fim.</td></tr>
+    <tr><td style="width:120px"><span class="pill ok">9.6</span></td><td><b>Audit contra o SKILL rev 3 (o resumo que você mandou): todas as 3 entradas já estão lançadas.</b> Geladeira R$ 4.588 PIX ✓, cama Zidi R$ 4.914 Master 6369 ✓, iluminação R$ 1.506 ✓ (agora com o detalhe do parcelamento: Visa 0700, 1× R$ 1.046,37 entrada em set + 9× R$ 51,07 até mai/27). Compras ML R$ 773,87 no bloco de registro ✓. Pessoais (piscina, barbeador, sensores) fora do controle ✓. <b>Nada muda no total (R$ 426.877)</b> — só refinei a condição de pagamento das luminárias. <b>Continua faltando</b>: devoluções e compras adicionais que você mencionou.</td></tr>
+    <tr><td style="width:120px"><span class="pill new">9.5</span></td><td><b>Muro da divisa CANCELADO + adicional na instalação dos AC + status corrigido de vários itens.</b> Você me atualizou: (1) <b>muro não vai mais acontecer</b> — retirei material R$ 2.185 (à vista) e MO R$ 4.850 (parcelado) = <b>−R$ 7.035</b>; <b>⚠ atenção:</b> essa MO instalava os banheiros — voltou a ser buraco no §7. (2) <b>Instalação dos AC: R$ 3.000 → R$ 3.247</b> por adicional de material (+R$ 247, já pago). (3) Confirmei: <b>Feijor R$ 5.040 no cartão 8× já instalada 26/08</b>, <b>AC aparelhos R$ 10.257 já pagos parcelados</b>, <b>deck contratado mas nada pago ainda</b>. <b>Total do projeto: R$ 433.665 → R$ 426.877.</b> <b>Falta pedir:</b> devoluções de luminárias e compras adicionais que você mencionou — sem números, não pude lançar.</td></tr>
+    <tr><td style="width:120px"><span class="pill new">9.4</span></td><td><b>Nivelante do piso: R$ 509 em 8× — requerido pelo instalador Destro.</b> Aquele alerta antigo do §12b ("autonivelante entra na conta se reprovar, R$ 2.000–3.500 não previstos") virou fato: o contrapiso reprovou. Mas veio <b>75% abaixo</b> do temido — R$ 509 vs R$ 2.000–3.500. Total do projeto R$ 433.156 → R$ 433.665. Fica pré-empilhado no fluxo mensal (~R$ 64/mês por 8 meses), imperceptível.</td></tr>
+    <tr><td style="width:120px"><span class="pill new">9.3</span></td><td><b>Correção: você já pagou R$ 60k pro Rodrigo, não R$ 30k.</b> Eu tinha registrado só a tranche de 24/08. Agora bate: <b>saldo do imóvel cai de R$ 181.034 → R$ 151.034</b>, "pago à vista" sobe pra R$ 116.848 e "falta à vista" cai pra R$ 159.719. <b>Total do projeto NÃO muda</b> (R$ 60k é pagamento abatendo dívida, não custo novo). <b>Impacto real na quitação: precisa de R$ 30k a menos do CDB.</b> Fica R$ 151.034 pro Rodrigo (emolumentos já pagos 31/08).</td></tr>
+    <tr><td style="width:120px"><span class="pill new">9.2</span></td><td><b>Deck cumaru entra no projeto — sai da §14 "fora de escopo".</b> Fechado com o <b>Elson</b> (mesma pessoa comprou madeira e vai executar): <b>18 m²</b> de cumaru 1ª linha, pedido 19768 da Pará Brazzil (Itatiba). <b>Material R$ 10.639 no cartão em 5×</b> (R$ 2.128/mês) + <b>MO R$ 4.000 à vista</b> = <b>+R$ 14.639</b> no projeto. R$ 813/m² instalado — bem posicionado (mercado 850–1.400) e bem abaixo dos R$ 23.000 que o vizinho pagou.</td></tr>
+    <tr><td style="width:120px"><span class="pill ok">9.1</span></td><td><b>Emolumentos da escritura pagos — R$ 26.340 via Pix em 31/08 às 16:01</b> (BTG → Meta Negócios Financeiros, ID E30306294...28E7OU). ITBI 1,8% + registro 0,51% + diligências 0,07% (2,40% como 1º imóvel SFH), fechados com a Erika/Mieko. Documentação da escritura <b>quitada</b>. Sobrou no à vista só: quitação do imóvel (R$ 181.034, CDB) + projeto R$ 2.500 + material do muro R$ 2.185 + MO do deck R$ 4.000.</td></tr>
+    <tr><td style="width:120px"><span class="pill new">9.0</span></td><td><b>Sincronizado com o SKILL rev 3 (01/09).</b> Entraram: <b>geladeira Electrolux R$ 4.588 no PIX</b> (à vista, paga) e <b>cama Zidi R$ 4.914</b> (parcelado, 1× R$ 1.059 + 10× R$ 386 no Master 6369). <b>Total do projeto: R$ 409.015 → R$ 418.517.</b> As compras no saldo ML (R$ 773,87) entraram como registro, fora do orçamento. <b>3 conflitos de valor com o SKILL ficaram marcados no §1B pra você confirmar</b> (LYME, piso, e a provisão de elétrica que você mandou tirar).</td></tr>
+    <tr><td style="width:120px"><span class="pill new">8.9</span></td><td><b>Removida a estimativa fantasma de R$ 8.494 de elétrica/instalação.</b> A linha "iluminação + elétrica" carregava um envelope de R$ 12.000 que era chute do modelo, sem orçamento. Agora vale o <b>gasto real: R$ 3.506</b> (luminárias R$ 1.506 + eletricista R$ 2.000). <b>Total do projeto cai de R$ 417.509 → R$ 409.015</b> e o "comprado no parcelado" (§1B) vai de R$ 79.680 → R$ 71.186.</td></tr>
+    <tr><td style="width:120px"><span class="pill new">8.8</span></td><td><b>Nova página: consolidado financeiro (§1B, no topo).</b> Todo o dinheiro em quatro caixas que somam o projeto: <b>pago à vista R$ 55.920</b> · <b>comprado no parcelado R$ 71.186</b> · <b>falta à vista R$ 212.059</b> · <b>falta contratar R$ 69.850</b>. A leitura que destrava a confusão: tirando a quitação do imóvel (R$ 181.034, que sai do CDB), o que falta à vista é só R$ 31.025.</td></tr>
+    <tr><td style="width:120px"><span class="pill ok">8.7</span></td><td><b>✓ Pedra da ilha INSTALADA em 26/08 — e ficou ótima.</b> O caminho crítico que dominou o controle desde a rev. 6 (cooktop → recorte 56×49 → Feijor) está <b>encerrado</b>: a chapa foi cortada na medida certa e assentada, o risco de "chapa cortada não tem conserto" passou. Granito preto São Gabriel, 5,63 m². Marco do projeto.</td></tr>
+    <tr><td style="width:120px"><span class="pill ok">8.6</span></td><td><b>CONTRATO ASSINADO — custos de fechamento pararam de ser estimativa.</b> Documentação <b>R$ 26.340</b> (2,40% como 1º imóvel SFH: ITBI 1,8% R$ 19.840 + registro 0,51% R$ 5.630 + diligências 0,07% R$ 870) na escritura, mais <b>CAIXA/FGTS R$ 10.500</b> (emissão + saque) <b>já quitado</b> — R$ 2.500 de IR antes + <b>R$ 8.000 pagos hoje</b>. Fechamento real <b>R$ 36.840</b> vs estimativa R$ 33.000 = <b>+R$ 3.840</b> no total. O ITBI e o registro vieram <b>abaixo</b> do temido; a "taxa CAIXA" misteriosa era isto. Seção 10.</td></tr>
+    <tr><td style="width:120px"><span class="pill new">8.6</span></td><td><b>Eletricista R$ 2.000</b> (instalação de todas as arandelas, pago 26/08) e <b>Feijor R$ 5.040 no cartão em 8×</b> (26/08). Nenhum dos dois soma ao total: o eletricista está <b>dentro do envelope</b> de iluminação+elétrica (§11) e a Feijor <b>já era linha</b> do parcelado — só mudou de "a vencer" para <b>pago</b>. <b>Anuência do condomínio: fora do radar</b> a seu pedido.</td></tr>
+    <tr><td style="width:120px"><span class="pill new">8.4</span></td><td><b>Muro da divisa + ampliação — escopo NOVO no orçamento.</b> Material <b>R$ 2.300</b> (à vista <b>R$ 2.185</b>, orçamento 158.706 de 24/08) — bloco, canaleta, areia, brita, vergalhão, coluna e viga baldrame, cimento, cal, tijolo — para o <b>muro frontal e lateral da divisa</b> e o <b>aterro que estende a área de grama até a divisa frontal</b>. Mais <b>R$ 4.850 de mão de obra</b> que <b>também instala todos os itens de banheiro</b>. É a primeira frente de <b>muro/terraplanagem</b> do projeto — <b>+R$ 7.035 no total</b>. Seção 3F.</td></tr>
+    <tr><td style="width:120px"><span class="pill new">8.3</span></td><td><b>Iluminação: 15 luminárias compradas — R$ 1.506.</b> Trilho + spots, 8 plafons de 40 W, balizadores, lustre, pendente de bancada, espelho com LED e os kits de spot. <b>O material de iluminação virou fato e caiu barato</b> — agora a linha "iluminação + elétrica" de R$ 12.000 é essencialmente <b>mão de obra + infra</b> (circuitos, exclusivos do cooktop/forno, balanceamento de fases, preparo do boiler e instalar tudo isso). Seção 3E. <b>Não é gasto novo sobre os R$ 12.000 — estava dentro do envelope</b>, então o total do projeto não muda.</td></tr>
+    <tr><td><span class="pill new">8.3</span></td><td><b>R$ 30.000 pagos ao Rodrigo em 24/08</b>, amortizando o saldo do imóvel de <b>R$ 211.034 → R$ 181.034</b>. <b>Neutro pro colchão:</b> saiu do CDB (fundo de quitação) e abateu igual valor da dívida, então a reserva pós-à-vista segue <b>R$ 22.564</b>. O custo total do projeto <b>não cai</b> — R$ 30k é pagamento, não desconto. Seção 11.</td></tr>
+    <tr><td style="width:120px"><span class="pill ok">FECHADO</span></td><td><b>LYME assinada em 17/08 — contrato 1412, R$ 30.840,11.</b> Veio <b>R$ 3.160 abaixo</b> dos R$ 34.000 provisionados. Mas a <b>estrutura mudou</b>: metade virou entrada Pix (R$ 15.420, já saiu do caixa) e metade em <b>5× R$ 3.084 no CARTÃO</b>, não em boleto. Ver seção 3C.</td></tr>
+    <tr><td><span class="pill bad">FALTA</span></td><td><b>O contrato tem 2 boxes, não 3.</b> Itens 4 e 5 são os únicos boxes. O terceiro banheiro <b>não está contratado</b> — vai exigir adendo (cláusula 2.2) a preço de hoje. Ver seção 3C.</td></tr>
+    <tr><td><span class="pill warm">CAIXA</span></td><td><b>O piso de agosto caiu de R$ 39.182 para R$ 30.562.</b> A entrada Pix de R$ 15.420 substituiu a parcela de R$ 6.800 que estava modelada. Continua confortável, mas a <b>reserva pós-à-vista caiu de R$ 31.959 para R$ 16.539</b>.</td></tr>
+    <tr><td><span class="pill new">NOVO</span></td><td><b>3 compras feitas em 14/08</b> — cooktop Black+Decker BXICHCPB4B, forno Midea TSD80P2 e fechadura digital biométrica. Detalhe na seção 3.</td></tr>
+    <tr><td><span class="pill ok">DESTRAVA</span></td><td><b>O cooktop deixou de ser bloqueio.</b> A rev. 6 dizia que sem o desenho de recorte não se autoriza corte de pedra. Continua verdade — mas agora o aparelho <b>físico</b> chega em 18/08, e o orçamento Feijor só vence 26/08. Medida física vale mais que manual em PDF. Ver seção 4.</td></tr>
+    <tr><td><span class="pill warm">CORRIGE</span></td><td>Hoje é <b>sexta-feira</b>. Tudo que a rev. 6 marcou como "esta semana" (CAIXA, Prefeitura, RI Atibaia) acontece <b>hoje ou escorrega pra segunda</b>, comendo 3 dias do caminho crítico de agosto.</td></tr>
+    <tr><td><span class="pill warm">CORRIGE</span></td><td>A rev. 6 listava <b>"13/09 — parcela Destro"</b>. 13/09/2026 <b>é domingo</b>. E o valor (12× R$ 579) é do orçamento antigo de R$ 6.950 — o pedido 470049 mudou o valor. Ver seção 8.</td></tr>
+    <tr><td><span class="pill warm">CORRIGE</span></td><td>Tabela de fornecedores da rev. 6 ainda descrevia a Destro como "piso vinílico <b>click</b> 50 m², R$ 6.950, escolher padrão". Está errado em quatro pontos: já foi comprado, é <b>LVT colado 2 mm</b>, são 62,86 m² faturados e o padrão (Magnifique Sophie) já foi escolhido.</td></tr>
+    <tr><td><span class="pill go">ACHADO</span></td><td><b>Nicho real do forno Midea</b> extraído do manual de instalação do fabricante (TC-80P2, Rev.03) — os sites de varejo publicam medida errada. Número que a projetista precisa. Seção 5.</td></tr>
+    <tr><td><span class="pill ok">7.4</span></td><td><b>Cooktop saiu por R$ 999,90</b> — R$ 1.799 de etiqueta menos R$ 799,10 de desconto à vista. <b>44% off</b>, e R$ 150 abaixo do piso da faixa de mercado que eu tinha levantado. Melhor compra do projeto até agora. Pago em Pix + saldo ML, <b>não no cartão</b>.</td></tr>
+    <tr><td><span class="pill ok">8.2</span></td><td><b>A fechadura chegou e está INSTALADA.</b> O extravio se resolveu e o item saiu da lista. Fecha três pendências de uma vez: rastreio, <b>mão da porta</b> (estava certa) e furação em madeira maciça. Falta só saber se os <b>R$ 250 de instalação</b> foram pagos de fato ou se foi você quem colocou.</td></tr>
+    <tr><td><span class="pill new">7.3</span></td><td><b>Banheiros: R$ 1.781,17 em metais e acessórios</b>, 1× no cartão — em 15/08 — 3 duchas, 3 kits de 5 peças, 3 porta-shampoo. Consome a linha "chuveiros e metais" (R$ 1.500). <b>Corrigido em 8.0:</b> torneiras e acabamentos de registro já estavam comprados — a provisão de R$ 1.600 saiu do orçamento. Seção 3B.</td></tr>
+    <tr><td><span class="pill new">7.2</span></td><td><b>Fechadura: R$ 328 pagos + R$ 250 de instalação = R$ 578.</b> O aparelho saiu abaixo da minha premissa (R$ 450), mas a instalação, que <b>não estava no orçamento</b>, joga o custo real acima dela. Lição que vale para os outros dois. Seção 3.</td></tr>
+    <tr><td><span class="pill new">7.1</span></td><td><b>Estorno da Destro confirmado em R$ 3.168,30</b>, como crédito no cartão, <b>mantendo as parcelas cheias</b>. É R$ 2.028 a mais do que o cenário que eu recomendava. Bom pro caixa — e levanta uma dúvida de quantidade que tem de ser respondida na visita. Seção 8.</td></tr>
+    <tr><td><span class="pill no">RISCO</span></td><td><b>O cooktop não pode ser testado.</b> Precisa de circuito 220V exclusivo, disjuntor 32A e cabo 6 mm² — que ainda não existem. As janelas de devolução do ML vencem com o aparelho na caixa. Seção 4.</td></tr>
+  </table>
+</section>
+<!-- ============ 1B. CONSOLIDADO FINANCEIRO ============ -->
+<section id="dinheiro">
+  <h3>💰 Consolidado financeiro — pago × falta <span class="pill new">8.8</span></h3>
+  <p style="color:var(--dim);font-size:14px">Todo o dinheiro do projeto em <b>quatro caixas que não se sobrepõem e somam o total</b>. Custo do projeto: <b>R$ 645.572</b> <span class="tag" style="font-weight:400">só do bolso · casa R$ 1,1M inclui FGTS+CAIXA (ver bloco abaixo)</span>.</p>
+  <div class="grid g4">
+    <div class="kpi"><span>✓ Já paguei à vista</span><b style="color:var(--ok)">R$ 477.129</b><small><b>R$ 411.034 no imóvel</b> + LYME + FGTS/CAIXA + geladeira + emolumentos + AC + <b>Adelco R$ 3.500 + projeto planejados 2ª R$ 2.500</b></small></div>
+    <div class="kpi"><span>◐ Comprei no parcelado</span><b>R$ 99.443</b><small>+R$ 17.331 nas revs 10.6/10.7: cortinas + Spa + carrinho ML + aspirador + 3º box LYME. −R$ 2.000 do eletricista (foi à vista, não parcelado). Inclui cama, nivelante, AC, deck.</small></div>
+    <div class="kpi"><span>○ Falta pagar à vista</span><b style="color:var(--ok)">R$ 4.000</b><small>só MO do deck (Elson R$ 4.000). <b>Imóvel QUITADO. Projeto planejados 2ª parcela paga.</b></small></div>
+    <div class="kpi"><span>○ Falta contratar (parcelado)</span><b style="color:var(--alert)">R$ 65.000</b><small>só marcenaria — vira parcela quando fechar (~28/09)</small></div>
+  </div>
+  <div class="note good"><b>Leitura em uma frase:</b> <b>IMÓVEL QUITADO 02/09 — R$ 411.034 do bolso ao longo do processo</b> (entradas de 50k+150k anteriores, R$ 60k em agosto, R$ 151.034 hoje). Somando FGTS liberado (R$ 545k) + financiamento CAIXA (R$ 143.966,50 em 420× SAC), fecha os R$ 1.100.000 da casa. A caixa "falta à vista" do controle desabou pra <b>R$ 6.500</b> — só projeto planejados R$ 2.500 + MO deck R$ 4.000. A compra do imóvel encerrou; sobra obra + enxoval. A reforma inteira ou já está comprada e diluída em parcela, ou nem foi contratada.</div>
+
+  <h4 style="margin-top:22px">1 · À vista — R$ 481.129 <span class="tag" style="font-weight:400">✓ pago R$ 477.129 · ○ falta R$ 4.000</span></h4>
+  <table>
+    <tr><th>Item</th><th class="n">Valor</th><th>Situação</th></tr>
+    <tr><td>Entrada LYME (esquadrias) — Pix</td><td class="n">R$ 15.420</td><td><span class="pill ok">✓ pago 17/08</span></td></tr>
+    <tr><td>CAIXA + FGTS — emissão do contrato + saque</td><td class="n">R$ 10.500</td><td><span class="pill ok">✓ pago 26/08</span></td></tr>
+    <tr><td>Geladeira Electrolux IM8IS — PIX <span class="pill new">9.0</span></td><td class="n">R$ 4.588</td><td><span class="pill ok">✓ pago (ago)</span></td></tr>
+    <tr><td>AC — instalação (com adicional material) <span class="pill new">10.3</span></td><td class="n">R$ 3.247</td><td><span class="pill ok">✓ pago 31/08 (Pix)</span></td></tr>
+    <tr><td><b>Eletricista Adelco</b> — arandelas + instalação banheiros <span class="pill new">10.4</span></td><td class="n">R$ 3.500</td><td><span class="pill ok">✓ pago 05/09</span></td></tr>
+    <tr><td>Projeto planejados — 2ª parcela <span class="pill new">10.6</span></td><td class="n">R$ 2.500</td><td><span class="pill ok">✓ pago</span></td></tr>
+    <tr><td><b>Imóvel — entrada 1</b> <span class="pill new">10.0</span></td><td class="n">R$ 50.000</td><td><span class="pill ok">✓ pago (anterior)</span></td></tr>
+    <tr><td><b>Imóvel — entrada 2</b> <span class="pill new">10.0</span></td><td class="n">R$ 150.000</td><td><span class="pill ok">✓ pago (anterior)</span></td></tr>
+    <tr><td><b>Imóvel — Rodrigo (agosto, 2 tranches)</b></td><td class="n">R$ 60.000</td><td><span class="pill ok">✓ pago ago</span></td></tr>
+    <tr><td><b>Imóvel — QUITAÇÃO Rodrigo</b></td><td class="n">R$ 151.034</td><td><span class="pill ok">✓ pago 02/09 (Pix)</span></td></tr>
+    <tr><td>Documentação — ITBI + registro + diligências</td><td class="n">R$ 26.340</td><td><span class="pill ok">✓ pago 31/08 (Pix Meta)</span></td></tr>
+        <tr><td>Deck cumaru — mão de obra Elson <span class="pill new">9.2</span></td><td class="n">R$ 4.000</td><td><span class="pill warm">○ a pagar (à vista)</span></td></tr>
+    <tr class="tot"><td>Subtotal à vista</td><td class="n">R$ 481.129</td><td><b>pago R$ 477.129 · falta R$ 4.000</b></td></tr>
+  </table>
+
+  <h4 style="margin-top:22px">2 · Parcelado — R$ 164.443 <span class="tag" style="font-weight:400">◐ comprado R$ 99.443 · ○ a contratar R$ 65.000</span></h4>
+  <table>
+    <tr><th>Item</th><th class="n">Valor</th><th>Condição</th><th>Situação</th></tr>
+    <tr><td>Esquadrias + 2 boxes — LYME</td><td class="n">R$ 15.420</td><td>5× cartão</td><td><span class="pill ok">◐ em curso</span></td></tr>
+    <tr><td>Boiler solar — EcoSol <span class="pill new">10.7</span></td><td class="n">R$ 18.390</td><td>8× boleto · 15/08→15/03</td><td><span class="pill ok">✓ INSTALADO</span></td></tr>
+    <tr><td>AC — 4 aparelhos</td><td class="n">R$ 10.257</td><td>8×</td><td><span class="pill ok">◐ em curso</span></td></tr>
+    <tr><td>Piso LVT — Destro <span class="pill new">10.1</span></td><td class="n">R$ 9.696</td><td>~12× R$ 1.072</td><td><span class="pill ok">✓ entregue · nivela 04/09 · instala 08/09</span></td></tr>
+    <tr><td>Nivelante do piso (requerido pelo instalador) <span class="pill new">9.4</span></td><td class="n">R$ 509</td><td>8× R$ 64</td><td><span class="pill ok">✓ comprado 02/09</span></td></tr>
+    <tr><td>Luminárias (Visa 0700) <span class="pill new">10.4</span></td><td class="n">R$ 1.370</td><td>líq. da devolução (§3E)</td><td><span class="pill ok">◐ em curso</span></td></tr>
+    <tr><td>Pedra da ilha — Feijor</td><td class="n">R$ 5.040</td><td>8× cartão</td><td><span class="pill ok">✓ comprado 26/08</span></td></tr>
+    <tr><td>Eletros embutidos + fechadura</td><td class="n">R$ 3.359</td><td>cartão/Pix</td><td><span class="pill ok">✓ comprado · R$ 250 install a vir</span></td></tr>
+    <tr><td>Banheiros — duchas + acessórios</td><td class="n">R$ 1.781</td><td>1× cartão</td><td><span class="pill ok">✓ comprado</span></td></tr>
+    <tr><td>Assentos sanitários</td><td class="n">R$ 737</td><td>cartão + saldo ML</td><td><span class="pill ok">✓ comprado</span></td></tr>
+    <tr><td>Cama/dormitório — Zidi (2 colchões + 2 bases baú) <span class="pill new">10.1</span></td><td class="n">R$ 4.914</td><td>1× R$ 1.059 + 10× R$ 386 · Master 6369</td><td><span class="pill ok">✓ 2 colchões chegaram (bases pend.)</span></td></tr>
+    <tr><td><b>Deck cumaru — material (Pará Brazzil + extras)</b> <span class="pill new">9.2</span></td><td class="n">R$ 10.639</td><td>5× R$ 2.128 · cartão</td><td><span class="pill ok">✓ contratado 02/09</span></td></tr>
+    <tr><td><b>Cortinas</b> (2 sala Wave + 3 quartos + escritório) <span class="pill new">10.6</span></td><td class="n">R$ 6.725</td><td>6× R$ 1.121 · cartão</td><td><span class="pill ok">✓ fechado</span></td></tr>
+    <tr><td><b>Spa Inflável Ofurô Rome 1180L</b> <span class="pill new">10.6</span></td><td class="n">R$ 6.780</td><td>10× R$ 678 · Master 3619</td><td><span class="pill ok">✓ comprado 13/09</span></td></tr>
+    <tr><td><b>Carrinho ML</b> (6 cadeiras Gruvyer + mesa 130cm + luminária + lâmpada) <span class="pill new">10.6</span></td><td class="n">R$ 1.864</td><td>R$ 1.674 à vista + 6× R$ 32 · Master 3619</td><td><span class="pill ok">✓ comprado 13/09</span></td></tr>
+    <tr><td><b>Aspirador Arno X-Pert 7.60</b> (só cartão) <span class="pill new">10.6</span></td><td class="n">R$ 430</td><td>10× R$ 43 · Master 6369</td><td><span class="pill ok">✓ pago 04/09</span></td></tr>
+    <tr><td><b>LYME — 3º box pequeno (fora do contrato 1412)</b> <span class="pill new">10.7</span></td><td class="n">R$ 1.532</td><td>condição a confirmar</td><td><span class="pill warm">◐ contratado</span></td></tr>
+    <tr><td><b>Marcenaria</b> — lâminas JKV + Felipe</td><td class="n"><b>R$ 65.000</b></td><td>10× (provisão)</td><td><span class="pill no">○ a contratar (~28/09)</span></td></tr>
+    <tr class="tot"><td>Subtotal parcelado</td><td class="n">R$ 164.443</td><td colspan="2"><b>comprado R$ 99.443 · a contratar R$ 65.000</b></td></tr>
+  </table>
+  <div class="note info"><b>O parcelado "em curso" não é dinheiro que falta juntar — é dinheiro que já flui todo mês.</b> No pico (quando boiler + AC + esquadrias + piso + Feijor coincidem) pesa <b>~R$ 9.367/mês</b>, coberto pelos R$ 15.000 do salário destinados à casa (§12). O que realmente ainda "vai virar" desembolso é a marcenaria (R$ 65.000) na linha <b>○ a contratar</b>.</div>
+  <div class="note bad"><b>Fora das quatro caixas (ainda sem número fechado):</b> instalação da fechadura R$ 250 · revestimento da escada R$ 2.000–5.000 · içamento da carga do piso · materiais de instalação da Feijor R$ 150–300 · rack/TV. Some <b>R$ 2.000–5.000+</b> que ainda vão aparecer. <b>⚠ Pergunta pendente sobre a instalação dos banheiros:</b> o eletricista vai fazer isso 05/09 (junto com as luminárias) — <b>está incluído nos R$ 2.000 originais das arandelas ou é adicional?</b> Se for adicional, entra como linha nova.</div>
+
+  <div class="note good"><b>Como se decompõem os R$ 1.100.000 da casa</b> (a rev. 10.0 completou a foto):
+  <table style="margin-top:10px">
+    <tr><th>Fonte</th><th class="n">Valor</th><th>Onde entra no controle</th></tr>
+    <tr><td><b>Do bolso Lucas — à vista/CDB</b></td><td class="n"><b>R$ 411.034</b></td><td>✓ no bloco "à vista" (linhas do imóvel acima)</td></tr>
+    <tr><td>FGTS liberado</td><td class="n">R$ 545.000</td><td>fora do controle — não é do bolso, é recurso do FGTS</td></tr>
+    <tr><td>Financiamento CAIXA (420× SAC)</td><td class="n">R$ 143.966,50</td><td>fora do controle — é dívida, vira parcela mensal separada</td></tr>
+    <tr class="tot"><td><b>Preço da casa</b></td><td class="n"><b>R$ 1.100.000</b></td><td></td></tr>
+  </table>
+  <p style="margin-top:10px">O <b>"total do projeto R$ 626.741"</b> nesse controle é <b>só o que sai do seu bolso</b> (imóvel R$ 411.034 do bolso + reforma R$ 215.707). O FGTS e o financiamento CAIXA são recursos/dívida à parte, com fluxo próprio. Se quiser, posso adicionar a parcela mensal do CAIXA (~R$ 1.500–1.800/mês começando quando o financiamento entrar em prestação) ao fluxo do §12.</p></div>
+
+  <h4 style="margin-top:22px">Compras no saldo Mercado Pago — registro, <u>não somam</u> ao orçamento <span class="pill new">9.0</span></h4>
+  <p style="color:var(--dim);font-size:13px">Grana do saldo ML é lucro de venda de produto, não caixa da casa. Fica registrado só pra constar.</p>
+  <table>
+    <tr><th>Data</th><th>Item</th><th class="n">Valor</th></tr>
+    <tr><td>24/08</td><td>Assento Boss Amortecido Incepa</td><td class="n">R$ 178,40</td></tr>
+    <tr><td>29/08</td><td>Torneira retrátil monocomando gourmet inox + 4 itens</td><td class="n">R$ 372,03</td></tr>
+    <tr><td>01/09 <span class="pill new">9.8</span></td><td>1× Plafon preto 24W (R$ 40,52) + 3× Painel branco 40W (R$ 59,32 cada) · Shopss · <span class="tag">Produtos R$ 254,90 − desconto R$ 34,29 − cupons R$ 2,13 + frete R$ 4,96</span></td><td class="n">R$ 223,44</td></tr>
+    <tr class="tot"><td>Total registrado (fora do orçamento)</td><td></td><td class="n"><b>R$ 773,87</b></td></tr>
+  </table>
+
+  <div class="note bad"><b>⚠️ Conflitos entre o SKILL rev 3 (01/09) e este reporte — preciso da sua palavra em 3 pontos.</b> Sincronizei o que era claramente novo (geladeira, cama, compras no saldo ML), mas em três linhas os dois documentos discordam de <b>valor</b>, e eu <b>não</b> sobrescrevi no chute:<br>
+  <b>1. LYME (esquadrias + gourmet + boxes).</b> O SKILL diz <b>R$ 34.000</b> (5× R$ 6.800, tudo parcelado). O reporte tem <b>R$ 30.840</b> (entrada R$ 15.420 no Pix + 5× R$ 3.084). Diferença R$ 3.160. Qual é o certo?<br>
+  <b>2. Piso Destro.</b> O SKILL diz <b>R$ 6.950</b> (50 m² × R$ 139). O reporte tem <b>R$ 9.696</b> (pedido real 470049, cheio R$ 12.864 − estorno R$ 3.168). Diferença R$ 2.746. Mantive o do pedido real — confirma?<br>
+  <b>3. Elétrica/iluminação restante.</b> Você mandou eu tirar o R$ 8.494 (feito). Mas o SKILL rev 3 <b>ainda provisiona R$ 10.494</b> pra elétrica + iluminação externa (arandelas de fachada, balizadores IP67 do caminho de pedras, circuitos, preparo do boiler). Isso é obra real que ainda não foi orçada. <b>Quer de volta como provisão</b> ou segue fora até ter orçamento na mão?</div>
+  <div class="note info"><b>O que mantive do reporte (o SKILL rev 3 está atrasado nisso):</b> a amortização de R$ 30.000 ao Rodrigo, o muro da divisa (R$ 2.185 + R$ 4.850), a <b>pedra já instalada</b> (o SKILL ainda a trata como "orçada, vence 26/08"), e os custos reais de fechamento <b>R$ 36.840</b> do contrato assinado (o SKILL ainda tem a estimativa de R$ 33.000). Esses são eventos reais que aconteceram aqui — o reporte é a fonte mais atual neles.</div>
+</section>
+
+<!-- ============ 2. RELÓGIO ============ -->
+<section>
+  <h3>2 · Relógio ativo — o que vence e quando</h3>
+  <p style="color:var(--dim);font-size:14px">Dias úteis contados <b>a partir de 05/09 (sábado)</b>, descontando fins de semana e feriados nacionais (07/09 seg, 12/10 seg, 02/11 seg, 20/11 sex, 25/12 sex).</p>
+  <table>
+    <tr><th>Item</th><th>Vence</th><th class="n">Dias úteis</th><th>Ação</th><th style="width:70px"></th></tr>
+    <tr><td><b>Piso Destro — instalação</b> <span class="pill new">10.1</span></td><td>08/09 (seg)</td><td class="n">2</td><td>Material entregue, nivelamento com argamassa 04/09 (aplica o nivelante de R$ 509). Confirmar disponibilidade do instalador pra 08/09 na segunda.</td><td><span class="pill warm">PRÓXIMO</span></td></tr>
+    <tr><td><b>Forno Midea — aguarda marcenaria</b> <span class="pill new">10.1</span></td><td>~28/09</td><td class="n">—</td><td>Já chegou (~28/08). Vai embutido no gabinete — precisa aguardar a marcenaria fechar (~28/09).</td><td><span class="pill warm">aguarda</span></td></tr>
+    <tr><td><b>Projeto dos planejados — 2ª parcela + entrega</b></td><td>~28/09</td><td class="n">15</td><td>45 dias contados de 11/08. R$ 2.500 restantes + entrega do projeto pra JKV/Felipe começarem.</td><td><span class="pill go">—</span></td></tr>
+    <tr><td><b>Marcenaria — contratação (JKV + Felipe)</b></td><td>~outubro</td><td class="n">—</td><td>Depende do projeto (~28/09) e do piso instalado (08/09). Provisão R$ 65.000. Este é o próximo grande item a contratar.</td><td><span class="pill go">planejado</span></td></tr>
+    <tr><td><b>Arquivados nesta rev</b> <span class="pill ok">10.4</span></td><td>—</td><td class="n">—</td><td>✓ Elektro (ligada 03/09) · ✓ Feijor pedra (instalada 26/08) · ✓ Cooktop (instalado ~02/09) · ✓ Fechadura digital · ✓ ACs (operacionais 03/09) · ✓ Adelco eletricista (pago 05/09) · ✓ Emolumentos (pagos 31/08) · ✓ Imóvel quitado (02/09) · ✓ Destro estorno · ✓ CAIXA/Prefeitura/RI Atibaia.</td><td><span class="pill ok">histórico</span></td></tr>
+  </table>
+  <div class="note good"><b>Relógio limpo.</b> Os grandes gargalos do projeto (imóvel, pedra, cooktop, energia, banheiros) estão todos resolvidos. Os itens que restam são planejamento normal de execução: piso → projeto marcenaria → marcenaria em si.</div>
+</section>
+<!-- ============ 2B. AGENDA DE INSTALACOES ============ -->
+<section>
+  <h3>2B · Agenda de instalações — 21/08 a ~19/10 <span class="pill new">8.2</span></h3>
+  <p style="color:var(--dim);font-size:14px">Datas passadas pelo Lucas em 20/08. As marcadas com <b>~</b> são contadas em dias corridos a partir de hoje — <b>estimativa, não data firme</b>. A dos armários é <b>estimativa do próprio Lucas</b> ("imagino"), não compromisso da fábrica.</p>
+  <table>
+    <tr><th style="width:96px">Data</th><th>Evento</th><th>Depende de</th><th style="width:78px">Risco</th></tr>
+    <tr><td><b>21/08</b> sex</td><td><b>ACs chegam</b> — 4 aparelhos</td><td>—</td><td><span class="pill ok">OK</span></td></tr>
+    <tr><td><b>03/09</b> qua <span class="pill new">10.2</span></td><td><b>Elektro LIGOU a energia</b> — UC 49211331 · nota 202610548330123-3</td><td>vistoria + medidor OK · atraso de 10 dias vs previsto 24/08</td><td><span class="pill ok">✓ FEITO</span></td></tr>
+    <tr><td><b>~26/08</b> qua</td><td><b>Instalação dos 4 ACs — feita</b> (R$ 3.247 com adicional de material, §9.5)</td><td>operacional desde 03/09 quando a Elektro ligou</td><td><span class="pill ok">✓ FEITO</span></td></tr>
+    <tr><td><b>25/08</b> ter</td><td><b>Araújo — todos os itens de banheiro</b></td><td><b>bacias existirem</b> · assentos · altura do gabinete</td><td><span class="pill no">CEDO DEMAIS</span></td></tr>
+    <tr><td><b>26/08</b> qua</td><td><b>Pedra da ilha — Feijor</b> <span class="pill new">8.7</span></td><td>recorte 56×49 deu certo</td><td><span class="pill ok">✓ INSTALADA</span></td></tr>
+    <tr><td><b>27/08</b> qui</td><td><b>Boiler EcoSol</b> — já pago em 15/08 (R$ 2.298,75)</td><td>energia (apoio elétrico)</td><td><span class="pill ok">ordem certa</span></td></tr>
+    <tr><td><b>31/08</b> seg <span class="pill new">8.5</span></td><td><b>Início do muro da divisa + aterro</b> — material R$ 2.185 + mão de obra R$ 4.850 (§3F)</td><td>caimento/dreno na base definido com o pedreiro</td><td><span class="pill go">agendado</span></td></tr>
+    <tr><td><b>03/09</b> qua <span class="pill new">10.2</span></td><td><b>Energia ligada</b> — destrava boiler, ACs e o eletricista de sábado</td><td>Elektro concluiu</td><td><span class="pill ok">✓ hoje</span></td></tr>
+    <tr><td><b>04/09</b> qui <span class="pill new">10.1</span></td><td><b>Destro — nivelamento do contrapiso do superior com argamassa</b></td><td>o nivelante de R$ 509 (§9.4) vai ser aplicado</td><td><span class="pill ok">agendado</span></td></tr>
+    <tr><td><b>~04/09</b> sex</td><td><b>3 boxes de vidro + vidro superior do gourmet</b> — LYME</td><td><b>o 3º box não está no contrato 1412</b></td><td><span class="pill warm">CONTRADIÇÃO</span></td></tr>
+    <tr><td><b>05/09</b> sáb <span class="pill new">10.1</span></td><td><b>Eletricista termina: instala luminárias + itens de banheiro</b></td><td>fecha o buraco do §7 (instalação banheiros) que virou órfão quando o muro caiu</td><td><span class="pill ok">agendado</span></td></tr>
+    <tr><td><b>08/09</b> ter</td><td><b>Piso LVT — Destro</b></td><td>contrapiso nivelado · içamento · primer · cola</td><td><span class="pill no">4 BLOQUEIOS</span></td></tr>
+    <tr><td><b>~14/09</b> seg</td><td><b>Restante das esquadrias</b> — LYME</td><td>piso colado 6 dias antes</td><td><span class="pill warm">proteger piso</span></td></tr>
+    <tr><td>~28/09</td><td>Projeto da marcenaria (45 d de 11/08)</td><td>medidas in loco · nicho do forno</td><td><span class="pill go">—</span></td></tr>
+    <tr><td><b>~19/10</b> seg</td><td><b>Instalação dos armários</b> — 60 d <span class="pill new">8.2</span></td><td>projeto ~28/09 · <b>piso instalado antes da medição</b></td><td><span class="pill warm">estimativa</span></td></tr>
+    <tr><td>depois de ~19/10</td><td><b>Araújo — 2ª ida</b> (kit 5 peças · torneira de bancada) <span class="pill new">8.2</span></td><td><b>gabinete e bancada montados</b></td><td><span class="pill go">—</span></td></tr>
+  </table>
+
+  <div class="note bad"><b>0 · A pedra em 26/08 cai exatamente no dia em que o orçamento Feijor vence — e o modelo previa a pedra pronta só em ~10/09.</b> O painel carregava <b>15 dias úteis de produção</b> a partir da autorização; para instalar em 26/08 a chapa teria de estar sendo cortada <b>agora</b>. Ou a Feijor está trabalhando mais rápido do que a própria prazo declarado, ou <b>a medição e a autorização já aconteceram e eu não fui informado</b>. Não é problema — é bom, adianta o projeto em duas semanas. Mas <b>muda o que ainda dá para mudar</b>: depois que a chapa é cortada, recorte errado não tem conserto, tem chapa nova.<br>
+  <b>Confirme hoje, antes da pedra entrar em produção:</b><br>
+  • <b>Recorte do cooktop = 56 × 49 cm</b> (Black+Decker BXICHCPB4B, 4 bocas). Se a Feijor cortou por medida de catálogo em vez do aparelho físico, é chapa perdida.<br>
+  • <b>200 mm livres sob o cooktop</b> — é restrição do forno embutido logo abaixo. Isso era informação devida à projetista da marcenaria; agora é devida <b>à Feijor primeiro</b>, porque a espessura do tampo e o rebaixo consomem essa altura.<br>
+  • <b>A cuba</b> — se a casa já vem com cuba (ver §3B), o recorte dela também sai agora, e o modelo tem de ser o que já existe, não um a comprar.<br>
+  • <b>O pagamento em 8×</b> — se o orçamento vence 26/08 e a instalação é 26/08, a condição de 8× precisa estar travada por escrito antes, não negociada no dia.</div>
+
+  <div class="note good"><b>0b · A pedra em 26/08 NÃO conflita com o piso de 08/09.</b> A ilha é no <b>térreo</b>; o LVT colado é no <b>superior</b>. Frentes separadas, equipes separadas, nenhuma disputa de espaço. E cair <b>1 dia depois do Araújo</b> (25/08) também está certo: marmoraria trabalhando com pedra pesada num banheiro recém-montado seria risco; cozinha e banheiro não se cruzam.</div>
+
+  <div class="note info"><b>0c · Armários em ~60 dias (≈19/10) fecha com o resto — mas é seu chute, não compromisso da fábrica.</b> Bate com o projeto saindo ~28/09 mais produção, e confirma a onda de outubro que o §17 já previa. Duas leituras que saem disso:<br>
+  (1) <b>O piso de 08/09 vira pré-requisito duro.</b> O marceneiro mede <b>depois</b> do LVT instalado — medir antes erra altura de rodapé e de gaveta na cozinha inteira. Se o piso escorregar de 08/09, os armários escorregam junto, e não é 1 por 1: é o atraso do piso mais uma nova janela de medição.<br>
+  (2) <b>Isso empurra a 2ª ida do Araújo para depois de ~19/10.</b> Toalheiro, papeleira, porta-toalha e torneira de bancada dependem do gabinete montado. <b>Dois meses de distância</b> entre a 1ª e a 2ª ida — o que torna a divisão do serviço não uma preferência, mas a única forma de fazer certo. Combine isso com ele <b>antes de 25/08</b>, não depois.<br>
+  <b>Cobre a fábrica de uma data firme</b> quando o projeto sair em ~28/09. "60 dias" sem contrato não segura cronograma.</div>
+
+  <div class="note bad"><b>1 · Araújo em 25/08 vai furar porcelanato no escuro — e furo em porcelanato não tem volta.</b> O projeto da marcenaria só sai <b>~28/09, trinta e quatro dias depois dele</b>. A altura do toalheiro, da papeleira e do porta-toalha <b>depende da bancada e do gabinete</b>, que ainda não existem nem no papel. Se ele instalar o kit de 5 peças em 25/08, ele está chutando cota.<br>
+  <b>Divida o serviço dele em duas idas:</b><br>
+  • <b>Pode ir em 25/08</b> — ducha, acabamento de registro, nicho/porta-shampoo, bacia e assento. São itens cuja posição já está definida pelo <b>ponto hidráulico</b>, que não muda.<br>
+  • <b>Segura para depois de 28/09</b> — <b>kit de 5 peças</b> (toalheiro, papeleira, cabide, saboneteira, porta-toalha) e <b>torneira, se for de bancada</b>. Torneira de bancada sem bancada não instala; torneira de parede pode ir agora.<br>
+  Uma segunda visita do Araújo custa uma diária. Refazer furo errado em porcelanato custa a peça, o pedreiro e a mancha que fica.</div>
+
+  <div class="note bad"><b>2 · As bacias podem não existir — e sem bacia, metade do serviço do Araújo cai.</b> Você comprou <b>4 assentos</b> em 20/08 (§3D), mas as bacias não aparecem em nenhuma linha do orçamento. Se elas não estiverem na casa em 25/08, o Araújo não instala bacia nem assento, e você paga a diária por meio serviço. Some-se: os <b>3 assentos Art chegam 22/08</b> (3 dias de folga, ok) e o <b>Boss do lavabo está com "saída pendente"</b> — é FULL, deve chegar, mas <b>confirme o rastreio antes de 25/08</b>. E as bacias, se forem comprar agora, têm de ser <b>Incepa Art ×3 e Incepa Boss ×1</b> — o assento já travou o modelo.</div>
+
+  <div class="note good"><b>3 · Energia LIGADA em 03/09.</b> A aposta original ("energia + AC no mesmo dia") ficou pra trás — a Elektro atrasou 10 dias vs previsto 24/08, mas concluiu antes do eletricista de sábado, que era o próximo bloqueio real. <b>Contexto histórico abaixo (mantido pra referência):</b> <span style="opacity:0.6"> A instaladora precisa de <b>energia para fazer vácuo e testar</b> os 4 aparelhos. Se a Elektro atrasar um dia — e a vistoria já teve o problema do endereço da UC gravado errado ("AVENIDA ATIBAIA 605" contra "Av. Zezico Peçanha, 605") — a equipe chega numa casa morta e você paga a mobilização à toa. <b>Ligue para a instaladora na manhã de 24/08 e só libere depois de ver o medidor energizado.</b> Dois pontos ainda abertos que também caem em 24/08: <b>onde vai a 4ª condensadora</b> (nunca foi confirmado no local) e se os <b>circuitos dos ACs</b> estão prontos e balanceados entre fases.</span></div>
+
+  <div class="note bad"><b>4 · O piso em 08/09 tem quatro bloqueios não resolvidos, e só 12 dias — com feriado no meio.</b> 07/09 é segunda e cai véspera. Falta:<br>
+  (1) <b>Içamento.</b> O pedido diz impresso <i>"não subimos e não descemos escadas"</i> e <b>toda a carga vai pro superior</b> — ~50 m² de LVT mais 12 sacos de nivelador (240 kg). Não está orçado nem combinado.<br>
+  (2) <b>Contrapiso nunca foi nivelado nem conferido.</b> Régua de 2 m, tolerância 3 mm. É LVT <b>colado de 2 mm</b> — imperfeição de contrapiso aparece no acabamento.<br>
+  (3) <b>Falta 1 galão de primer</b> — são ~18 m²/galão, você tem 2 para ~43 m².<br>
+  (4) <b>A cola nunca apareceu no pedido.</b> Confirmar se está lá.<br>
+  E antes de tudo: <b>08/09 é entrega ou instalação?</b> Se for instalação, a entrega e o nivelamento têm de ser antes, e a janela encolhe mais.</div>
+
+  <div class="note bad"><b>5 · Contradição no 3º box.</b> Você diz que a LYME instala <b>3 boxes</b> em ~15 dias. O <b>contrato 1412 tem 2</b> — o 3º box está registrado no painel como fora do contrato, <b>R$ 1.500–2.000 não orçados</b>. Ou ele foi incluído e você tem um valor novo a lançar, ou vão aparecer só 2 boxes no dia. <b>Confirmar com a LYME antes de ~04/09.</b></div>
+
+  <div class="note good"><b>Uma coisa a agenda acertou sozinha: vidro antes de piso.</b> Boxes em ~04/09 e LVT em 08/09 é a ordem certa — instalador de vidro carregando peça pesada sobre piso colado novo seria dano garantido. Mas a <b>esquadria de ~14/09 vem 6 dias depois do LVT</b>: a cola ainda está curando e a equipe vai arrastar caixilho. <b>Forre o piso com papelão ondulado ou chapa dura antes de eles subirem.</b> Custa quase nada e evita risco em piso de 2 mm.</div>
+
+  <div class="note info"><b>Duas coisas sem linha no orçamento.</b> A <b>mão de obra do Araújo</b> (2 diárias, se dividir o serviço) e o <b>içamento da carga da Destro</b>. Nenhuma das duas está provisionada. Somadas, é dinheiro pequeno — mas hoje elas estão em R$ 0 no modelo, e R$ 0 não é uma estimativa.</div>
+</section>
+<!-- ============ 3. COMPRAS DE 14/08 ============ -->
+<section>
+  <h3>3 · Compras de 14/08 — três itens novos</h3>
+  <div class="grid g3">
+    <div class="kpi">
+      <h4>Cooktop indução Black+Decker</h4>
+      <span>BXICHCPB4B · 4 zonas · 220V</span>
+      <b style="font-size:18px;color:var(--warm)">7.200 W · 32,7 A</b>
+      <small>Loja oficial BlackDecker / 2ELETRO INFO · <b>FULL</b> · chega <b>terça 18/08</b>. Externo 59 × 5 × 52 cm. <b>Recorte não publicado</b> — a ficha repete a medida externa no campo "nicho".</small>
+    </div>
+    <div class="kpi">
+      <h4>Forno de embutir Midea</h4>
+      <span>TSD80P2 · 80 L · air fryer · 220V</span>
+      <b style="font-size:18px;color:var(--cool)">2.750 W · 12,5 A</b>
+      <small>Loja oficial Midea Store · chega <b>25–27/08</b>. Externo 59,5 L × 56,5 A × 59,5 P cm · 31,5 kg. Tomada <b>exclusiva 20 A</b>.</small>
+    </div>
+    <div class="kpi">
+      <h4>Fechadura digital biométrica</h4>
+      <span>ZIKOTECHTEC · WiFi + app · preto</span>
+      <b style="font-size:18px;color:var(--purple)">chega 15–16/08</b>
+      <small>Acabamento piano preto · direção <b>direita</b>. Porta de entrada é <b>madeira maciça ripada</b> — conferir furação e espessura na visita.</small>
+    </div>
+  </div>
+  <div class="note new"><b>Não são compras:</b> a mesma tela trazia um ar-condicionado LG Dual Inverter (R$ 4.619, Webcontinental) e um rack para TV 75" (R$ 659,99, MadeiraMadeira) — os dois marcados como <b>"Ad"</b>. O AC da casa já está fechado direto com o instalador; não abrir essa frente de novo.</div>
+  <h4 style="margin-top:20px">Preços — premissa declarada, não confirmada</h4>
+  <p style="color:var(--dim);font-size:14px">A tela não mostrou os valores pagos. Enquanto não vierem, o orçamento carrega a faixa de mercado apurada hoje:</p>
+  <table>
+    <tr><th>Item</th><th class="n">Faixa de mercado (14/08)</th><th class="n">Premissa no orçamento</th></tr>
+    <tr><td><b>Cooktop B+D BXICHCPB4B</b> <span class="pill ok">PAGO</span><br><span class="tag">pedido 2000017933246762</span></td><td class="n">R$ 1.150 – 1.400<br><span class="tag">premissa era R$ 1.300</span></td><td class="n"><b style="color:var(--ok)">R$ 999,90</b><br><span class="tag">R$ 1.799 − R$ 799,10 · frete grátis</span></td></tr>
+    <tr><td><b>Forno Midea TSD80P2</b> <span class="pill ok">PAGO</span><br><span class="tag">pedido 2000017932936906</span></td><td class="n">R$ 1.699 – 1.915<br><span class="tag">premissa era R$ 1.800</span></td><td class="n"><b>R$ 1.780,00</b><br><span class="tag">R$ 1.999 − R$ 300 + R$ 81 frete</span></td></tr>
+    <tr><td><b>Fechadura digital biométrica WiFi</b> <span class="pill ok">PAGO</span><br><span class="tag">pedido 2000017934799942</span></td><td class="n">R$ 300 – 600<br><span class="tag">premissa era R$ 450</span></td><td class="n"><b>R$ 328,98</b><br><span class="tag">R$ 349,98 − R$ 21 cupom</span></td></tr>
+    <tr><td><b>Instalação da fechadura</b></td><td class="n">—</td><td class="n"><b>R$ 250</b> <span class="pill go">est.</span></td></tr>
+    <tr class="tot"><td>Linha no orçamento</td><td class="n">premissa: R$ 3.678</td><td class="n"><b>R$ 3.358,88</b></td></tr>
+  </table>
+  <div class="note good"><b>Os três somam R$ 3.108,88 — R$ 319 abaixo da minha premissa, e o cooktop carrega sozinho essa economia.</b> R$ 1.799 de etiqueta por R$ 999,90 é <b>44,4% de desconto</b>, R$ 150 abaixo do piso da faixa de mercado que eu tinha levantado (R$ 1.150) e R$ 300 abaixo da premissa. O forno ficou dentro da faixa (R$ 1.780 contra R$ 1.699–1.915) — <b>vale notar que os R$ 81 de frete comeram um quarto do desconto de R$ 300</b>. A fechadura, no piso da faixa.</div>
+  <div class="note good"><b>ATUALIZAÇÃO 8.2 — a fechadura chegou e está instalada.</b> O extravio se resolveu, a mão da porta bateu (foi comprada "direção direita") e a furação em madeira maciça — que era irreversível — já está feita. <b>Item encerrado.</b> Fica só a pergunta de caixa: os <b>R$ 250 de instalação</b> foram pagos a alguém ou você mesmo instalou? Se foi você, o total do projeto cai R$ 250 e a linha vira fato em vez de premissa.<br>
+  <span style="color:var(--dim2)">Registro do que era o risco, para histórico:</span><br>
+  <b>O que fazer:</b> se o ML não resolver até 18/08, acionar o reembolso — a proteção cobre. Mas <b>prefira reenvio a estorno</b>: o preço de R$ 328,98 inclui um <b>cupom de R$ 21</b> que muito provavelmente não se repete numa recompra. Se cair para reembolso, o custo real de recomprar é ~R$ 350.<br>
+  <b>Efeito colateral bom:</b> se refizer a compra, você ainda não furou a porta. Dá tempo de medir espessura da folha e backset <b>hoje</b>, com trena, e comprar com a medida na mão em vez de torcer para a mão estar certa.</div>
+  <div class="note info"><b>Formas de pagamento — muda o caixa, não o total.</b> O cooktop foi pago com <b>R$ 200 de saldo ML + R$ 799,90 em Pix</b>: sai da conta <b>agora</b>, em agosto. Forno e fechadura foram no cartão (Mastercard 8508 e Visa 0700), caem na fatura. Só <b>R$ 799,90</b> desses R$ 3.108,88 tocam o caixa de agosto.</div>
+  <div class="note bad"><b>Mas o custo real da fechadura é R$ 578, não R$ 328</b> — a instalação de R$ 250 <b>não estava em lugar nenhum do orçamento</b>. Isso é 76% em cima do preço do aparelho. <b>A lição vale para os outros dois:</b> o cooktop exige circuito exclusivo de 32 A em cabo 6 mm² e o recorte da pedra; o forno exige tomada exclusiva de 20 A e o nicho da marcenaria. Nenhum dos três "custa o preço da etiqueta". A diferença é que os custos de instalação do cooktop e do forno <b>já estão dentro</b> das linhas de elétrica (R$ 12.000), pedra (R$ 5.040) e marcenaria (R$ 65.000) — <b>não estou contando duas vezes</b>. O da fechadura era o único órfão.</div>
+  <div class="note good"><b>Os 3 preços viraram fato.</b> Nessa linha não sobrou nenhuma premissa além dos R$ 250 do instalador.</div>
+  <div class="note info"><b>Fatura: essas compras provavelmente caem em setembro, não em agosto.</b> A fatura que vence 20/08 já fechou. Compra de 14/08 normalmente entra no ciclo seguinte. Isso preserva o piso de caixa de agosto (~R$ 40k) e joga os ~R$ 3.890 pra fatura de setembro. <b>Confirmar a data de fechamento do cartão</b> — se por acaso fechar depois do dia 14, a fatura de 20/08 vira ~R$ 16.390 e o piso de agosto cai pra ~R$ 35,3k. Continua confortável, mas muda o número. <b>Tudo em 1× no cartão não alivia parcela nenhuma — é caixa de um mês só.</b></div>
+</section>
+<!-- ============ 3B. BANHEIROS ============ -->
+<section>
+  <h3>3B · Metais e acessórios dos 3 banheiros — comprados em 14/08</h3>
+  <p style="color:var(--dim);font-size:14px">Tudo 1× no cartão. Quantidades coerentes: <b>3 de cada</b>, um por banheiro.</p>
+  <table>
+    <tr><th>Item</th><th>Vendedor</th><th class="n">Qtd</th><th class="n">Unit.</th><th class="n">Total</th><th>Envio</th></tr>
+    <tr><td>Ducha autolimpante ABS preto + ducha manual</td><td>AMG Metais</td><td class="n">3</td><td class="n">R$ 221,57</td><td class="n"><b>R$ 664,71</b></td><td>pendente</td></tr>
+    <tr><td>Porta-shampoo / nicho duplo preto</td><td>SHARKACABAMENTOS</td><td class="n">3</td><td class="n">R$ 141,32</td><td class="n"><b>R$ 423,96</b></td><td>pendente</td></tr>
+    <tr><td>Kit acessórios 5 peças Dreamway inox preto fosco</td><td>FDHEFBAGC8886</td><td class="n">3</td><td class="n">R$ 134,83</td><td class="n"><b>R$ 404,49</b></td><td>2 pendentes · 1 chega 17/08</td></tr>
+    <tr class="tot"><td>Soma dos produtos</td><td></td><td class="n">9</td><td class="n">—</td><td class="n"><b>R$ 1.493,16</b></td><td></td></tr>
+    <tr class="tot"><td><b>Cobrado no cartão</b></td><td></td><td></td><td></td><td class="n"><b>R$ 1.781,17</b></td><td>1×</td></tr>
+  </table>
+  <div class="note bad"><b>Sobra R$ 288,01 que os produtos não explicam.</b> A soma das etiquetas dá R$ 1.493,16, mas o cobrado foi <b>R$ 1.781,17</b>. A hipótese mais provável é <b>frete</b> — e ela conversa exatamente com o alerta abaixo: os 3 kits saíram como <b>3 pedidos separados</b>, o que normalmente significa <b>3 fretes</b>. R$ 288 dividido por 3 remessas dá ~R$ 96 cada, que é frete típico de acessório pesado fora de FULL. <b>Confere na fatura de cada pedido.</b> Se for isso, um único pedido com quantidade 3 teria economizado ~R$ 190.</div>
+  <div class="note bad"><b>Uma ambiguidade de R$ 1.329 que preciso resolver.</b> A ducha veio escrita como <i>"3 un. — de R$ 685,26 por R$ 664,71"</i>. Li <b>R$ 664,71 como total das 3</b> (R$ 221,57 a unidade), porque é assim que o porta-shampoo apareceu (3 un. = R$ 423,96) e porque R$ 221 é preço plausível de ducha em <b>ABS</b>. Se R$ 664,71 for o <b>unitário</b>, o total vira <b>R$ 1.994,13</b> e a linha inteira sobe para R$ 2.822,58. <b>Confere no pedido.</b></div>
+  <div class="note good"><b>A ducha sem resistência elétrica é a escolha certa aqui</b> — e provavelmente não foi por acaso. Com o boiler solar da EcoSol (+ apoio elétrico no reservatório), a água já chega quente e a ducha só precisa distribuir. Chuveiro elétrico no ponto seria carga redundante — e você está com <b>45,2 A de cooktop + forno contra o teto de 50 A</b> da Convenção. Cada resistência a menos no ponto de uso é folga no quadro. Contrapartida: se o apoio elétrico do boiler falhar, não há aquecimento de emergência no chuveiro. É o trade-off padrão de casa com solar, e é aceitável.</div>
+  <div class="note good"><b>CORREÇÃO 8.2 — a casa JÁ VEM com torneiras e acabamentos de registro.</b> Não é "já comprado", como eu escrevi na 8.0: <b>vem com o imóvel</b>. A provisão de <b>R$ 1.600</b> sai do orçamento e não volta. Era estimativa minha, nunca foi cotação.</div>
+  <div class="note bad"><b>E isso abre uma pergunta de R$ 3.600 que eu ainda não fiz.</b> Se a casa vem com torneira e acabamento de registro, <b>o que mais ela vem?</b> O painel carrega hoje <b>4 bacias a R$ 1.800–3.600 sem linha de orçamento nenhuma</b> — e se as bacias já vierem com o imóvel, essa dívida some, o Araújo em 25/08 deixa de depender de compra, e os 4 assentos que você comprou em 20/08 (§3D) <b>têm de bater com o modelo das bacias que já estão lá</b>, não com uma bacia a comprar. <b>Faça a lista do que a casa entrega antes de 25/08:</b> bacias · cubas/lavatórios · válvula ou acionamento de descarga · chuveiros · sifões e válvulas de pia · rabichos e registros · tanque da lavanderia. Cada item nessa lista é dinheiro que sai do orçamento ou compra que você evita fazer em duplicado.</div>
+  <div class="note bad"><b>Dois pontos operacionais do pedido:</b><br>
+  (1) Os 3 kits saíram como <b>3 pedidos separados do mesmo vendedor</b>, não 1 pedido com quantidade 3. Isso significa 3 remessas, 3 rastreios e possivelmente <b>3 fretes</b>. Confere se o frete foi cobrado três vezes — se foi, dá para pedir ajuste.<br>
+  (2) O vendedor <b>FDHEFBAGC8886</b> é nome autogerado, padrão de conta sem histórico. Vale olhar a reputação e o volume de vendas antes de a janela de 7 dias correr. Os outros dois (AMG Metais, SHARKACABAMENTOS) têm nome comercial.</div>
+  <div class="note info"><b>Não instalar agora.</b> Acessórios de banheiro são parafusados no porcelanato — furo em revestimento é irreversível e precisa de broca certa. Guardar caixa fechada até o piso estar assentado e a marcenaria dos gabinetes definida, porque a <b>altura do toalheiro e da papeleira depende do gabinete</b>. Único item com pressa é conferir se veio completo, dentro do prazo do ML.</div>
+</section>
+<!-- ============ 3D. ASSENTOS SANITARIOS ============ -->
+<section>
+  <h3>3D · Assentos sanitários — pedido ML 2000014630727711 · 20/08 <span class="pill new">7.9</span></h3>
+  <p style="color:var(--dim);font-size:14px">Entrega em <b>Rua José Cirne Guimarães 339, Itapetinga</b> — não na obra. Todos soft close, 4 banheiros cobertos.</p>
+  <table>
+    <tr><th>Item</th><th>Vendedor</th><th class="n">Qtd</th><th class="n">Unit.</th><th class="n">Total</th><th>Envio</th></tr>
+    <tr><td>Assento Art Incepa PP soft close <span class="tag">suítes 1, 2 e máster</span></td><td>RBV Delalana</td><td class="n">3</td><td class="n">R$ 179,33</td><td class="n"><b>R$ 538,00</b></td><td>agendado · chega <b>22/08</b></td></tr>
+    <tr><td>Assento Boss Softclose Original PP Incepa <span class="tag">lavabo</span></td><td>Loja Kaster</td><td class="n">1</td><td class="n">R$ 199,00</td><td class="n"><b>R$ 199,00</b></td><td>Full · saída pendente</td></tr>
+    <tr><td>Frete</td><td>—</td><td class="n">—</td><td class="n">—</td><td class="n">grátis</td><td>—</td></tr>
+    <tr class="tot"><td><b>Total</b></td><td></td><td class="n">4</td><td class="n">—</td><td class="n"><b>R$ 737,00</b></td><td></td></tr>
+  </table>
+  <div class="note good"><b>Esse pedido fecha certinho — ao contrário do de 14/08.</b> 3 × 179,33 = 537,99 e 661,01 no Visa final 0700 + 75,99 de saldo ML = <b>R$ 737,00 exatos</b>. Não sobrou centavo sem explicação, e o frete saiu grátis nos dois pacotes. Nada a conferir na fatura aqui.</div>
+  <div class="note bad"><b>O assento acabou de travar a louça em Incepa.</b> Assento sanitário não é universal — a fixação e o contorno são por modelo de bacia. Comprando <b>Art</b> (×3) e <b>Boss</b> (×1) você definiu, na prática, que as bacias têm que ser <b>Incepa Art nas três suítes e Incepa Boss no lavabo</b>. Duas situações:<br>
+  • <b>Se as bacias já foram compradas</b> — confere modelo a modelo antes de 7 dias correrem. Art e Boss não são intercambiáveis entre si.<br>
+  • <b>Se ainda não foram</b> — a escolha de bacia deixou de ser livre, e isso tem custo: bacia com caixa acoplada Incepa roda <b>R$ 450–900</b> cada. Quatro bacias são <b>R$ 1.800–3.600 ainda não orçados</b>. Com torneiras e acabamentos de registro já comprados (correção 8.0), <b>a bacia virou o único item pesado em aberto nos banheiros.</b></div>
+  <div class="note info"><b>Dois pontos menores.</b> (1) A entrega vai pra <b>Itapetinga, não pra obra</b> — se foi de propósito, ótimo, é o caminho certo enquanto a casa está em fit-out e sem ninguém pra receber. (2) O <b>Visa final 0700</b> precisa ser identificado: se for o BRB, os R$ 661,01 caem na fatura seguinte, não na de hoje (20/08, R$ 12.000). Não muda o caixa de agosto de qualquer forma.</div>
+  <div class="note"><b>Mesma regra do §3B: não instalar agora.</b> Assento se monta depois da bacia fixada e do piso assentado. Único prazo que corre é o de <b>conferir se veio completo e sem trinca</b> dentro da janela do ML — 22/08 pro pacote RBV.</div>
+</section>
+<!-- ============ 3C. LYME CONTRATO 1412 ============ -->
+<section>
+  <h3>3C · LYME Esquadrias — contrato 1412, assinado 17/08 <span class="pill new">7.5</span></h3>
+  <div class="grid g4">
+    <div class="kpi"><span>Valor do contrato</span><b>R$ 30.840,11</b><small>provisionado era R$ 34.000 · <b style="color:var(--ok)">−R$ 3.160</b></small></div>
+    <div class="kpi"><span>Entrada — Pix</span><b style="color:var(--alert)">R$ 15.420</b><small>pago 17/08 · sai do caixa agora</small></div>
+    <div class="kpi"><span>Saldo</span><b>5× R$ 3.084</b><small><b>cartão de crédito</b> — o contrato NÃO diz boleto</small></div>
+    <div class="kpi"><span>Boxes contratados</span><b style="color:var(--alert)">2 de 3</b><small>falta o terceiro banheiro</small></div>
+  </div>
+  <h4 style="margin-top:20px">Os 5 itens do contrato</h4>
+  <table>
+    <tr><th>#</th><th>Item</th><th>Medida (mm)</th><th>Vidro / cor</th><th class="n">Valor</th></tr>
+    <tr><td>1</td><td>Janela de correr 3 folhas c/ peitoril — linha Gold</td><td>4120 × 2680</td><td>6 mm temperado incolor · alumínio e ferragem <b>preto</b></td><td class="n">R$ 10.018,47</td></tr>
+    <tr><td>2</td><td>Porta de correr 3 folhas, trilho cogumelo — linha Gold</td><td>3100 × 2680</td><td>6 mm temperado incolor · <b>preto</b></td><td class="n">R$ 8.329,06</td></tr>
+    <tr><td>3</td><td>Cobertura de vidro para pergolado <b>de madeira</b></td><td>2680 × 4250</td><td>8 mm temperado incolor <b>com película</b> · <b>preto</b></td><td class="n">R$ 8.993,12</td></tr>
+    <tr><td>4</td><td>Box frontal fora de padrão (engenharia)</td><td>1140 × 2780</td><td>8 mm temperado · <b>preto</b></td><td class="n">R$ 1.531,83</td></tr>
+    <tr><td>5</td><td>Box frontal fora de padrão (engenharia)</td><td>1530 × 2780</td><td>8 mm temperado · alumínio e ferragem <b style="color:var(--alert)">BRANCO</b></td><td class="n">R$ 1.967,63</td></tr>
+    <tr class="tot"><td colspan="4">Total do contrato</td><td class="n"><b>R$ 30.840,11</b></td></tr>
+  </table>
+  <div class="note bad"><b>Só há 2 boxes no contrato — e são 3 suítes.</b> Os itens 4 e 5 são os únicos boxes contratados. O terceiro banheiro ficou de fora. Pela cláusula 2.2, incluir depois é <b>adendo ao contrato</b>, a preço praticado no momento do adendo — não ao preço de hoje. Pelo padrão dos dois contratados (R$ 1.532 e R$ 1.968), o terceiro deve custar <b>R$ 1.500 – 2.000</b>, que ainda <b>não estão no orçamento</b>. Resolver antes da medição definitiva, porque medir os 3 numa visita só é grátis; voltar para medir o terceiro é <b>visita cobrada</b> (cláusula 3.2).</div>
+  <div class="note bad"><b>Você me disse boleto; o contrato diz cartão de crédito.</b> Cláusula 4.2, textual: "RESTANTE NO CARTAO DE CREDITO EM 5X DE 3084,00". A diferença não é semântica — se cair no cartão, os R$ 3.084/mês <b>somam à fatura</b> que o modelo já trata como custo de vida (R$ 12.500 no dia 20). Cinco meses de R$ 3.084 <b>não</b> estão dentro dos R$ 15.000/mês de custo de vida. Se você quer boleto, tem de ser corrigido por escrito <b>agora</b>, antes da primeira cobrança.</div>
+  <div class="note warm"><b>Item 5 saiu em alumínio e ferragem BRANCO.</b> Toda a esquadria da casa é <b>alumínio preto</b> — inclusive o box do item 4, no mesmo contrato. Ou é escolha deliberada para um banheiro específico, ou é erro de digitação da proposta. Corrigir depois de produzido é perda total do vidro. <b>Confirmar hoje.</b></div>
+  <div class="note warm"><b>A cobertura é especificada para pergolado de MADEIRA.</b> O item 3 diz "cobertura de vidro para pergolado de madeira", e o desenho de corte mostra fixação sobre estrutura de madeira. As fotos da construtora de 13/07 mostram <b>pergolado metálico preto já montado</b>. Se a estrutura for metálica, o detalhe de fixação muda (parafuso e vedação sobre metal, não sobre madeira). É a divergência com maior potencial de virar retrabalho em obra — <b>mandar foto do pergolado para a LYME antes da medição</b>.</div>
+  <h4 style="margin-top:20px">Prazos — o que o contrato realmente promete</h4>
+  <table>
+    <tr><th>Item</th><th>Prazo contratual</th><th>Contado a partir de</th><th>Projeção</th></tr>
+    <tr><td>Boxes e esquadrias em temperado</td><td>10 a 15 dias</td><td>medição definitiva</td><td>depende da medição</td></tr>
+    <tr><td><b>Cobertura do pergolado</b></td><td><b>20 a 60 dias</b>, em 2 fases (estrutura, depois vidros)</td><td>contratação ou medição</td><td><b style="color:var(--warm)">até ~16/10/2026</b></td></tr>
+  </table>
+  <div class="note"><b>A cobertura é o item longo — e o relógio dela já começou.</b> O prazo conta da contratação (17/08), então o pior caso cai em meados de outubro. Tudo o mais depende da <b>medição definitiva</b>, que ainda não foi agendada. Cada dia sem agendar é um dia somado no fim.</div>
+  <div class="note bad"><b>Cláusula 3.3 — a medição tem pré-requisito de obra.</b> Os vãos só são considerados liberados quando estiverem "requadrados, calfinados e com soleira", e <b>"as portas devem estar com piso definido"</b>. Isso amarra a LYME ao mesmo caminho crítico do piso. E a cláusula 3.2 é dura: <b>medição parcial não existe</b> — se o técnico não conseguir medir todos os vãos na visita, a segunda visita <b>é cobrada</b>. Antes de chamar, checar vão por vão: os 3 banheiros estão com revestimento e soleira prontos? A porta de correr tem piso definido?</div>
+  <div class="note"><b>Cláusula 3.4 — risco transferido para você.</b> A LYME <b>não se responsabiliza</b> por quebra de cerâmica, porcelanato ou granito durante a instalação, alegando que a culpa seria de assentamento oco feito por terceiro. Na prática você assume o risco de dano ao porcelanato do térreo e ao granito. Não dá para renegociar depois de assinado, mas dá para mitigar: <b>fotografar o entorno de cada vão antes da instalação</b> e acompanhar o serviço.</div>
+  <div class="note good"><b>O que ficou bom.</b> R$ 30.840,11 contra R$ 34.000 provisionados é <b>R$ 3.160 de economia</b> — a maior do projeto até agora. Preço "certo, fixo e irreajustável" (cláusula 4.1), o que trava o custo contra qualquer variação de alumínio e vidro nos próximos 60 dias. E a diferença de 11 centavos entre o valor do contrato e a soma dos pagamentos (R$ 30.840,00) é irrelevante, mas vale saber que existe.</div>
+</section>
+<!-- ============ 3E. ILUMINACAO ============ -->
+<section>
+  <h3>3E · Iluminação — 15 luminárias compradas <span class="pill new">8.3</span></h3>
+  <div class="grid g4">
+    <div class="kpi"><span>Total das luminárias (líq.)</span><b style="color:var(--ok)">R$ 1.369,67</b><small>bruto R$ 1.506 − R$ 136,33 do kit 8× spots devolvido em 02/09</small></div>
+    <div class="kpi"><span>Plafon 40 W BQ</span><b>8 un</b><small>R$ 459,63 · o corpo da luz de sobrepor</small></div>
+    <div class="kpi"><span>Falta agora</span><b style="color:var(--warm)">mão de obra</b><small>eletricista instala — ver linha do orçamento</small></div>
+    <div class="kpi"><span>Impacto no total</span><b>R$ 3.370</b><small>luminárias R$ 1.370 líq. (Visa 0700) + eletricista R$ 2.000 · <b>envelope R$ 12k aposentado na 8.9</b></small></div>
+  </div>
+  <table style="margin-top:14px">
+    <tr><th>Item</th><th class="n">Qtd</th><th class="n">Valor pago</th></tr>
+    <tr><td>Kit trilho 1 m + 4 spots 10 W preto/branco</td><td class="n">4 un</td><td class="n">R$ 207,71</td></tr>
+    <tr><td>Painel plafon LED sobrepor 40 W quadrado branco quente</td><td class="n">8 un</td><td class="n">R$ 459,63</td></tr>
+    <tr><td>Kit 3 painel plafon LED 25 W quadrado branco neutro</td><td class="n">1 un</td><td class="n">R$ 72,60</td></tr>
+    <tr><td>Espelho redondo 60 cm c/ LED</td><td class="n">1 un</td><td class="n">R$ 73,16</td></tr>
+    <tr><td>Lustre pendente LED 3 cores · 3 anéis preto</td><td class="n">1 un</td><td class="n">R$ 145,41</td></tr>
+    <tr><td>Balizador LED sobrepor 4 W preto 4×2</td><td class="n">3 un</td><td class="n">R$ 160,44</td></tr>
+    <tr><td>Luminária pendente Yaso Axis spot LED de bancada</td><td class="n">1 un</td><td class="n">R$ 250,72</td></tr>
+    <tr style="text-decoration:line-through;opacity:0.5"><td>Kit 8× spots GU10 + 8× lâmpadas MR16 preto</td><td class="n">1 un</td><td class="n">R$ 136,33</td></tr>
+    <tr style="background:rgba(255,180,0,0.08)"><td colspan="2"><b>↳ DEVOLVIDO 02/09 · estorno no Visa 0700</b> <span class="pill new">9.7</span></td><td class="n" style="color:var(--warm)"><b>− R$ 136,33</b></td></tr>
+    <tr class="tot"><td>Total das luminárias (bruto)</td><td class="n">—</td><td class="n">R$ 1.506,00</td></tr>
+    <tr class="tot"><td>Total líquido após devolução <span class="pill new">9.7</span></td><td class="n">—</td><td class="n"><b style="color:var(--ok)">R$ 1.369,67</b></td></tr>
+  </table>
+  <div class="note good"><b>Bottom line: os materiais de iluminação viraram fato e vieram baratos — R$ 1.506 pra casa inteira.</b> Isso <b>confirma</b> o que o §12 do projeto já dizia: o custo da iluminação sempre foi mão de obra e infra, não a luminária. As 15 peças cobrem o conceito da rev. 6 — trilho + 4 spots na sala, plafons de sobrepor no superior (teto de concreto aparente não embute), balizadores na escada, pendente na ilha/bancada, lustre e espelho com LED no lavabo.</div>
+  <div class="note info"><b>Atualização 8.9: o envelope de R$ 12.000 de "iluminação + elétrica" foi aposentado.</b> Ele era uma estimativa do modelo, sem orçamento por trás. O gasto real de iluminação+elétrica é <b>R$ 3.506</b> — luminárias R$ 1.506 + eletricista R$ 2.000 (arandelas). Não estou mais carregando os ~R$ 8.494 de "resto" que inflavam o total. Se aparecer conta nova de elétrica/instalação, entra como linha real quando tiver valor.</div>
+  <div class="note bad"><b>Dois pontos a confirmar antes de fechar a linha:</b><br>
+  (1) <b>O trilho.</b> Lançei "4 un · R$ 207,71" como <b>total da linha</b> (R$ 51,93/kit), que é como a coluna "valor pago" aparece nas outras linhas. <b>Mas R$ 52 por um kit de trilho + 4 spots de 10 W é barato demais</b> — se R$ 207,71 for o <b>unitário</b>, a linha vira <b>R$ 830,84</b> e o total das luminárias sobe pra <b>R$ 2.129,13</b>. <b>Confere no pedido</b> — é a única ambiguidade da lista, e são R$ 623 de diferença.<br>
+  (2) <b>Forma de pagamento.</b> Você não disse se foi cartão, Pix ou parcelado. Não muda o total (está no envelope), mas muda <b>quando</b> toca o caixa — se caiu no cartão, entra numa fatura futura. Só pra fechar a origem.</div>
+  <div class="note"><b>Regra que vale pra próxima etapa:</b> a mão de obra da iluminação está <b>dentro</b> do orçamento do eletricista, que ainda não foi cotado. Quando o valor vier, ele não é "novo" — ele <b>preenche</b> os ~R$ 10.494 que sobraram do envelope. Se estourar isso, aí sim é linha nova. Peça o orçamento do eletricista <b>com o projeto de circuitos e o balanceamento de fases juntos</b>, não depois (§13 das pendências).</div>
+</section>
+<!-- ============ 3F. MURO DA DIVISA + AMPLIACAO ============ -->
+<section>
+  <h3 style="text-decoration:line-through;opacity:0.55">3F · Muro da divisa + ampliação — orçamento 158.706</h3>
+  <div class="note bad"><b>❌ CANCELADO na rev. 9.5 (02/09).</b> Muro da divisa não vai mais acontecer. <b>Retiradas do orçamento:</b> material R$ 2.185 (à vista) + MO R$ 4.850 (parcelado) = <b>−R$ 7.035</b>. <b>Alerta:</b> a MO do muro <b>também instalava os itens de banheiro</b> (duchas, kits, porta-shampoo, assentos) — com o cancelamento, essa instalação volta a ser buraco no §7 (era R$ 0 antes, virou dívida implícita ainda sem dono). Vai precisar de mão de obra separada pra isso.</div>
+  <div style="opacity:0.5">
+  <div class="grid g4">
+    <div class="kpi"><span>Material — à vista</span><b style="color:var(--warm)">R$ 2.185</b><small>lista R$ 2.300 · desconto R$ 115 (5%)</small></div>
+    <div class="kpi"><span>Mão de obra</span><b style="color:var(--alert)">R$ 4.850</b><small>muro + aterro + grama + <b>instala os banheiros</b></small></div>
+    <div class="kpi"><span>Escopo novo</span><b>R$ 7.035</b><small>primeira frente de muro/terraplanagem</small></div>
+    <div class="kpi"><span>Total do projeto</span><b style="color:var(--warm)">R$ 413.669</b><small>era R$ 406.634 · <b>+R$ 7.035</b></small></div>
+  </div>
+  <p style="color:var(--dim);font-size:14px;margin-top:12px"><b>O que é:</b> muro frontal e lateral na divisa, aterro (movimentação de terra) para estender a área de grama até a divisa frontal, e a mão de obra que executa isso <b>e</b> instala todos os itens de banheiro já comprados (duchas, kits, porta-shampoo, assentos). Loja Maria Andrade · vendedor 03 · consumidor final · <b>24/08/2026 14:33</b>.</p>
+  <table>
+    <tr><th>Item</th><th class="n">Qtd</th><th class="n">Unit.</th><th class="n">Total</th></tr>
+    <tr><td>Bloco concreto vedação 20×40</td><td class="n">100 pc</td><td class="n">R$ 3,29</td><td class="n">R$ 329,00</td></tr>
+    <tr><td>Canaleta concreto 20×20×40</td><td class="n">5 pc</td><td class="n">R$ 4,05</td><td class="n">R$ 20,25</td></tr>
+    <tr><td>Areia lavada branca</td><td class="n">1 m³</td><td class="n">R$ 260,40</td><td class="n">R$ 260,40</td></tr>
+    <tr><td>Pedra brita 01 · 1/2</td><td class="n">1 m³</td><td class="n">R$ 125,00</td><td class="n">R$ 125,00</td></tr>
+    <tr><td>Vergalhão D 3/8 10,0 mm · barra 12 m</td><td class="n">2 pc</td><td class="n">R$ 58,80</td><td class="n">R$ 117,60</td></tr>
+    <tr><td>Coluna 4F 3/8 14×14 <span class="tag">7 com 1,5 m</span></td><td class="n">10,5 ml</td><td class="n">R$ 31,50</td><td class="n">R$ 330,75</td></tr>
+    <tr><td>Viga baldrame 4F 3/8 14×24</td><td class="n">5 m</td><td class="n">R$ 33,75</td><td class="n">R$ 168,75</td></tr>
+    <tr><td>Viga baldrame 4F 3/8 14×24 <span class="tag">2 com 3,5 m</span></td><td class="n">7 m</td><td class="n">R$ 33,75</td><td class="n">R$ 236,25</td></tr>
+    <tr><td>Tábua pinus 30 cm · 3,0 m</td><td class="n">4 pc</td><td class="n">R$ 41,25</td><td class="n">R$ 165,00</td></tr>
+    <tr><td>Arame recozido torcidinho</td><td class="n">1 pc</td><td class="n">R$ 19,00</td><td class="n">R$ 19,00</td></tr>
+    <tr><td>Cimento CPII 50 kg · com entrega</td><td class="n">10 pc</td><td class="n">R$ 39,90</td><td class="n">R$ 399,00</td></tr>
+    <tr><td>Cal 15 kg CH-III Finacal</td><td class="n">5 pc</td><td class="n">R$ 15,40</td><td class="n">R$ 77,00</td></tr>
+    <tr><td>Tijolo comum máquina</td><td class="n">100 pc</td><td class="n">R$ 0,52</td><td class="n">R$ 52,00</td></tr>
+    <tr class="tot"><td>Total do material (lista)</td><td class="n">13 itens</td><td class="n">—</td><td class="n"><b>R$ 2.300,00</b></td></tr>
+    <tr class="tot"><td><b>À vista</b> — preço negociado</td><td class="n"></td><td class="n"></td><td class="n"><b style="color:var(--ok)">R$ 2.185,00</b></td></tr>
+  </table>
+  <div class="note info"><b>Único ponto de execução que sobra do muro: drenagem.</b> O aterro levanta a cota junto à divisa frontal — <b>trave com o pedreiro o caimento + um dreno na base</b> pra água não escorrer pro vizinho ou pro viário. Não é material desta lista, é definição de obra. (A parte de anuência do condomínio você já resolveu — fora do radar.)</div>
+  <div class="note bad"><b>Drenagem — o aterro muda para onde a água corre.</b> Estender a grama até a divisa frontal com aterro levanta a cota do terreno ali. Se a água passar a escorrer para o lote vizinho ou para o viário do condomínio, vira reclamação e possível obrigação de refazer. <b>Exigir do pedreiro o caimento e um dreno na base do muro</b> — não é item de material desta lista, é definição de execução.</div>
+  <div class="note good"><b>Notícia boa: os R$ 4.850 de mão de obra fecham um buraco que estava aberto no modelo.</b> O §7 registrava que a <b>instalação dos itens de banheiro estava em R$ 0</b> — "R$ 0 não é uma estimativa". Agora tem dono: essa mão de obra instala os banheiros junto com o muro. <b>Não é 100% dinheiro novo</b> — uma fatia dela já era dívida implícita; mas como o modelo carregava R$ 0, o total sobe pelos R$ 4.850 cheios.</div>
+  <div class="note bad"><b>Mas o §7 continua valendo para o timing do banheiro.</b> Nem tudo pode ser instalado agora: o <b>kit de 5 peças</b> (toalheiro, papeleira etc.) e a <b>torneira de bancada</b> dependem do gabinete e da bancada, que só existem depois da marcenaria (~28/09+). Se o pedreiro instalar tudo em uma passada, ele vai chutar cota. <b>Divida:</b> ducha, registro, nicho e bacia/assento agora (posição definida pelo ponto hidráulico); kit de 5 peças e torneira de bancada depois da marcenaria.</div>
+  <div class="note info"><b>Dois números a confirmar:</b> (1) <b>Como paga a mão de obra?</b> À vista, por medição, parcelado? Lancei R$ 4.850 no parcelado com "condição a confirmar" — se sair do colchão à vista, ela abate a reserva; se for diluída na obra, entra no fluxo mensal. (2) <b>De onde saem os R$ 2.185 do material?</b> Se da conta corrente agora, o piso de agosto vai de R$ 38.186 para <b>~R$ 36.001</b> — segue confortável. Se do CDB, não toca o piso.</div>
+  </div>
+</section>
+<!-- ============ 4. COOKTOP → PEDRA ============ -->
+<section>
+  <h3>4 · Cooktop → pedra da ilha — o item destravou</h3>
+  <div class="note good"><b>Chamada direta: a compra do Black+Decker resolveu o gargalo nº 1 do projeto, e resolveu melhor do que o caminho que eu tinha recomendado.</b> A rev. 6 recomendava o Fischer 4Q porque o manual dele publica o recorte (56 × 49 cm) e o do B+D não. Esse argumento morreu. Manual em PDF é um <i>substituto</i> da medida física; agora o aparelho físico chega <b>18/08</b> e o orçamento Feijor só vence <b>26/08</b>. Você terá o cooktop na mão <b>6 dias úteis antes do prazo</b>. Não vou defender a recomendação antiga — os fatos mudaram a favor.</div>
+  <h4>A jogada</h4>
+  <ul>
+    <li><b>Não mandar medida por WhatsApp.</b> Agendar a medição da Feijor <b>no local</b>, para 19, 20 ou 21/08, com o cooktop físico (ou o gabarito de papelão que vem na caixa) em cima da ilha.</li>
+    <li><b>Exigir que a Feijor meça e registre o recorte no pedido.</b> Assim o corte vira responsabilidade da marmoraria, não sua. Isso é o valor real de ter o aparelho em mãos — transfere o risco.</li>
+    <li>O orçamento já diz "sujeito a alterações após confirmação das medidas". Use isso a seu favor: a alteração agora é <i>medição</i>, não <i>renegociação de preço</i>.</li>
+  </ul>
+  <h4 style="margin-top:18px">Quando a pedra fica pronta (15 dias úteis a partir da autorização)</h4>
+  <table>
+    <tr><th>Autoriza em</th><th>Pedra pronta</th><th>Leitura</th></tr>
+    <tr><td>17/08 seg</td><td class="mono">08/09 ter</td><td>só se a Feijor medir na segunda — improvável, cooktop chega terça</td></tr>
+    <tr><td>18/08 ter</td><td class="mono">09/09 qua</td><td>cooktop chega no dia; medição no mesmo dia é agressivo</td></tr>
+    <tr><td><b>19/08 qua</b></td><td class="mono"><b>10/09 qui</b></td><td><span class="pill ok">ALVO</span> um dia de folga depois da chegada. É a data a perseguir.</td></tr>
+    <tr><td>21/08 sex</td><td class="mono">14/09 seg</td><td>fim da semana que vem — ainda confortável</td></tr>
+    <tr><td>24/08 seg</td><td class="mono">15/09 ter</td><td>última segunda antes de vencer</td></tr>
+    <tr><td>26/08 qua</td><td class="mono">17/09 qui</td><td>no limite do orçamento — sem margem para erro</td></tr>
+  </table>
+  <p style="color:var(--dim);font-size:14px">Adiar de 19/08 para 26/08 custa <b>7 dias na pedra</b> e queima 100% da margem de segurança. Não há ganho nenhum em esperar.</p>
+  <div class="note bad"><b>Risco novo: o cooktop não pode ser testado.</b> Ele exige circuito 220V exclusivo, disjuntor de <b>32 A</b> e cabo <b>6,0 mm²</b> (NBR 5410) — que não existem na casa hoje. O aparelho vai ficar meses na caixa enquanto as janelas do Mercado Livre correm (<b>7 dias</b> de arrependimento, <b>30 dias</b> de defeito aparente). Depois disso você depende só da garantia de 12 meses do fabricante.
+  <br><br><b>Mitigação:</b> se houver como energizar um ponto 220V provisório com disjuntor adequado — na visita, ou logo que a Elektro instalar o medidor — vale ligar o cooktop por 10 minutos só para confirmar que as 4 zonas acendem e aquecem. É o teste mais barato do projeto.</div>
+  <div class="note"><b>Risco que continua de pé:</b> Black+Decker linha branca no Brasil é <b>marca licenciada</b>, com rede de assistência técnica fraca para embutidos. Garantia 12 meses. Se o aparelho falhar e o modelo tiver sido descontinuado, o recorte do granito fica órfão — aparelho de ~R$ 1,3k contra pedra de R$ 5,0k. Não é motivo para trocar agora; é motivo para <b>guardar nota fiscal, embalagem e manual</b> e para não perder as janelas de devolução por descuido.</div>
+  <h4 style="margin-top:18px">Restrições de instalação que batem na marcenaria</h4>
+  <p style="color:var(--dim);font-size:14px">Do manual Fischer 4Q — valem para qualquer indução de 4 bocas e continuam válidas com o B+D:</p>
+  <div class="grid g4">
+    <div class="kpi"><span>abaixo do fundo</span><b>200 mm</b><small>livres — a gaveta sob a ilha precisa de divisória. <b>Passar pra LYME e pra projetista.</b></small></div>
+    <div class="kpi"><span>bancada lateral</span><b>120 mm</b><small>livres de cada lado do recorte</small></div>
+    <div class="kpi"><span>atrás</span><b>50 mm</b><small>livres até a parede/anteparo</small></div>
+    <div class="kpi"><span>circuito</span><b>32 A · 6 mm²</b><small>exclusivo, aterrado, NBR 5410</small></div>
+  </div>
+</section>
+<!-- ============ 5. FORNO ============ -->
+<section>
+  <h3>5 · Forno Midea TSD80P2 — o número que a projetista precisa</h3>
+  <div class="note good"><b>Achado que vale a pesquisa:</b> os sites de varejo (Fastshop, marketplaces) publicam "nicho 595 × 595 × 575 mm" — que é <b>a medida externa do produto repetida</b>, e é fisicamente impossível (um vão não pode ser mais raso que o aparelho). O manual de instalação do fabricante, família TC-80P2 Rev.03, traz o vão de verdade. <b>Se a marcenaria for feita pelo número do varejo, o forno não entra.</b></div>
+  <table>
+    <tr><th>Grandeza</th><th>Valor real (manual do fabricante)</th><th>O que o varejo publica</th></tr>
+    <tr><td>Largura do vão</td><td><b>mín. 585 mm · máx. 595 mm</b></td><td class="n" style="color:var(--alert)">595 (medida externa)</td></tr>
+    <tr><td>Altura do vão</td><td><b>mín. 590 mm</b> (600 mm em instalação sob bancada)</td><td class="n" style="color:var(--alert)">595 (medida externa)</td></tr>
+    <tr><td>Profundidade do vão</td><td><b>mín. 550 mm</b></td><td class="n" style="color:var(--alert)">575</td></tr>
+    <tr><td>Folga de recirculação de ar</td><td><b>mín. 35 mm</b> — e <b>35 cm</b> livres na face da saída de ar</td><td class="n" style="color:var(--alert)">não informado</td></tr>
+    <tr><td>Produto (L × A × P)</td><td>59,5 × 56,5 × 59,5 cm · 31,5 kg</td><td>ok</td></tr>
+    <tr><td>Potência / corrente</td><td><b>2.750 W · ~12,5 A</b> · tomada exclusiva 20 A</td><td>ok</td></tr>
+  </table>
+  <h4 style="margin-top:16px">Regras de instalação que a marcenaria tem de obedecer</h4>
+  <ul>
+    <li><b>Nada de porta decorativa no nicho</b> — o manual proíbe expressamente, por superaquecimento.</li>
+    <li><b>As paredes do forno não podem encostar nas paredes do móvel.</b> A folga de 35 mm não é sugestão.</li>
+    <li>O móvel precisa <b>suportar 31,5 kg</b> mais o peso dos alimentos. Prateleira de MDF sem reforço não serve.</li>
+    <li>Fixação com <b>2 parafusos de sustentação</b> que vêm no produto — o nicho tem de permitir o parafusamento.</li>
+    <li><b>"Caso o forno seja instalado abaixo de um cooktop, utilize interligações elétricas separadas."</b> Ou seja: cooktop e forno em <b>circuitos independentes</b>. Não pendurar os dois no mesmo disjuntor.</li>
+  </ul>
+  <div class="note bad"><b>Ação com prazo:</b> o projeto dos planejados entrega em ~28/09 e a tabela da projetista cobra <b>R$ 70 por alteração de técnico</b>. O nicho do forno tem de entrar <b>antes</b> do técnico fechar — ou vira alteração paga, e alteração de nicho de forno costuma arrastar a torre inteira do móvel. Mandar pra ela: <b>vão 585–595 L × 590 A × 550 P mm, + 35 mm de folga, sem porta decorativa, tomada exclusiva 20 A no fundo do nicho.</b></div>
+</section>
+<!-- ============ 6. LIGAÇÕES ============ -->
+<section>
+  <h3>6 · Ligações de hoje — antes das 17h</h3>
+  <p style="color:var(--dim);font-size:14px">Não é pesquisa. É telefone. O que não sair hoje escorrega pra segunda 17/08 e come 3 dias do caminho crítico de agosto (ITBI → protocolo → registro → liberação do FGTS → quitação).</p>
+  <table>
+    <tr><th style="width:150px">Para quem</th><th>Perguntar exatamente</th><th style="width:80px">Prioridade</th></tr>
+    <tr><td><b>Destro</b><br><span class="tag">pedido 470049</span></td><td>Estorno de <b>12 caixas</b> de LVT Magnifique Sophie (cód. 46004) e acerto dos insumos. Confirmar: quanto ficou o valor final, a condição de pagamento real, e se instalação + rodapé estão dentro ou fora. Avisar que <b>toda a carga vai pro pavimento superior</b>. Ver seção 8.</td><td><span class="pill no">HOJE</span></td></tr>
+    <tr><td><b>Elektro</b><br><span class="tag">UC 49211331 · concluído 03/09</span></td><td><b>✓ RESOLVIDO</b> — ligação concluída em 03/09/2026. Endereço reconciliado.</td><td><span class="pill ok">✓ FEITO</span></td></tr>
+    <tr><td><b>Feijor</b><br><span class="tag">(11) 94005-2784</span></td><td>Agendar <b>medição no local</b> para 19, 20 ou 21/08 — "o cooktop chega dia 18 e quero que vocês meçam com ele em cima da ilha". Confirmar que o recorte fica registrado no pedido.</td><td><span class="pill warm">HOJE</span></td></tr>
+    <tr><td><b>CAIXA</b></td><td>(1) O que exatamente é a taxa de R$ 4.000? (2) <b>Qual a data de validade da aprovação de crédito?</b> Se faltar menos de 60 dias, tudo acelera.</td><td><span class="pill warm">HOJE</span></td></tr>
+    <tr><td><b>Prefeitura de Atibaia</b><br><span class="tag">portal bloqueado por CloudFlare</span></td><td>(1) Alíquota de ITBI e se há <b>alíquota reduzida sobre a parcela financiada pelo SFH</b>. (2) Qual base de cálculo será usada — <b>STJ Tema 1113 fixou que é o valor da transação</b>, R$ 1.100.000, não valor venal de referência. (3) Prazo de recolhimento da guia.</td><td><span class="pill warm">HOJE</span></td></tr>
+    <tr><td><b>RI de Atibaia</b><br><span class="tag">CNS 12.048-5 · contato via Corregedoria TJSP</span></td><td>(1) Valor dos emolumentos para R$ 1.100.000. (2) <b>Confirmar o desconto de 50% do art. 290 da Lei 6.015/73</b> — primeira aquisição, SFH, residência própria. <b>Não é automático: tem de ser pedido no protocolo.</b> (3) Prazo de registro e o que exigem no protocolo.</td><td><span class="pill warm">HOJE</span></td></tr>
+    <tr><td><b>LYME — Cris</b><br><span class="tag">(11) 97289-3421</span></td><td><b>Assinada 17/08.</b> Cobrar: (1) <b>o 3º box não está no contrato</b>; (2) item 5 saiu em alumínio <b>BRANCO</b> — a casa é toda preta, confirmar se é erro; (3) a cobertura é para pergolado de <b>madeira</b>, mas a foto da construtora mostra pergolado <b>metálico</b>; (4) agendar a medição definitiva. Passar a restrição do cooktop: <b>200 mm livres sob o fundo</b>.</td><td><span class="pill warm">HOJE</span></td></tr>
+  </table>
+</section>
+<!-- ============ 7. VISITA ============ -->
+<section>
+  <h3>7 · Protocolo da visita — fim de semana 15–16/08</h3>
+  <div class="note info">Você vai à casa no <b>sábado ou domingo</b>. Essa visita destranca 6 itens que hoje estão travados por falta de medida. Leve <b>trena laser, trena de fita, nível de 2 m (ou nível de bolha longo), bússola do celular, fita crepe e caneta</b>. <b>A fechadura NÃO vai estar aqui</b> — pacote extraviado, consulta aberta até 18/08. Ainda assim, <b>meça a porta</b>: espessura da folha e backset. Com a medida na mão você recompra certo em vez de torcer.</div>
+  <table>
+    <tr><th style="width:150px">Medir</th><th>Como e por quê</th><th style="width:110px">Destrava</th></tr>
+    <tr><td><b>Área do superior, cômodo a cômodo</b></td><td>Três medições concorrem: Destro <b>57,15 m²</b> · planta FL.01 <b>~48 m²</b> · sua trena laser <b>41 m²</b>. Medir de novo e anotar <b>separado por ambiente</b>, incluindo closet, circulação e o patamar da escada. <b>Decidir na hora: a escada leva LVT ou não?</b> Isso sozinho move 3–6 m².</td><td>Estorno Destro (valor final)</td></tr>
+    <tr><td><b>Nivelamento do contrapiso</b></td><td>Régua/nível de 2 m em várias direções. Tolerância <b>≤ 3 mm em 2 m</b>. Onde passar disso, marcar com fita crepe. <b>Isto define quantos sacos de nivelador ficam</b> — hoje são 20 sacos comprados contra área inflada.</td><td>Estorno de insumos</td></tr>
+    <tr><td><b>Vão da geladeira</b></td><td>Medir largura em <b>três alturas</b> (rodapé, meio, topo) — paredes de alvenaria não são paralelas. Anotar também a profundidade útil e se a porta abre 90° sem bater.</td><td>Marcenaria + compra da geladeira</td></tr>
+    <tr><td><b>Perímetro do rodapé</b></td><td>Somar o perímetro real dos ambientes que levam LVT, descontando portas. O pedido tem 20 peças — conferir se fecha.</td><td>Estorno Destro</td></tr>
+    <tr><td><b>Orientação solar com bússola</b></td><td>A rev. 6 registra que estar/cozinha estariam voltados a <b>norte</b>, mas isso ainda <b>não foi confirmado no local</b>. Abrir a bússola do celular no meio da sala e fotografar. Define material das luminárias externas (alumínio, nunca PVC, na face noroeste) e carga térmica dos ACs.</td><td>Iluminação + validação do AC</td></tr>
+    <tr><td><b>Espaço da 4ª condensadora</b></td><td>Conferir onde vai a condensadora do 24k na cobertura/laje, e se há caminho de dreno e de tubulação. 4 aparelhos já foram fechados.</td><td>Instalação do AC</td></tr>
+    <tr><td><b>Porta de entrada</b><br><span class="pill ok">RESOLVIDO 8.2</span></td><td>Medir <b>espessura da folha</b>, distância da borda até o centro da furação (backset), e a furação existente. Porta é <b>madeira maciça ripada</b> — furo novo em maciça é irreversível. Testar também <b>se tem sinal de WiFi na porta</b> (a casa ainda não tem internet — vale usar o celular como roteador para simular). <b>Guardar a fechadura original.</b> E <b>conferir a mão</b>: foi comprada como "direção direita" — se a porta abrir para o outro lado, é troca, não ajuste. Diferente do cooktop, essa você <b>consegue</b> verificar neste fim de semana, dentro do prazo do ML. Instalador orçado em R$ 250.</td><td>Instalação da fechadura</td></tr>
+    <tr><td><b>Torre do forno</b><br><span class="pill new">NOVO</span></td><td>Definir <b>onde</b> o forno vai. Precisa de vão de <b>585–595 × 590 × 550 mm + 35 mm</b>, tomada exclusiva 20 A no fundo, e 35 cm livres na face da saída de ar. Marcar a posição com fita no piso e fotografar.</td><td>Projeto de marcenaria</td></tr>
+  </table>
+  <div class="note">Foto de tudo, com a trena aparecendo no quadro. Medida sem foto vira discussão daqui a três semanas.</div>
+</section>
+<!-- ============ 8. DESTRO ============ -->
+<section>
+  <h3>8 · Piso do superior — pedido Destro 470049</h3>
+  <p style="color:var(--dim);font-size:14px">Emitido 13/08/2026 14:43 · vendedor Gildailton · <b>entrega prevista 01/09/2026</b></p>
+  <table>
+    <tr><th>Item</th><th>Cód.</th><th class="n">Qtd</th><th class="n">Unit.</th><th class="n">Total</th></tr>
+    <tr><td>PS LVT Arquit Magnifique Sophie 2 mm 18,4×122</td><td>46004</td><td class="n">62,860 m²</td><td class="n">R$ 126,90</td><td class="n">R$ 7.976,93</td></tr>
+    <tr><td>Nivela Rápido Cinza 20 kg Quartzolit</td><td>15465</td><td class="n">20 sc</td><td class="n">R$ 111,51</td><td class="n">R$ 2.230,14</td></tr>
+    <tr><td>Primer Flex 3,6 L Quartzolit</td><td>47113</td><td class="n">2 gl</td><td class="n">R$ 148,71</td><td class="n">R$ 297,41</td></tr>
+    <tr class="tot"><td colspan="4">Subtotal visível na foto do pedido</td><td class="n">R$ 10.504,48</td></tr>
+<tr class="tot"><td colspan="4">Instalação + rodapé 20 pçs (abaixo da dobra) <span class="pill new">8.0</span></td><td class="n">R$ 2.359,84</td></tr>
+<tr class="tot"><td colspan="4"><b>TOTAL DO PEDIDO — confirmado pelo Lucas</b> <span class="pill new">8.0</span></td><td class="n"><b>R$ 12.864,32</b></td></tr>
+  </table>
+  <h4 style="margin-top:16px">O problema: três áreas concorrentes</h4>
+  <div class="grid g3">
+    <div class="kpi"><span>Destro faturou</span><b style="color:var(--alert)">57,15 m²</b><small>base do pedido — e dos insumos</small></div>
+    <div class="kpi"><span>Planta FL.01</span><b>~48 m²</b><small>projeto executivo</small></div>
+    <div class="kpi"><span>Sua trena laser</span><b style="color:var(--ok)">41 m²</b><small>medição no local</small></div>
+  </div>
+  <p style="color:var(--dim);font-size:14px;margin-top:10px">Com 10% de perda sobre 41 m² reais → <b>~45 m²</b> de necessidade. Foram faturados 62,86 m². Sobra de ~18 m².</p>
+  <div class="note"><b>Regra que não pode ser esquecida na ligação:</b> a régua é 0,184 × 1,22 = <b>0,2245 m²</b>; a caixa tem 20 réguas = <b>4,4896 m²</b>. <b>O estorno tem de ser pedido em CAIXAS, nunca em m².</b> Pedir "estornar 18 m²" gera confusão e provavelmente recusa.</div>
+  <table>
+    <tr><th>Cenário</th><th class="n">Estorno</th><th class="n">Sobra sobre 45 m²</th><th>Leitura</th></tr>
+    <tr><td>10 caixas</td><td class="n">R$ 2.279,63</td><td class="n">−0,0 m²</td><td><span class="pill no">NÃO</span> zera a margem de perda</td></tr>
+    <tr><td>11 caixas</td><td class="n">R$ 1.709,90</td><td class="n">~4,5 m²</td><td>piso mínimo defensável</td></tr>
+    <tr><td><b>12 caixas</b></td><td class="n"><b>R$ 1.140,17</b></td><td class="n">~9,0 m²</td><td><span class="pill ok">RECOMENDADO</span> margem de erro + reposição futura</td></tr>
+    <tr><td>13 caixas</td><td class="n">R$ 570,44</td><td class="n">~13,5 m²</td><td>conservador demais, dinheiro parado</td></tr>
+  </table>
+  <h4 style="margin-top:16px">Insumos — recalculados contra 43 m² (41 medidos + margem)</h4>
+  <table>
+    <tr><th>Insumo</th><th>Consumo do fabricante</th><th class="n">Necessário</th><th class="n">No pedido</th><th>Ação</th></tr>
+    <tr><td>Nivela Rápido</td><td>1,7 kg/m²/mm · camada de <b>1 a 10 mm</b></td><td class="n">15–16 sc</td><td class="n">20 sc</td><td><span class="pill warm">estornar 4–5</span> → R$ 446–557</td></tr>
+    <tr><td>Primer Flex</td><td><b>~18 m² por galão</b></td><td class="n">3 gl</td><td class="n">2 gl</td><td><span class="pill no">FALTA 1</span> → +R$ 148,71</td></tr>
+    <tr><td>Cola para LVT</td><td>0,25–0,30 kg/m² · balde 18 kg cobre 60–72 m²</td><td class="n">1 balde</td><td class="n">não visível</td><td><span class="pill no">CONFERIR</span> se está no pedido</td></tr>
+  </table>
+  <div class="note good"><b>Correções que eu mesmo devo à rev. 5:</b> (1) eu tinha escrito que o autonivelante exige camada <b>mínima de 3 mm</b> — o Boletim Técnico diz <b>1 a 10 mm</b>; (2) eu tinha escrito que 2 galões de primer cobriam ~48 m², usando 0,15 L/m² de memória — o fabricante publica <b>18 m²/galão</b>, então 2 galões cobrem 36 m² e <b>não fecham</b> nem os 41 m² medidos; (3) eu tinha escrito que no nivelador "não se mexe" — errado, é consumo por m² e a Destro dimensionou 20 sacos contra a própria área inflada.</div>
+  <div class="note bad"><b>Duas armadilhas do pedido:</b><br>
+  (1) Está impresso: <b>"não subimos e não descemos escadas, distância máxima de 30 metros"</b>. <b>Toda a carga vai pro pavimento superior</b> — 62,86 m² de LVT + 20 sacos de 20 kg (400 kg só de nivelador). Içamento/subida <b>não está orçado</b>. Combinar isso na ligação de hoje.<br>
+  (2) O LVT é <b>colado de 2 mm</b>, não click de 5 mm. Consequências: o <b>contrapiso vira caminho crítico</b> (imperfeição de contrapiso aparece no acabamento colado) e <b>não há manta acústica</b> — piso superior sobre laje, sem nenhum amortecimento de ruído de impacto. Se isso incomodar, a hora de decidir é agora, não depois de colado.</div>
+  <div class="note good"><b>RESOLVIDO — estorno confirmado: R$ 3.168,30.</b> Crédito no cartão, <b>parcelas mantidas cheias</b>. A tabela de cenários acima virou histórico: o valor confirmado é <b>R$ 2.028,13 maior</b> que o cenário "12 caixas" que eu recomendava (R$ 1.140,17).</div>
+<div class="note good"><b>CORREÇÃO 8.0 — eu estava usando a base errada.</b> Eu vinha calculando sobre os R$ 10.504,48 que apareciam na foto do pedido. O <b>pedido cheio é R$ 12.864,32</b> — a diferença de <b>R$ 2.359,84</b> é a instalação e as 20 peças de rodapé, que ficaram abaixo da dobra. Líquido correto do piso: <b>R$ 12.864,32 − R$ 3.168,30 = R$ 9.696,02</b>. São <b>R$ 2.359,84 a mais</b> no orçamento do que a rev. 7.9 mostrava.</div>
+  <div class="note bad"><b>Mas R$ 3.168,30 não fecha em número redondo de caixas</b> — a caixa sai ~R$ 570, e 3.168,30 ÷ 570 = <b>5,56 caixas</b>. Logo o crédito <b>mistura caixas e insumos</b>. A decomposição que fecha quase exata:<br>
+  <b>4 caixas (R$ 2.279,63) + 8 sacos de Nivela Rápido (R$ 891,60) = R$ 3.171,23</b> — a R$ 2,93 do valor creditado.<br>
+  <b>Se for isso, há dois problemas de quantidade:</b><br>
+  (1) sobram <b>10 caixas = 44,896 m²</b> contra <b>~45 m²</b> de necessidade. Margem <b>zero</b> — e é LVT <b>colado</b>, onde recorte de canto e perda de sarrafeamento são reais. Sem caixa de reposição para dano futuro.<br>
+  (2) sobram <b>12 sacos</b> de nivelador contra os <b>15–16</b> calculados para 43 m². <b>Faltariam 3–4 sacos.</b><br>
+  <b>Pedir à Destro a discriminação linha a linha do crédito antes de aceitar.</b> Se a leitura acima se confirmar, o caminho é recompor 1 caixa e 3–4 sacos — não brigar com o crédito, que é bom.</div>
+  <div class="note"><b>O formato do estorno é favorável e vale entender por quê.</b> Manter as parcelas cheias e creditar o valor de uma vez significa que você <b>recebe R$ 3.168,30 agora</b> e devolve diluído em 12 meses sem juros. Dinheiro na mão hoje vale mais que a mesma quantia espalhada — se a compra é realmente sem juros, esse arranjo é <b>melhor</b> para você do que reduzir o valor das parcelas. Nada a renegociar aqui.</div>
+  <div class="note bad"><b>A parcela mensal sobe — e isso mexe no fluxo inteiro.</b> Com as parcelas mantidas cheias, a mensalidade corre sobre o <b>pedido cheio de R$ 12.864,32</b>, não sobre os R$ 10.504,48 que eu usava. Em 12×, dá <b>R$ 1.072,03/mês</b> contra os <b>R$ 875,37</b> que estão dentro da grade de 12 meses — <b>R$ 196,66 a mais por mês</b>. Aplicado à grade: set/26 cai de +4.087 para <b>+3.890</b>, nov/26 de −7.741 para <b>−7.938</b>, e as parcelas de set/26 vão de R$ 15.674 para <b>R$ 15.871</b> contra o teto de R$ 15.000 que você definiu. <b>Isso só está travado quando você confirmar o número de parcelas</b> — se for 10× a parcela é R$ 1.286,43, se for 12× é R$ 1.072,03. É a pendência de maior impacto no fluxo hoje.</div>
+</section>
+<!-- ============ 9. CARGA ELÉTRICA ============ -->
+<section>
+  <h3>9 · Orçamento de carga elétrica — teto de 50 A da Convenção</h3>
+  <p style="color:var(--dim);font-size:14px">Correntes em 220V. Casa trifásica: as cargas grandes se distribuem entre fases, e o <b>balanceamento é projeto</b>, não improviso do eletricista na obra.</p>
+  <table>
+    <tr><th>Carga</th><th class="n">Potência</th><th class="n">Corrente</th><th>Circuito</th></tr>
+    <tr><td><b>Cooktop indução B+D</b> <span class="pill new">CONFIRMADO</span></td><td class="n">7.200 W</td><td class="n"><b>32,7 A</b></td><td>exclusivo · disjuntor 32 A · cabo 6,0 mm²</td></tr>
+    <tr><td><b>Forno Midea TSD80P2</b> <span class="pill new">CONFIRMADO</span></td><td class="n">2.750 W</td><td class="n"><b>12,5 A</b></td><td>tomada exclusiva 20 A · cabo 2,5 mm²</td></tr>
+    <tr><td>Split 24.000 BTU</td><td class="n">~2.600 W</td><td class="n">~11,8 A</td><td>exclusivo</td></tr>
+    <tr><td>Split 12.000 BTU</td><td class="n">~1.300 W</td><td class="n">~5,9 A</td><td>exclusivo</td></tr>
+    <tr><td>2× Split 9.000 BTU</td><td class="n">~2.000 W</td><td class="n">~9,1 A</td><td>exclusivos</td></tr>
+    <tr><td>Apoio elétrico do boiler solar</td><td class="n">a confirmar c/ EcoSol</td><td class="n">—</td><td>exclusivo</td></tr>
+    <tr><td>Tomadas, iluminação, lavanderia</td><td class="n">—</td><td class="n">—</td><td>circuitos gerais</td></tr>
+  </table>
+  <div class="note bad"><b>Cooktop + forno sozinhos somam 45,2 A.</b> Contra um teto de 50 A por unidade, isso é praticamente toda a cota se caírem na mesma fase. Trifásico resolve — <b>desde que estejam em fases diferentes</b>. E o próprio manual do forno manda: <i>"caso o forno seja instalado abaixo de um cooktop, utilize interligações elétricas separadas."</i> Passar isso ao eletricista <b>por escrito</b>, junto com o projeto de balanceamento de fases.</div>
+  <div class="note good"><b>Boa notícia pequena:</b> a rev. 6 carregava o forno numa estimativa genérica de ~3.000 W / 13,6 A. O número real é <b>2.750 W / 12,5 A</b> — libera ~1,1 A no orçamento de carga.</div>
+</section>
+<!-- ============ 10. ITBI ============ -->
+<section>
+  <h3>10 · ITBI, registro e custos de fechamento <span class="pill new">8.6</span></h3>
+  <p><b>Ordem processual:</b> contrato → ITBI → protocolo no RI → registro → liberação do FGTS → quitação. Nada pula a fila. <b>Contrato assinado — os números pararam de ser estimativa.</b></p>
+  <div class="note good"><b>Fechado com a Mieko/Erika (26/08): documentação = R$ 26.340 (2,40% sobre a compra e venda), como 1º imóvel pelo SFH.</b> Emolumentos que você paga na escritura. É o real, não a minha estimativa de R$ 33.000 — e veio <b>abaixo</b> na parte de cartório.</div>
+  <table>
+    <tr><th>Custo</th><th class="n">%</th><th class="n">Valor</th><th>O que cobre</th></tr>
+    <tr><td><b>ITBI</b></td><td class="n">1,8%</td><td class="n">R$ 19.840</td><td>cálculo, guia e pagamento do imposto de transmissão</td></tr>
+    <tr><td><b>Registro / certidões / matrícula</b></td><td class="n">0,51%</td><td class="n">R$ 5.630</td><td>certidão de inteiro teor, emolumentos do RI, notas devolutivas, entrega das vias</td></tr>
+    <tr><td><b>Diligências / assessoria</b></td><td class="n">0,07%</td><td class="n">R$ 870</td><td>certidões pessoais, CND de IPTU, digitalização, certificadora</td></tr>
+    <tr class="tot"><td><b>Documentação (na escritura)</b></td><td class="n">2,40%</td><td class="n"><b>R$ 26.340</b></td><td>a pagar no ato</td></tr>
+  </table>
+  <table style="margin-top:14px">
+    <tr><th>CAIXA + FGTS</th><th class="n">Valor</th><th>Status</th></tr>
+    <tr><td>Emissão do contrato + relacionamento + seguro CAIXA</td><td class="n">R$ 4.000</td><td><span class="pill ok">PAGO</span></td></tr>
+    <tr><td>Custo sobre o saque do FGTS <span class="tag">inclui R$ 2.500 de IR já pago</span></td><td class="n">R$ 6.500</td><td><span class="pill ok">PAGO</span></td></tr>
+    <tr class="tot"><td>Total CAIXA/FGTS <span class="tag" style="font-weight:400">R$ 2.500 IR antes + R$ 8.000 quitados hoje 26/08</span></td><td class="n"><b>R$ 10.500</b></td><td><span class="pill ok">QUITADO</span></td></tr>
+  </table>
+  <div class="grid g3" style="margin-top:14px">
+    <div class="kpi"><span>Documentação</span><b>R$ 26.340</b><small>na escritura</small></div>
+    <div class="kpi"><span>CAIXA + FGTS</span><b style="color:var(--ok)">R$ 10.500</b><small>já quitado (26/08)</small></div>
+    <div class="kpi"><span>Fechamento total</span><b style="color:var(--warm)">R$ 36.840</b><small>era estimativa de R$ 33.000 · <b>+R$ 3.840</b></small></div>
+  </div>
+  <ul style="margin-top:14px">
+    <li><b>Valor financiado:</b> R$ 144.000 (o contrato arredondou os R$ 143.966,50 do modelo).</li>
+    <li><b>Base do ITBI:</b> o STJ (Tema 1113) fixou que é o <b>valor da transação</b> — R$ 1.100.000. Os R$ 19.840 (1,8%) já saíram <b>abaixo</b> dos 2% que você temia; o desconto SFH foi aplicado.</li>
+    <li><b>Registro veio barato</b> (0,51%): o desconto de 50% de emolumentos do SFH (art. 290 da Lei 6.015/73) entrou — era o que eu apontava como superestimado, e confirmou.</li>
+    <li><b>A "taxa CAIXA" que estava sem identificação</b> era isto: R$ 4.000 de emissão/relacionamento/seguro + o custo do saque do FGTS. Resolvido.</li>
+  </ul>
+</section>
+<!-- ============ 11. ORÇAMENTO ============ -->
+<section>
+  <h3>11 · Orçamento consolidado — rev. 7</h3>
+  <h4>À vista — sai da liquidez</h4>
+  <table>
+    <tr><th>Item</th><th class="n">Valor</th></tr>
+    <tr><td>Saldo do imóvel <span class="pill new">8.3</span><br><span class="tag">−R$ 30.000 pago a Rodrigo 24/08 · remanescente R$ 181.034</span></td><td class="n">R$ 211.034</td></tr>
+    <tr><td>Documentação — ITBI + registro + diligências <span class="pill new">9.1</span><br><span class="tag">PAGO 31/08 · Pix R$ 26.340 → Meta Negócios Financeiros (BTG)</span></td><td class="n">R$ 26.340</td></tr>
+    <tr><td>CAIXA + FGTS — emissão do contrato + saque <span class="pill new">8.6</span><br><span class="tag">PAGO 26/08 (R$ 8.000 hoje + R$ 2.500 IR antes)</span></td><td class="n">R$ 10.500</td></tr>
+    <tr><td>Projeto dos planejados — 2ª parcela</td><td class="n">R$ 2.500</td></tr>
+    <tr><td>LYME — entrada Pix (contrato 1412) <span class="pill new">7.5</span></td><td class="n">R$ 15.420</td></tr>
+    <tr><td><b>Geladeira Electrolux IM8IS</b> — PIX (Tudo Bônus #89109) <span class="pill new">9.0</span><br><span class="tag">PAGO à vista · ago/26</span></td><td class="n">R$ 4.588</td></tr>
+    <tr><td><b>AC — instalação (com adicional material)</b> <span class="pill new">10.3</span><br><span class="tag">PAGO 31/08 · Pix</span></td><td class="n">R$ 3.247</td></tr>
+    <tr><td><b>Eletricista Adelco</b> — mão de obra completa <span class="pill new">10.4</span><br><span class="tag">arandelas + banheiros · PAGO 05/09</span></td><td class="n">R$ 3.500</td></tr>
+    <tr class="tot"><td>Total à vista <span class="tag" style="font-weight:400">custo — R$ 477.129 já pago (imóvel R$ 411.034 + demais R$ 66.095) · R$ 4.000 a pagar (MO deck)</span></td><td class="n">R$ 481.129</td></tr>
+  </table>
+  <div class="note good"><b>R$ 30.000 amortizados ao Rodrigo hoje (24/08) — e é uma jogada neutra pro seu colchão.</b> O saldo do imóvel cai de R$ 211.034 para <b>R$ 181.034</b>, mas o dinheiro saiu do <b>CDB</b> (o fundo de quitação D+0, premissa declarada — <b>confirmar a origem</b>), que já estava carimbado pra isso. Como a liquidez e a dívida caem <b>o mesmo valor</b>, a <b>reserva pós-à-vista continua R$ 22.564</b>. O <b>custo total do projeto não muda</b> (R$ 406.634) — R$ 30k é pagamento, não desconto. <b>Dois pontos:</b> (1) se por acaso saiu da <b>conta corrente</b> e não do CDB, o piso de agosto de R$ 38.186 despenca pra ~R$ 8k — por isso a origem importa; (2) antecipar pagamento ao vendedor antes do registro tira R$ 30k da sua mão antes da transferência estar concluída e abre mão de ~R$ 300/mês de rendimento no CDB — trade-off pequeno e aceitável se for sinal/boa-fé contratada, mas é bom ter dito.</div>
+  <div class="grid g3" style="margin-top:12px">
+    <div class="kpi"><span>Liquidez total <span class="pill new">8.6</span></span><b>R$ 246.518</b><small>R$ 254.518 <b>−R$ 8.000</b> do saldo FGTS/contrato pago hoje (26/08). Antes já havia caído de R$ 284.518 pelos R$ 30.000 do Rodrigo (CDB). Composição: conta + EQI + CDB.</small></div>
+    <div class="kpi"><span>Reserva pós-à-vista <span class="pill new">8.6</span></span><b style="color:var(--warm)">R$ 19.039</b><small>era R$ 20.379 · <b>−R$ 1.340</b>: o fechamento real (R$ 36.840) veio R$ 3.840 acima da estimativa, dos quais R$ 2.500 (IR) já eram pré-pagos → líquido no colchão −R$ 1.340. Contra R$ 2.000–5.000 não orçados <b>+ R$ 4.850 do muro se saírem do colchão</b>, o piso real fica em <b>~R$ 9,2–12,2k</b>.</small></div>
+    <div class="kpi"><span>Já comprometido em conta <span class="pill new">7.7</span></span><b style="color:var(--alert)">R$ 15.500</b><small>cartão <b>BRB R$ 12.000</b> (20/08) + <b>BTG R$ 3.500</b> (01/09 — cai em setembro, não em agosto)</small></div>
+  </div>
+  <h4 style="margin-top:22px">Parcelado</h4>
+  <table>
+    <tr><th>Item</th><th class="n">Valor</th><th>Condição</th><th style="width:70px"></th></tr>
+    <tr><td>Marcenaria — lâminas JKV + montagem Felipe</td><td class="n">R$ 65.000</td><td>10× R$ 6.500 (provisão)</td><td><span class="pill go">est.</span></td></tr>
+    <tr><td>Esquadrias + 2 boxes — LYME <span class="tag">contrato 1412</span></td><td class="n">R$ 15.420</td><td>5× R$ 3.084 · <b>CARTÃO</b>, não boleto</td><td><span class="pill ok">assinado 17/08</span></td></tr>
+    <tr><td>Boiler solar — EcoSol</td><td class="n">R$ 18.390</td><td>8× R$ 2.298,75 · boleto dia 15 · 15/08/26 a 15/03/27</td><td><span class="pill ok">fechado</span></td></tr>
+    <tr><td><b>Luminárias (Visa 0700)</b> <span class="pill new">10.4</span></td><td class="n">R$ 1.370</td><td>líquidas da devolução do kit 8× spots (§3E) · 1× R$ 1.046 + 9× R$ 51 · <b>eletricista MOVIDO pra à vista</b> (Adelco R$ 3.500)</td><td><span class="pill ok">◐ em curso</span></td></tr>
+    <tr><td>AC — 4 aparelhos</td><td class="n">R$ 10.256,68</td><td>8× R$ 1.282,09</td><td><span class="pill ok">fechado</span></td></tr>
+    <tr><td><b>Piso LVT — Destro, pedido 470049</b> <span class="pill new">10.1</span></td><td class="n"><b>R$ 9.696</b></td><td>pedido cheio R$ 12.864,32 − estorno R$ 3.168,30 · ~R$ 1.072/mês em 12× · <b>ENTREGUE. Nivelamento 04/09, instalação 08/09.</b></td><td><span class="pill ok">em execução</span></td></tr>
+    <tr><td><b>Nivelante do piso</b> — requerido pelo instalador <span class="pill new">9.4</span><br><span class="tag">o §12b temia R$ 2.000–3.500; veio R$ 509 (75% abaixo)</span></td><td class="n">R$ 509</td><td>8× R$ 64 cartão</td><td><span class="pill ok">comprado 02/09</span></td></tr>
+    <tr><td>Pedra da ilha — Feijor <span class="pill new">8.6</span></td><td class="n">R$ 5.040</td><td>8× R$ 630 no cartão</td><td><span class="pill ok">PAGO 26/08</span></td></tr>
+    <tr><td><b>Eletros embutidos + fechadura + instalação</b> <span class="pill ok">7.4</span></td><td class="n"><b>R$ 3.359</b></td><td>cooktop <b>R$ 999,90</b> (Pix+saldo) + forno <b>R$ 1.780</b> + fechadura <b>R$ 328,98</b> + instalação R$ 250 (est.)</td><td><span class="pill ok">3 de 3</span></td></tr>
+    <tr><td><b>Banheiros — duchas + acessórios</b> <span class="pill new">7.4</span></td><td class="n"><b>R$ 1.781</b></td><td>1× no cartão · 3 duchas + 3 kits + 3 porta-shampoo · <b>R$ 288 de provável frete</b></td><td><span class="pill ok">pago</span></td></tr>
+    <tr><td><b>Assentos sanitários</b> — ML 2000014630727711 <span class="pill new">7.9</span></td><td class="n"><b>R$ 737</b></td><td>3 Art Incepa + 1 Boss Incepa · R$ 661,01 no Visa + R$ 75,99 de saldo ML</td><td><span class="pill ok">pago</span></td></tr>
+    <tr><td><b>Cama/dormitório — Zidi</b> <span class="tag">order 2000014800097849</span> <span class="pill new">10.1</span></td><td class="n"><b>R$ 4.914</b></td><td>colchão King Alabama + Queen Miami + base baú King + baú Queen · 1× R$ 1.058,78 + 10× R$ 385,50 Master 6369 · <b>2 COLCHÕES CHEGARAM. Bases baú pendentes.</b></td><td><span class="pill ok">parcial ✓</span></td></tr>
+    <tr><td><b>Deck cumaru — material</b> <span class="pill new">9.2</span></td><td class="n"><b>R$ 10.639</b></td><td>Pará Brazzil pedido 19768 · 5× R$ 2.128 · cartão</td><td><span class="pill ok">contratado 02/09</span></td></tr>
+    <tr><td><b>Cortinas — pacote completo</b> <span class="pill new">10.6</span><br><span class="tag">2 sala Wave Gaze cinza + 3 quartos Voil branco + escritório Blackout gelo</span></td><td class="n"><b>R$ 6.725</b></td><td>6× R$ 1.121 · cartão · trilhos suíssos com aba, instalação parede</td><td><span class="pill ok">fechado</span></td></tr>
+    <tr><td><b>Spa Inflável Ofurô Rome 1180L</b> — Bestway <span class="pill new">10.6</span><br><span class="tag">order #2000018446192532 · 220V · entrega 18–19/09</span></td><td class="n"><b>R$ 6.780</b></td><td>R$ 8.990 − R$ 2.210 desc. à vista · 10× R$ 678,03 · Master 3619</td><td><span class="pill ok">comprado 13/09</span></td></tr>
+    <tr><td><b>Carrinho ML</b> — 4 produtos <span class="pill new">10.6</span><br><span class="tag">order #2000015010800051 · 3 vendedores</span></td><td class="n"><b>R$ 1.864</b></td><td>Cadeiras Gruvyer (6) + Mesa industrial 130cm + Luminária Luczeng + Lâmpada RGB · R$ 1.674 à vista + 6× R$ 31,67 · Master 3619</td><td><span class="pill ok">comprado 13/09</span></td></tr>
+    <tr><td><b>Aspirador Arno X-Pert 7.60</b> — parte cartão <span class="pill new">10.6</span><br><span class="tag">order #2000018282963924 · R$ 289 em saldo ML fora</span></td><td class="n"><b>R$ 430</b></td><td>10× R$ 43,03 · Master 6369</td><td><span class="pill ok">pago 04/09</span></td></tr>
+    <tr><td><b>LYME — 3º box pequeno</b> <span class="pill new">10.7</span><br><span class="tag">fora do contrato 1412 · R$ 1.531,83</span></td><td class="n"><b>R$ 1.532</b></td><td>condição de pagamento a confirmar</td><td><span class="pill warm">contratado</span></td></tr>
+    <tr class="tot"><td>Total parcelado <span class="pill new">10.7</span></td><td class="n">R$ 164.443</td><td colspan="2">R$ 149.112 <b>− R$ 2.000</b> eletricista (era estimativa) <b>+ R$ 15.799</b> compras 10.6 <b>+ R$ 1.532</b> 3º box LYME (10.7)</td></tr>
+  </table>
+  <div class="grid g2" style="margin-top:16px">
+    <div class="kpi"><span>Total do projeto — rev. 10.7</span><b style="color:var(--warm);font-size:26px">R$ 645.572</b><small>R$ 481.129 à vista + R$ 164.443 parcelado. <b>Rev. 10.4:</b> Adelco R$ 3.500 (arandelas+banheiros) migrou pra à vista. <b>Rev. 10.6:</b> +R$ 15.799 em compras da semana (cortinas + Spa + carrinho ML + aspirador). <b>Rev. 10.7:</b> +R$ 1.532 do 3º box LYME. Do bolso no imóvel R$ 411.034; FGTS R$ 545k + CAIXA fora do controle. Ainda premissa: instalação da fechadura R$ 250 e <b>4 bacias, R$ 1.800–3.600 sem linha</b>.</small></div>
+    <div class="kpi"><span>Ainda não orçado <span class="pill new">7.7</span></span><b style="color:var(--alert)">R$ 2.000 – 5.000</b><small>Revestimento da escada R$ 2.000–5.000 · içamento da carga Destro · materiais de instalação da Feijor R$ 150–300 · rack/TV. <b>O autonivelante da área social saiu da lista</b> — Lucas confirmou que já está incluso (−R$ 2.000–3.500).</small></div>
+  </div>
+</section>
+<!-- ============ 12. FLUXO ============ -->
+<section>
+  <h3>12 · Fluxo de caixa</h3>
+  <h4>Agosto → 05/09 — calendário real <span class="pill new">7.7</span> (extrato de 17/08: R$ 62.518,22)</h4>
+  <table>
+    <tr><th>Data</th><th>Movimento</th><th class="n">Valor</th><th class="n">Saldo</th></tr>
+    <tr><td><b>17/08</b></td><td><b>Saldo apurado</b> — R$ 62.518,22 em conta + R$ 5.000 EQI</td><td class="n">—</td><td class="n">67.518</td></tr>
+    <tr><td>17/08</td><td>LYME — entrada Pix</td><td class="n" style="color:var(--alert)">−15.420,00</td><td class="n">52.098</td></tr>
+    <tr><td><b>20/08</b></td><td><b>Cartão BRB</b></td><td class="n">−12.000</td><td class="n">40.098</td></tr>
+    <tr><td>até 26/08</td><td>Feijor 1/8</td><td class="n">−630</td><td class="n">39.468</td></tr>
+    <tr><td>ago</td><td>AC aparelhos 1/8</td><td class="n">−1.282,09</td><td class="n"><b style="color:var(--warm)">38.186 ← piso do mês</b></td></tr>
+    <tr><td>28/08</td><td>Salário líquido <span class="tag">R$ 15.000 destinados à casa</span></td><td class="n" style="color:var(--ok)">+33.000</td><td class="n"><b>71.186 ← saída de agosto</b></td></tr>
+    <tr><td>01/09</td><td>Cartão BTG</td><td class="n">−3.500</td><td class="n">67.686</td></tr>
+    <tr><td>05/09</td><td>Aluguel — parcela restante</td><td class="n" style="color:var(--ok)">+5.400</td><td class="n">73.086</td></tr>
+    <tr><td>05/09</td><td>Condomínio <span class="pill new">7.7</span></td><td class="n">−1.500</td><td class="n">71.586</td></tr>
+  </table>
+  <p style="color:var(--dim);font-size:14px"><b>Piso de agosto: R$ 38.186</b> (rev. 7.5 projetava R$ 30.562 — <b>+R$ 7.624</b>). A diferença é quase toda dinheiro que já existia e não estava no modelo: <b>R$ 5.000 na conta corrente da EQI</b>, R$ 2.025 de saldo a mais e R$ 500 de cartão a menos, além do BTG de R$ 3.500 ter migrado para setembro. <b>O EcoSol de 15/08 (R$ 2.298,75), os R$ 3.000 de aluguel de 12/08 e a amortização do pai (+R$ 5.000) já estão dentro do saldo apurado</b> — não entram de novo. As compras de 14/08 <b>não entram aqui</b> — devem cair na fatura de setembro. O bloco à vista (R$ 261.954) sai do CDB na escritura, não desta conta.</p>
+  <div class="note good"><b>Quatro premissas confirmadas em 17/08 — o modelo mensal fica de pé como está.</b> <b>(1) Salário R$ 33.000</b>, confirmado — a grade de set/26 a ago/27 não muda. <b>(2) Amortização Minozzo é mensal até jan/27</b>, confirmado — era a maior incerteza do fluxo (R$ 25.000 de diferença em mar/27) e cai por terra; mar/27 fica em R$ 29.067. <b>(3) Cartões: R$ 12.000 BRB no dia 20 + R$ 3.500 BTG no dia 1º</b> = R$ 15.500, e o BTG cai no mês seguinte. <b>(4) Autonivelante já orçado</b> — o não-orçado desce para R$ 2.000–5.000.</div>
+  <div class="note info"><b>Três coisas que este acerto abriu e ainda não têm lugar definido no modelo.</b> <b>(1) O condomínio de R$ 1.500 no dia 5.</b> Se for do imóvel alugado, o aluguel líquido cai de R$ 5.400 para R$ 3.900 e as entradas mensais descem R$ 1.500 — nov/26 vai de −R$ 7.741 para ~−R$ 9.241. Se já estiver dentro dos R$ 15.000 de custo de vida ou dos R$ 3.500 de posse, não muda nada. <b>É a pergunta mais barata de responder e a que mais mexe na grade.</b> <b>(2) Os R$ 15.000 do salário destinados à casa.</b> Isso é alocação, não saída — o saldo de 28/08 continua R$ 71.186. Mas significa que a casa recebe R$ 15.000/mês de dinheiro novo, e não o salário inteiro: qualquer parcela acima disso come colchão. <b>(3) Aluguel: R$ 3.000 já recebidos + R$ 5.400 no dia 5 = R$ 8.400</b>, exatamente o bruto declarado dos dois imóveis. Confirmar se são dois inquilinos ou um só pagando em duas parcelas — muda o risco de vacância, não o valor.</div>
+  <div class="sep"></div>
+  <h4>Mensal — set/26 a ago/27</h4>
+  <table>
+    <tr><th>Mês</th><th class="n">Entradas</th><th class="n">Vida</th><th class="n">Parcelas</th><th class="n">Posse</th><th class="n">Resultado</th><th class="n">Caixa fim</th></tr>
+    <tr><td>set/26</td><td class="n">34.761</td><td class="n">15.000</td><td class="n">15.674 <span class="pill new">7.5</span></td><td class="n">—</td><td class="n" style="color:var(--ok)">+4.087</td><td class="n">20.626</td></tr>
+    <tr><td>out/26</td><td class="n">41.562</td><td class="n">15.000</td><td class="n">16.174</td><td class="n">—</td><td class="n" style="color:var(--ok)">+10.388</td><td class="n">31.014</td></tr>
+    <tr><td><b>nov/26</b></td><td class="n">35.433</td><td class="n">15.000</td><td class="n"><b>24.674</b></td><td class="n">3.500</td><td class="n" style="color:var(--alert)"><b>−7.741</b></td><td class="n">23.273</td></tr>
+    <tr><td>dez/26</td><td class="n">52.141</td><td class="n">15.000</td><td class="n">23.674</td><td class="n">3.500</td><td class="n" style="color:var(--ok)">+9.967</td><td class="n">33.240</td></tr>
+    <tr><td>jan/27</td><td class="n">34.761</td><td class="n">15.000</td><td class="n">16.374 <small>← última LYME</small></td><td class="n">3.500</td><td class="n" style="color:var(--alert)">−113</td><td class="n">33.127</td></tr>
+    <tr><td>fev/27</td><td class="n">29.761</td><td class="n">15.000</td><td class="n">13.290</td><td class="n">3.500</td><td class="n" style="color:var(--alert)">−2.030</td><td class="n">31.097</td></tr>
+    <tr><td>mar/27</td><td class="n">29.761</td><td class="n">15.000</td><td class="n">13.290</td><td class="n">3.500</td><td class="n" style="color:var(--alert)">−2.030</td><td class="n"><b style="color:var(--warm)">29.067 ← vale</b></td></tr>
+    <tr><td>abr/27</td><td class="n">29.761</td><td class="n">15.000</td><td class="n">9.079</td><td class="n">3.500</td><td class="n" style="color:var(--ok)">+2.182</td><td class="n">31.249</td></tr>
+    <tr><td>mai–ago/27</td><td class="n">29.761</td><td class="n">15.000</td><td class="n">7.079</td><td class="n">3.500</td><td class="n" style="color:var(--ok)">+4.182</td><td class="n">47.977</td></tr>
+  </table>
+  <p style="color:var(--dim);font-size:13px">Base: reserva pós-à-vista <b>R$ 16.539</b> no fim de ago/26 (rev. 7.4 usava R$ 31.959 — a entrada Pix da LYME consumiu R$ 15.420). As <b>5× de R$ 3.084 da LYME</b> foram somadas às parcelas de set/26 a jan/27. A partir de fev/27 some a amortização do pai (R$ 5.000). <b>Correção 8.0:</b> a grade foi montada com a parcela da Destro em ~R$ 875/mês, calculada sobre R$ 10.504,48. O pedido cheio é <b>R$ 12.864,32</b> e a parcela real em 12× é <b>R$ 1.072,03</b> — <b>R$ 196,66/mês a mais em todos os meses da grade</b>. Os números abaixo ainda não foram reescritos porque o <b>número de parcelas segue sem confirmação</b>; leia cada mês com esse desconto mental até a Destro confirmar. Também fora da grade: as parcelas das compras de 14/08 — ~R$ 200–1.000/mês, dentro das margens.</p>
+  <h4 style="margin-top:18px">Leitura</h4>
+  <ul>
+    <li><b>O plano continua de pé, mas com metade da folga.</b> A LYME custou duas vezes: R$ 15.420 de entrada saíram do colchão e R$ 3.084/mês entram na fatura por 5 meses. Toda a curva desceu ~R$ 30k. O vale de mar/27 caiu de <b>R$ 59.906 para R$ 29.067</b> <span class="pill new">7.5</span>.</li>
+    <li><b>Novembro piorou e janeiro entrou na lista.</b> Nov/26 vai a <b>−R$ 7.741</b> contra caixa de R$ 23k, e jan/27 fecha em <b>−R$ 113</b> — praticamente zero a zero. Nenhum dos dois quebra, mas a partir daqui <b>não cabe outra entrada à vista de R$ 15k</b> sem empurrar mês.</li>
+    <li><b>A válvula de escape saiu da mesa.</b> Adiar os móveis pra jan/27 derrubaria o pico pra ~R$ 15k, mas não é mais necessário <i>por caixa</i>. Se fatiar a marcenaria, que seja por risco de execução (lote de cor, agenda do montador), não por dinheiro.</li>
+    <li><b>Marcenaria a R$ 72.000 (10× R$ 7.200) cabe com folga</b> — custa R$ 700/mês contra margens de R$ 2–13k.</li>
+    <li><b>O empréstimo do pai é a única linha com data de morte: jan/27.</b> Não gastar como se fosse permanente.</li>
+  </ul>
+  <div class="note bad"><b>Duas confirmações ainda em aberto:</b> <span class="pill new">7.7</span><br>
+  (1) <b>Cartões × custo de vida.</b> R$ 12.000 BRB + R$ 3.500 BTG = R$ 15.500 ≈ os R$ 15.000 declarados de custo de vida. Assumi que são <b>a mesma coisa</b>. Se forem gastos <i>adicionais</i>, o modelo inteiro desce R$ 15.500/mês e o plano quebra. <b>Continua sendo a confirmação mais importante do documento</b> — está aberta desde a rev. 7.<br>
+  (2) <b>Adiantamento do 13º</b> está dentro dos R$ 21.033 de novembro? Pelo valor, não. Se cair por fora, nov vira +R$ 21.843.</div>
+  <div class="note good"><b>Resolvido em 17/08:</b> a amortização Minozzo é <b>R$ 5.000/mês até jan/27</b>, exatamente como o modelo assumiu. Era a linha com R$ 25.000 de incerteza em mar/27 — deixa de ser risco. <b>O empréstimo continua tendo data de morte em jan/27</b>, e a partir de fev/27 a curva perde R$ 5.000/mês. Isso já está na grade.</div>
+  <div class="note"><b>Riscos de renda:</b> (1) <b>vacância</b> — dois imóveis alugados sustentam R$ 8.400/mês bruto; vacância simultânea tira ~R$ 6.900 líquidos/mês; (2) <b>variável</b> — outubro carrega variável, e sem ela a curva inteira desce ~R$ 6.800.<br><b>Ponto cego declarado:</b> os R$ 3.500/mês de custo de posse podem já estar dentro dos R$ 15.000 de custo de vida. Modelei somando, que é o conservador.</div>
+
+<!-- ============ 12B. FLUXO DE PARCELAMENTOS + RECORRENTES ============ -->
+<section id="fluxo-mensal-parcelamentos">
+  <h3>12B · Fluxo mensal — parcelamentos + despesas recorrentes <span class="pill new">10.10</span></h3>
+  <p style="color:var(--dim);font-size:14px">Todos os parcelamentos em aberto <b>+ despesas fixas mensais</b> (financiamento CAIXA + condomínio). Marcenaria fora da grade. Datas: fatura fecha ~1 mês depois da compra.</p>
+
+  <h4 style="margin-top:22px">A · Parcelamentos ativos (18 itens)</h4>
+  <table>
+    <tr><th>Item</th><th class="n">Total</th><th>Condição</th><th>1ª parcela</th><th>Meio</th></tr>
+    <tr><td>Boiler solar EcoSol</td><td class="n">R$ 18.390</td><td>8× R$ 2.299</td><td>ago/26</td><td><span class="tag">boleto dia 15</span></td></tr>
+    <tr><td>Feijor pedra ilha</td><td class="n">R$ 5.040</td><td>8× R$ 630</td><td>set/26</td><td><span class="tag">cartão</span></td></tr>
+    <tr><td>AC — 4 aparelhos</td><td class="n">R$ 10.257</td><td>8× R$ 1.282</td><td>set/26</td><td><span class="tag">cartão</span></td></tr>
+    <tr><td>LYME esquadrias + 2 boxes</td><td class="n">R$ 15.420</td><td>5× R$ 3.084</td><td>set/26</td><td><span class="tag">cartão</span></td></tr>
+    <tr><td>Luminárias (Visa 0700)</td><td class="n">R$ 1.506</td><td>R$ 1.046 entrada + 9× R$ 51</td><td>out/26</td><td><span class="tag">Visa 0700</span></td></tr>
+    <tr><td>Cama Zidi (colchões+bases)</td><td class="n">R$ 4.914</td><td>R$ 1.059 entrada + 10× R$ 386</td><td>out/26</td><td><span class="tag">Master 6369</span></td></tr>
+    <tr><td>Piso LVT Destro</td><td class="n">R$ 9.696</td><td>12× R$ 808</td><td>out/26</td><td><span class="tag">cartão</span></td></tr>
+    <tr><td>Nivelante piso</td><td class="n">R$ 509</td><td>8× R$ 64</td><td>out/26</td><td><span class="tag">cartão</span></td></tr>
+    <tr><td>Deck cumaru material</td><td class="n">R$ 10.639</td><td>5× R$ 2.128</td><td>out/26</td><td><span class="tag">cartão</span></td></tr>
+    <tr><td>Duchas + kits banheiros</td><td class="n">R$ 1.781</td><td>1× R$ 1.781</td><td>set/26</td><td><span class="tag">cartão à vista</span></td></tr>
+    <tr><td>Assentos sanitários</td><td class="n">R$ 737</td><td>1× R$ 661</td><td>set/26</td><td><span class="tag">cartão à vista</span></td></tr>
+    <tr><td>Eletros + fechadura</td><td class="n">R$ 3.359</td><td>1× R$ 3.359</td><td>set/26</td><td><span class="tag">cartão à vista</span></td></tr>
+    <tr><td>Cortinas</td><td class="n">R$ 6.725</td><td>6× R$ 1.121</td><td>out/26</td><td><span class="tag">cartão</span></td></tr>
+    <tr><td>Spa Inflável Rome</td><td class="n">R$ 6.780</td><td>10× R$ 678</td><td>out/26</td><td><span class="tag">Master 3619</span></td></tr>
+    <tr><td>Carrinho ML (à vista)</td><td class="n">R$ 1.674</td><td>R$ 1.674 entrada + à vista no cartão</td><td>out/26</td><td><span class="tag">Master 3619</span></td></tr>
+    <tr><td>Carrinho ML (parcelado)</td><td class="n">R$ 190</td><td>6× R$ 32</td><td>out/26</td><td><span class="tag">Master 3619</span></td></tr>
+    <tr><td>Aspirador Arno X-Pert</td><td class="n">R$ 430</td><td>10× R$ 43</td><td>out/26</td><td><span class="tag">Master 6369</span></td></tr>
+    <tr><td>LYME 3º box (fora contr.)</td><td class="n">R$ 1.532</td><td>5× R$ 306</td><td>out/26</td><td><span class="tag">cartão</span></td></tr>
+    <tr class="tot"><td>Total contratado</td><td class="n"><b>R$ 99,579</b></td><td colspan="3">valor bruto dos parcelamentos</td></tr>
+  </table>
+
+  <h4 style="margin-top:22px">A2 · Despesas mensais recorrentes <span class="pill new">10.10</span></h4>
+  <table>
+    <tr><th>Item</th><th class="n">Valor mensal</th><th>Observação</th><th>Início</th><th>Meio</th></tr>
+    <tr><td><b>Financiamento CAIXA (SAC 420×)</b></td><td class="n">R$ 1.700/mês</td><td>1ª em 21/09/26 · <b>R$ 1.700 é estimativa</b> (SAC 420×, cai gradualmente) · continua até 09/2061</td><td>set/26 (dia 21)</td><td><span class="tag">débito automático</span></td></tr>
+    <tr><td><b>Condomínio + áreas comuns + fundo obra</b></td><td class="n">R$ 700/mês</td><td>R$ 700 fixo mensal · começa set/26 · recorrente permanente</td><td>set/26 (dia 15)</td><td><span class="tag">boleto dia 15</span></td></tr>
+    <tr class="tot"><td>Total recorrente/mês</td><td class="n"><b>R$ 2.400</b></td><td colspan="3">se soma ao fluxo permanentemente enquanto durar</td></tr>
+  </table>
+
+  <h4 style="margin-top:22px">B · Desembolso mensal (ago/26 → set/27)</h4>
+  <table>
+    <tr><th style="width:80px">Mês</th><th class="n" style="width:100px">Total</th><th>Intensidade</th><th class="n">Nº itens</th></tr>
+    <tr>
+      <td><b>ago/26</b></td>
+      <td class="n" style="color:var(--ok)"><b>R$ 2.299</b></td>
+      <td><div style="background:var(--ok);width:12%;height:14px;border-radius:3px;opacity:0.55"></div></td>
+      <td class="n" style="color:var(--dim);font-size:12px">1 lançamentos</td>
+    </tr>
+    <tr>
+      <td><b>set/26</b></td>
+      <td class="n" style="color:var(--alert)"><b>R$ 19.275</b></td>
+      <td><div style="background:var(--alert);width:100%;height:14px;border-radius:3px;opacity:0.55"></div></td>
+      <td class="n" style="color:var(--dim);font-size:12px">12 lançamentos</td>
+    </tr>
+    <tr>
+      <td><b>out/26</b></td>
+      <td class="n" style="color:var(--alert)"><b>R$ 15.311</b></td>
+      <td><div style="background:var(--alert);width:79%;height:14px;border-radius:3px;opacity:0.55"></div></td>
+      <td class="n" style="color:var(--dim);font-size:12px">16 lançamentos</td>
+    </tr>
+    <tr>
+      <td><b>nov/26</b></td>
+      <td class="n" style="color:var(--alert)"><b>R$ 15.311</b></td>
+      <td><div style="background:var(--alert);width:79%;height:14px;border-radius:3px;opacity:0.55"></div></td>
+      <td class="n" style="color:var(--dim);font-size:12px">16 lançamentos</td>
+    </tr>
+    <tr>
+      <td><b>dez/26</b></td>
+      <td class="n" style="color:var(--alert)"><b>R$ 15.311</b></td>
+      <td><div style="background:var(--alert);width:79%;height:14px;border-radius:3px;opacity:0.55"></div></td>
+      <td class="n" style="color:var(--dim);font-size:12px">16 lançamentos</td>
+    </tr>
+    <tr>
+      <td><b>jan/27</b></td>
+      <td class="n" style="color:var(--alert)"><b>R$ 15.311</b></td>
+      <td><div style="background:var(--alert);width:79%;height:14px;border-radius:3px;opacity:0.55"></div></td>
+      <td class="n" style="color:var(--dim);font-size:12px">16 lançamentos</td>
+    </tr>
+    <tr>
+      <td><b>fev/27</b></td>
+      <td class="n" style="color:var(--warm)"><b>R$ 12.227</b></td>
+      <td><div style="background:var(--warm);width:63%;height:14px;border-radius:3px;opacity:0.55"></div></td>
+      <td class="n" style="color:var(--dim);font-size:12px">15 lançamentos</td>
+    </tr>
+    <tr>
+      <td><b>mar/27</b></td>
+      <td class="n" style="color:var(--ok)"><b>R$ 9.793</b></td>
+      <td><div style="background:var(--ok);width:51%;height:14px;border-radius:3px;opacity:0.55"></div></td>
+      <td class="n" style="color:var(--dim);font-size:12px">13 lançamentos</td>
+    </tr>
+    <tr>
+      <td><b>abr/27</b></td>
+      <td class="n" style="color:var(--ok)"><b>R$ 6.341</b></td>
+      <td><div style="background:var(--ok);width:33%;height:14px;border-radius:3px;opacity:0.55"></div></td>
+      <td class="n" style="color:var(--dim);font-size:12px">10 lançamentos</td>
+    </tr>
+    <tr>
+      <td><b>mai/27</b></td>
+      <td class="n" style="color:var(--ok)"><b>R$ 4.429</b></td>
+      <td><div style="background:var(--ok);width:23%;height:14px;border-radius:3px;opacity:0.55"></div></td>
+      <td class="n" style="color:var(--dim);font-size:12px">8 lançamentos</td>
+    </tr>
+    <tr>
+      <td><b>jun/27</b></td>
+      <td class="n" style="color:var(--ok)"><b>R$ 4.366</b></td>
+      <td><div style="background:var(--ok);width:23%;height:14px;border-radius:3px;opacity:0.55"></div></td>
+      <td class="n" style="color:var(--dim);font-size:12px">7 lançamentos</td>
+    </tr>
+    <tr>
+      <td><b>jul/27</b></td>
+      <td class="n" style="color:var(--ok)"><b>R$ 4.315</b></td>
+      <td><div style="background:var(--ok);width:22%;height:14px;border-radius:3px;opacity:0.55"></div></td>
+      <td class="n" style="color:var(--dim);font-size:12px">6 lançamentos</td>
+    </tr>
+    <tr>
+      <td><b>ago/27</b></td>
+      <td class="n" style="color:var(--ok)"><b>R$ 3.208</b></td>
+      <td><div style="background:var(--ok);width:17%;height:14px;border-radius:3px;opacity:0.55"></div></td>
+      <td class="n" style="color:var(--dim);font-size:12px">3 lançamentos</td>
+    </tr>
+    <tr>
+      <td><b>set/27</b></td>
+      <td class="n" style="color:var(--ok)"><b>R$ 3.208</b></td>
+      <td><div style="background:var(--ok);width:17%;height:14px;border-radius:3px;opacity:0.55"></div></td>
+      <td class="n" style="color:var(--dim);font-size:12px">3 lançamentos</td>
+    </tr>
+  </table>
+
+  <div class="note bad" style="margin-top:16px"><b>⚠ Pico do fluxo: set/26 → R$ 19.275.</b> É o mês de arrancada (LYME, AC, Feijor, boiler todos com parcelas simultâneas + cartão da fatura + <b>1ª parcela CAIXA R$ 1.700 dia 21</b> + <b>1º condomínio R$ 700 dia 15</b>). Depois: <b>platô R$ 15.311/mês por 4 meses (out/26 → jan/27)</b> e curva descendente. A partir de mai/27 estabiliza em ~R$ 4.400/mês porque só sobram parcelamentos residuais + CAIXA + condomínio.<br><br>
+  <b>Top itens do pico (set/26):</b><br>• Condomínio + áreas comuns + fundo obra R$ 700<br>• Assentos sanitários 1/1 R$ 661<br>• Feijor pedra ilha 1/8 R$ 630<br>• Eletros + fechadura 1/1 R$ 3,359<br>• LYME esquadrias + 2 boxes 1/5 R$ 3,084<br>• Boiler solar EcoSol 2/8 R$ 2,299<br>• Duchas + kits banheiros 1/1 R$ 1,781<br>• Financiamento CAIXA (SAC 420×) R$ 1,700<br>• Carrinho ML (à vista) (entrada) R$ 1,674<br>• AC — 4 aparelhos 1/8 R$ 1,282<br>• Cama Zidi (colchões+bases) (entrada) R$ 1,059<br>• Luminárias (Visa 0700) (entrada) R$ 1,046</div>
+
+  <div class="note info" style="margin-top:12px"><b>Como ler:</b> este fluxo agora inclui as duas despesas fixas mensais permanentes (financiamento CAIXA + condomínio). Não inclui: à vista futura (R$ 4.000 MO deck), luz Elektro, IPTU, internet (R$ 109,90/mês), nem marcenaria. Se somar essas, adiciona ~R$ 400–600/mês fixos.</div>
+
+  <div class="note good" style="margin-top:12px"><b>Estimativas assumidas</b> (me avisa se algum tá errado):
+  <ul>
+    <li><b>Financiamento CAIXA: R$ 1.700 é ESTIMATIVA</b> — SAC 420× de R$ 143.966,50, faixa real R$ 1.435–1.602 dependendo da taxa exata. Ajusto quando cair o 1º boleto em 21/09.</li>
+    <li>Piso Destro: 12× (nº parcelas não 100% confirmado)</li>
+    <li>Deck material: 1ª parcela out/26</li>
+    <li>LYME 3º box: 5× R$ 306 (mesmo padrão do contrato 1412)</li>
+    <li>Fatura fecha ~15-20 do mês → compras de 13/09 caem em out/26</li>
+    <li>Marcenaria: <b>fora da grade</b></li>
+  </ul></div>
+</section>
+</section>
+<!-- ============ 13. MARCENARIA ============ -->
+<section>
+  <h3>13 · Marcenaria planejada</h3>
+  <p><b>Estado:</b> projeto contratado em 11/08 por R$ 5.000 (R$ 2.500 pagos, 2ª parcela no bloco à vista). Entrega em 45 dias → <b>~28/09</b>. Execução ainda não contratada.</p>
+  <h4>Medição in loco — suíte máster · 17/08 · trena a laser <span class="pill new">7.8</span></h4>
+  <table>
+    <tr><th>Face</th><th class="n">Medida</th><th>Leitura</th></tr>
+    <tr><td>Parede da cabeceira</td><td class="n mono">3,552 m</td><td>king de 1,93 centralizada deixa <b>81 cm de cada lado</b> — criados cabem folgados</td></tr>
+    <tr><td>Parede da TV</td><td class="n mono">3,709 m</td><td><b>15,7 cm a mais que a oposta</b> — trapézio ou prumada contornada</td></tr>
+    <tr><td>Lateral direita da cama</td><td class="n mono">2,653 m</td><td>cama de 2,03 deixa <b>62,3 cm</b>; com painel de 10 cm cai pra 52,3 — abaixo dos 60 de circulação</td></tr>
+    <tr><td>Lateral esquerda</td><td class="n mono" style="color:var(--alert)">NÃO MEDIDA</td><td>—</td></tr>
+    <tr><td>Closet — largura</td><td class="n mono">3,149 m</td><td>sobram 0,403 m em relação à cabeceira (hipótese, não medido)</td></tr>
+    <tr><td>Closet — profundidade</td><td class="n mono" style="color:var(--alert)">0,525 m</td><td>do batente do banho ao fundo · <b>≈49 cm úteis</b> contra os 55–60 que um cabide frontal exige</td></tr>
+    <tr><td>Closet — altura</td><td class="n mono">1,201 m</td><td>contrapiso → teto · com vinílico ~1,198 útil</td></tr>
+    <tr class="tot"><td>Área do quarto</td><td class="n mono">≈ 9,63 m²</td><td>média das larguras × 2,653</td></tr>
+  </table>
+  <div class="note bad"><b>O closet não é closet.</b> 49 cm úteis não penduram de frente, e 1,201 m de altura com barra a 1,05 dá 1,05 m de queda — camisa e paletó passam justo, calça inteira e vestido longo não. <b>É um gaveteirão excelente</b> (4 níveis × 3,149 × 0,525 = <b>6,6 m² de prateleira</b>) e um closet ruim. Consequência: <b>o pendurar migra pro quarto</b>. Na parede da TV não cabe (2,653 − 2,03 de cama − 0,60 de armário = 2,3 cm) — tem que ir pra uma lateral e custa 60 cm da largura (3,552 → ~2,95, ainda ~51 cm de cada lado da king).</div>
+  <div class="note bad"><b>Conflito de piso — barato de conferir, caro de descobrir tarde.</b> A planta declara PA 2,97 / PC 2,92 = <b>5 cm de contrapiso</b>. O vinílico soma 2 mm + autonivelante + cola ≈ <b>4–6 mm</b>. Se o contrapiso existente já estiver na cota 2,92, o piso acabado fica <b>~4,5 cm abaixo do projeto</b> — mexe em fundo de porta, altura de armário e rodapé. Conferir o nível do contrapiso contra a laje antes de a projetista cotar altura de móvel.</div>
+  <div class="note info"><b>Falta medir — 4 de 8 faces.</b> Lateral esquerda · as 4 diagonais (são elas que provam o esquadro e decidem o 15,7 cm) · pé-direito do quarto em 3 pontos · vãos J-06, P-08, P-09 e a passagem closet→quarto · peitoril · desnível do contrapiso · e todas as instalações (tomadas, interruptores, ponto de TV, dreno e ponto do split).</div>
+  <h4>Benchmark do vizinho — mesma projetista</h4>
+  <p style="color:var(--dim);font-size:14px">Fez o projeto completo e executou só cozinha + lavanderia: madeira R$ 15.000 + montador R$ 5.000 = <b>R$ 20.000</b>. Split madeira/montador <b>75/25</b>. E os R$ 15.000 de madeira <b>incluíam bancada e cuba</b> — por isso a escala precisa separar as duas coisas.</p>
+  <table>
+    <tr><th>Ambiente</th><th class="n">Marcenaria</th><th class="n">Bancada/cuba</th><th class="n">Total</th></tr>
+    <tr><td>Cozinha + lavanderia <span class="tag">ancorado</span></td><td class="n">15.500</td><td class="n">4.500</td><td class="n"><b>20.000</b></td></tr>
+    <tr><td>3 guarda-roupas retos</td><td class="n">13.100</td><td class="n">—</td><td class="n">13.100</td></tr>
+    <tr><td>Closet</td><td class="n">8.300</td><td class="n">—</td><td class="n">8.300</td></tr>
+    <tr><td>Gourmet superior + inferior</td><td class="n">5.500</td><td class="n">2.500</td><td class="n">8.000</td></tr>
+    <tr><td>3 gabinetes de banheiro</td><td class="n">5.300</td><td class="n">3.000</td><td class="n">8.300</td></tr>
+    <tr><td>3 mesas de estudo c/ gaveteiro</td><td class="n">5.500</td><td class="n">—</td><td class="n">5.500</td></tr>
+    <tr><td>3 cabeceiras c/ criado</td><td class="n">5.200</td><td class="n">—</td><td class="n">5.200</td></tr>
+    <tr><td>Sala — painel com rack</td><td class="n">3.600</td><td class="n">—</td><td class="n">3.600</td></tr>
+    <tr class="tot"><td>Estimativa central</td><td class="n">62.000</td><td class="n">10.000</td><td class="n">R$ 72.000</td></tr>
+  </table>
+  <p style="color:var(--dim);font-size:14px">Faixa R$ 60.000 – 85.000. Gap contra os R$ 65.000 provisionados: <b>~R$ 7.000</b>. E os R$ 72.000 já são preço de <i>spec bom</i> — o vizinho é exigente, provável 18/25 mm e acabamento acima do básico. Fazendo básico, cai 20–25% (~R$ 55–58k).</p>
+  <h4 style="margin-top:18px">Execução por ondas</h4>
+  <table>
+    <tr><th>Onda</th><th>Escopo</th><th class="n">Valor</th><th>Quando</th></tr>
+    <tr><td><b>1 — morar</b></td><td>Cozinha + lavanderia</td><td class="n">R$ 20.000</td><td>depois do piso</td></tr>
+    <tr><td><b>2 — guardar roupa</b></td><td>3 guarda-roupas + closet</td><td class="n">R$ 21.400</td><td>2026</td></tr>
+    <tr><td>3 — completar</td><td>3 banheiros + painel da sala</td><td class="n">R$ 11.900</td><td>2027</td></tr>
+    <tr><td>4 — conforto</td><td>Gourmet + cabeceiras + mesas de estudo</td><td class="n">R$ 18.700</td><td>2027</td></tr>
+  </table>
+  <p style="color:var(--dim);font-size:14px">Ondas 1+2 = <b>R$ 41.300</b> contra R$ 65.000 provisionados. Folga confortável.</p>
+  <div class="note"><b>Pedido único × fatiado — são três decisões, não uma:</b> (a) o corte na madeireira, (b) a entrega/armazenagem, (c) a montagem.<br>
+  <b>A favor do corte único:</b> desconto de volume 8–12%, trava o preço do MDF, e — o argumento mais forte e menos lembrado — <b>lote de cor/veio</b>: chapa varia entre lotes de produção, e closet cortado 8 meses depois da cozinha no mesmo padrão pode sair com tom visivelmente diferente. Defeito permanente e caro.<br>
+  <b>Contra:</b> armazenagem. Casa inteira ≈ 60–80 chapas cortadas, que precisam ficar <b>planas, secas, fora do chão e cobertas</b>. Atibaia é serra e úmida; empenamento é irreversível. Sem cômodo seco, isso mata a ideia sozinho.<br>
+  <b>Caminho do meio (é o que pedir):</b> fechar o <b>preço de tudo de uma vez</b>, com tabela travada e <b>reserva do lote de chapa</b>, mas <b>liberar o corte e a entrega por onda</b>.</div>
+  <div class="note bad"><b>Duas coisas têm de chegar na projetista antes do técnico fechar:</b> (1) o <b>nicho do forno Midea</b> — 585–595 × 590 × 550 mm + 35 mm, sem porta decorativa, tomada exclusiva 20 A; (2) os <b>200 mm livres abaixo do cooktop</b>, que obrigam divisória na gaveta sob a ilha. Alteração de técnico depois custa <b>R$ 70 cada</b> — e alteração de nicho arrasta a torre inteira.</div>
+  <p style="color:var(--dim);font-size:13px"><b>Tabela de honorários (confirmada):</b> cozinha opção 2 c/ mesa na ilha 650 · lavanderia 2 paredes 500 · closet 500 · gourmet sup+inf 250 · 3 gabinetes de banheiro 750 · 3 quartos (GR reto + cabeceira c/ criado + mesa de estudo) 1.650 · sala painel c/ rack 300 · design 400 → <b>R$ 5.000</b>. Inclui <b>2 alterações de design</b>; depois R$ 30 por alteração de design e <b>R$ 70 por alteração de técnico</b>. Rasgo de LED reto: R$ 20 cada.</p>
+</section>
+<!-- ============ 14. FORNECEDORES ============ -->
+<section>
+  <h3>14 · Fornecedores</h3>
+  <table>
+    <tr><th>Fornecedor</th><th>Contato</th><th>Escopo</th><th style="width:130px">Status</th></tr>
+    <tr><td>Projetista dos planejados</td><td>—</td><td>Projeto da casa toda · R$ 5.000</td><td><span class="pill ok">fechado 11/08</span><br><span class="tag">entrega ~28/09</span></td></tr>
+    <tr><td><b>JKV Madeiras</b></td><td>Natily Santos · (11) 94710-9419</td><td>Produção/corte das lâminas</td><td><span class="pill go">aguarda projeto</span></td></tr>
+    <tr><td>Muda Móveis Sob Medida</td><td>(94) 99115-2759</td><td>Alternativa a cotar</td><td><span class="pill go">cotar</span></td></tr>
+    <tr><td><b>Felipe Uemuri</b></td><td>—</td><td>Montagem + adaptações · <b>montou a casa do Anderson (Residência 7, vizinho)</b></td><td><span class="pill go">aguarda projeto</span></td></tr>
+    <tr><td><b>LYME Esquadrias — Cris</b><br><span class="tag">CNPJ 34.178.214/0001-74 · Estr. Mun. Juca Sanches 211, Atibaia</span></td><td>(11) 97289-3421</td><td>Contrato 1412 · janela 4120×2680 + porta de correr 3100×2680 + cobertura do pergolado + <b>2 boxes</b> · R$ 30.840,11</td><td><span class="pill ok">assinado 17/08</span></td></tr>
+    <tr><td><b>EcoSol</b></td><td>Leandro Ramos / João Azevedo · (11) 95912-0183 · (11) 4411-4138 · contato@ecosolaquecedores.com.br</td><td>Sistema solar alta pressão · homologado no condomínio</td><td><span class="pill ok">fechado R$ 18.390</span></td></tr>
+    <tr><td><b>Destro</b></td><td>vendedor Gildailton</td><td><b>LVT colado 2 mm Magnifique Sophie · 62,86 m² faturados + nivelador + primer · pedido 470049</b></td><td><span class="pill no">estorno hoje</span><br><span class="tag">entrega 01/09</span></td></tr>
+    <tr><td><b>Feijor Marmoraria</b></td><td>(11) 94005-2784 · (11) 94767-5188 · feijormarmoraria@gmail.com · R. Antônio da Costa Ratto 145, Jd. Alvinópolis II, Atibaia</td><td>Ilha completa em granito preto São Gabriel polido, 5,63 m² — fechamentos laterais, acabamentos, apliques, corte p/ cooktop e instalação</td><td><span class="pill warm">R$ 5.040 em 8×</span><br><span class="tag">vence 26/08 · 15 d.ú.</span></td></tr>
+    <tr><td>Instalador dos ACs</td><td>—</td><td>4 splits (2× 9k, 1× 12k, 1× 24k, todos Q/F R-32 220V) + instalação</td><td><span class="pill ok">fechado R$ 13.256,68</span></td></tr>
+    <tr><td>Eletricista</td><td>—</td><td>Circuitos 220V, <b>balanceamento de fases</b>, iluminação, preparação do boiler, circuito exclusivo do cooktop (32 A/6 mm²) e do forno (20 A/2,5 mm²)</td><td><span class="pill go">cotar</span></td></tr>
+  </table>
+  <div class="note"><b>Feijor — condições a respeitar:</b> materiais de instalação (argamassa, areia, cimento) por conta do cliente, <b>+R$ 150–300 não incluídos</b>. Exigir que a Feijor <b>meça a ilha no local</b> antes de cortar — assim o recorte é responsabilidade dela. <b>Não autorizar o corte sem o cooktop físico presente.</b></div>
+</section>
+<!-- ============ 15. ACABAMENTOS ============ -->
+<section>
+  <h3>15 · Acabamentos entregues pela construtora — fotos de 13/07/2026</h3>
+  <div class="grid g2">
+    <div class="kpi"><h4>Térreo</h4><small>Porcelanato cinza claro ~90×90 já instalado. <b>Laje de concreto aparente na área social</b> — não aceita spot embutido, a iluminação tem de ser de sobrepor, trilho ou pendente. <b>Granito preto já instalado em L na cozinha</b> — conferir se casa com o São Gabriel da ilha.</small></div>
+    <div class="kpi"><h4>Superior</h4><small><b>Contrapiso cru.</b> É onde entra o LVT colado — e por isso o nivelamento vira caminho crítico, não detalhe.</small></div>
+    <div class="kpi"><h4>Esquadrias e portas</h4><small>Alumínio preto. <b>Porta de entrada em madeira maciça ripada</b> — relevante para a fechadura digital (furação em maciça é irreversível). Pergolado metálico preto já montado.</small></div>
+    <div class="kpi"><h4>Dinheiro ainda não descoberto</h4><small>Autonivelante da área social <b>R$ 2.000–3.500</b> · revestimento da escada <b>R$ 2.000–5.000</b>. Nenhum dos dois está no orçamento.</small></div>
+  </div>
+  <div class="note info"><b>Orientação solar ainda não confirmada no local.</b> O registro diz estar/cozinha voltados a <b>norte</b> (sol o dia todo, portas de vidro do piso ao teto) e a lateral <b>noroeste</b> pegando sol forte à tarde — o que define <b>luminárias externas em alumínio, nunca PVC</b>, naquela face. Confirmar com bússola na visita.</div>
+</section>
+<!-- ============ 16. CONVENÇÃO ============ -->
+<section>
+  <h3>16 · Convenção — o que a obra tem de respeitar</h3>
+  <ul>
+    <li><b>Teto de 50 A por unidade.</b> Ver o orçamento de carga na seção 9.</li>
+    <li><b>Fachada não se altera</b> sem aprovação. A fechadura digital fica na porta de entrada — risco baixo, mas vale registrar que a porta é elemento de fachada.</li>
+    <li><b>Água:</b> poço artesiano via servidão (matr. 135.463) até o SAAE ligar. O <b>rateio do bombeamento entra no condomínio</b>.</li>
+    <li><b>Condomínio:</b> fração ideal 5,606%, rateio em 1/15 avos. Estreia junto com a parcela CAIXA e o IPTU — é o que forma o pico de nov–dez/26.</li>
+    <li>Síndica/administradora: <b>Evidência</b> — Kaue Henrique Pereira Ferreira · mandato até 24/02/2027.</li>
+    <li>Registro: matrícula <b>158.854</b> — RI Atibaia (CNS 12.048-5) · Convenção registro <b>15.453</b>, Livro 3.</li>
+  </ul>
+  <div class="note"><b>Divergência de número, resolvida:</b> o projeto executivo traz "nº 305"; matrícula, Convenção, Ata e o cadastro da Elektro trazem <b>605</b>. Usar sempre 605 — está quadruplamente confirmado.<br>
+  <b>Divergência de logradouro — RESOLVIDA:</b> a Elektro concluiu a ligação em 03/09 (UC 49211331). Endereço reconciliado na prática.</div>
+</section>
+<!-- ============ 17. ORDEM ============ -->
+<section>
+  <h3>17 · Ordem de execução — o encadeamento que não se inverte</h3>
+  <table>
+    <tr><th style="width:34px">#</th><th>Etapa</th><th>Depende de</th><th>Janela</th></tr>
+    <tr><td>1</td><td>Vistoria + medidor Elektro</td><td>endereço confirmado</td><td>até 18/08</td></tr>
+    <tr><td>2</td><td>Medição da ilha pela Feijor <b>com o cooktop presente</b></td><td>cooktop chegar (18/08)</td><td>19–21/08</td></tr>
+    <tr><td>3</td><td>ITBI → protocolo no RI → registro</td><td>contrato + guias</td><td>agosto</td></tr>
+    <tr><td>4</td><td><b>Ligação de energia — Elektro</b> <span class="pill new">8.1</span></td><td>vistoria + endereço da UC</td><td><b>24/08</b></td></tr>
+    <tr><td>5</td><td><b>Instalação dos 4 ACs</b> <span class="pill new">8.1</span></td><td><b>energia energizada</b> + local da 4ª condensadora</td><td><b>24/08</b></td></tr>
+    <tr><td>6</td><td><b>Araújo — banheiros, 1ª ida</b> (ducha · registro · nicho · bacia · assento) <span class="pill new">8.1</span></td><td>bacias na casa</td><td><b>25/08</b></td></tr>
+    <tr><td>7</td><td><b>Pedra da ilha — Feijor</b> <span class="pill new">8.2</span></td><td><b>recorte 56×49 conferido</b> · 200 mm sob o cooktop</td><td><b>26/08</b></td></tr>
+    <tr><td>8</td><td><b>Boiler EcoSol</b> <span class="pill new">8.1</span></td><td>energia (apoio elétrico)</td><td><b>27/08</b></td></tr>
+    <tr><td>9</td><td><b>Nivelamento do contrapiso do superior</b></td><td>medição · içamento resolvido</td><td><b>antes de 08/09</b></td></tr>
+    <tr><td>10</td><td><b>Boxes + vidro do gourmet — LYME</b> <span class="pill new">8.1</span></td><td>3º box confirmado</td><td><b>~04/09</b></td></tr>
+    <tr><td>11</td><td><b>Instalação do LVT colado</b> <span class="pill new">8.1</span></td><td>contrapiso · içamento · primer · cola</td><td><b>08/09</b></td></tr>
+    <tr><td>12</td><td><b>Restante das esquadrias — LYME</b> <span class="pill new">8.1</span></td><td><b>piso forrado</b></td><td><b>~14/09</b></td></tr>
+    <tr><td>13</td><td><b>Marceneiro mede in loco</b> <span class="pill new">8.2</span></td><td><b>LVT já instalado</b></td><td>set</td></tr>
+    <tr><td>14</td><td>Projeto executivo da marcenaria fechado</td><td>medição + nicho do forno</td><td>~28/09</td></tr>
+    <tr><td>15</td><td><b>Instalação dos armários</b> <span class="pill new">8.2</span></td><td>projeto + produção (~60 d)</td><td><b>~19/10</b></td></tr>
+    <tr><td>16</td><td><b>Araújo — banheiros, 2ª ida</b> (kit 5 peças · torneira de bancada) <span class="pill new">8.1</span></td><td><b>gabinete e bancada instalados</b></td><td><b>após ~19/10</b></td></tr>
+    <tr><td>17</td><td>Instalação de cooktop e forno</td><td>marcenaria + elétrica</td><td>out/nov</td></tr>
+  </table>
+  <div class="note bad"><b>Os três encadeamentos que quebram tudo se invertidos:</b> (1) <b>cooktop definido → recorte → pedra</b>; (2) <b>piso instalado → marceneiro mede → marcenaria</b> — medir antes do piso gera erro de altura de rodapé e de gaveta em toda a cozinha; (3) <b>gabinete instalado → cota do acessório → furo no porcelanato</b>. É esse terceiro que a data de 25/08 do Araújo inverte — e com os armários em <b>~19/10</b>, a 2ª ida dele fica <b>quase dois meses</b> depois da primeira. Ver §2B.</div>
+</section>
+<!-- ============ 18. PENDÊNCIAS ============ -->
+<section>
+  <h3>18 · Pendências abertas</h3>
+  <table>
+    <tr><th style="width:80px">Prazo</th><th>Pendência</th><th>Quem resolve</th></tr>
+    <tr><td><span class="pill no">HOJE</span></td><td>Ligar pra Destro — estorno de 12 caixas + acerto de insumos + combinar subida da carga</td><td>Lucas</td></tr>
+    <tr><td><span class="pill ok">✓ FEITO</span></td><td>Endereço reconciliado — Elektro concluiu a ligação em 03/09 (UC 49211331)</td><td>Lucas</td></tr>
+    <tr><td><span class="pill no">HOJE</span></td><td>Agendar medição da Feijor para 19–21/08, com cooktop presente</td><td>Lucas</td></tr>
+    <tr><td><span class="pill warm">HOJE</span></td><td>CAIXA: o que é a taxa de R$ 4.000 e <b>qual a validade da aprovação de crédito</b></td><td>Lucas</td></tr>
+    <tr><td><span class="pill warm">HOJE</span></td><td>Prefeitura: alíquota de ITBI, alíquota reduzida SFH, base de cálculo, prazo da guia</td><td>Lucas</td></tr>
+    <tr><td><span class="pill warm">HOJE</span></td><td>RI Atibaia: emolumentos + <b>pedir o desconto de 50% do art. 290</b> no protocolo</td><td>Lucas</td></tr>
+    <tr><td><span class="pill bad">HOJE</span></td><td><b>LYME: cobrar o 3º box</b> (contrato só tem 2) + confirmar cor do box do item 5 (saiu BRANCO) + passar a restrição dos 200 mm sob o cooktop</td><td>Lucas</td></tr>
+    <tr><td><span class="pill go">15–16/08</span></td><td>Visita: 8 medições da seção 7</td><td>Lucas</td></tr>
+    <tr><td><span class="pill ok">FECHADO</span></td><td><s>Fechadura extraviada</s> — <b>chegou e está instalada</b> <span class="pill new">8.2</span></td><td>—</td></tr>
+    <tr><td><span class="pill ok">✓ FEITO 26/08</span></td><td><b>Feijor: pedra instalada</b> — recorte 56×49 conferido no cooktop físico funcionou, chapa cortada e assentada. Ficou ótima. <b>Gargalo nº 1 encerrado</b> <span class="pill new">8.7</span></td><td>Lucas</td></tr>
+    <tr><td><span class="pill no">ANTES DE 25/08</span></td><td><b>Listar o que a casa JÁ ENTREGA</b> — bacias, cubas, válvula de descarga, chuveiros, sifões, tanque. Pode apagar a dívida de R$ 1.800–3.600 das bacias <span class="pill new">8.2</span></td><td>Lucas</td></tr>
+    <tr><td><span class="pill no">ANTES DE 25/08</span></td><td><b>Combinar com o Araújo as DUAS idas</b> — a 2ª só depois de ~19/10, quando os armários estiverem montados <span class="pill new">8.2</span></td><td>Lucas</td></tr>
+    <tr><td><span class="pill warm">~28/09</span></td><td><b>Cobrar data firme da fábrica dos armários</b> — "60 dias" é seu chute, não compromisso <span class="pill new">8.2</span></td><td>Lucas</td></tr>
+    <tr><td><span class="pill go">assim que puder</span></td><td><b>Os R$ 250 de instalação da fechadura saíram ou não?</b> Se você instalou, o total cai R$ 250 <span class="pill new">8.2</span></td><td>Lucas</td></tr>
+    <tr><td><span class="pill new">assim que puder</span></td><td><b>Confirmar se a ducha é R$ 664,71 no total ou por unidade</b> — swing de R$ 1.329. E de onde vêm os <b>R$ 288,01</b> entre produtos e valor cobrado</td><td>Lucas</td></tr>
+    <tr><td><span class="pill new">assim que puder</span></td><td>Conferir se o frete dos 3 kits foi cobrado <b>3 vezes</b> (3 pedidos separados, mesmo vendedor)</td><td>Lucas</td></tr>
+    <tr><td><span class="pill ok">FECHADO</span></td><td><s>Conferir a MÃO da fechadura</s> — <b>bateu, está instalada</b> <span class="pill new">8.2</span></td><td>—</td></tr>
+    <tr><td><span class="pill new">assim que puder</span></td><td>Confirmar <b>data de fechamento do cartão</b> — define se as compras caem em ago ou set</td><td>Lucas</td></tr>
+    <tr><td><span class="pill go">até 28/09</span></td><td>Mandar pra projetista: nicho do forno + divisória da gaveta sob o cooktop</td><td>Lucas</td></tr>
+    <tr><td><span class="pill warm">estrutural</span></td><td><b>Cartões são o custo de vida ou são adicionais?</b> Resposta muda o modelo inteiro</td><td>Lucas</td></tr>
+    <tr><td><span class="pill warm">estrutural</span></td><td>Amortização do pai: R$ 5.000/mês até jan/27 ou R$ 5.000 uma vez?</td><td>Lucas</td></tr>
+    <tr><td><span class="pill warm">estrutural</span></td><td>Confirmar que os R$ 218.000 do CDB estão <b>fora</b> dos R$ 58.349,94 do BTG. Se estiverem dentro, todo o bloco à vista muda</td><td>Lucas</td></tr>
+    <tr><td><span class="pill go">antes de colar</span></td><td>Cotar autonivelante da área social e revestimento da escada — R$ 4.000–8.500 fora do orçamento</td><td>Lucas</td></tr>
+    <tr><td><span class="pill go">out</span></td><td>Testar o cooktop assim que houver circuito 32 A energizado — antes que a garantia seja a única saída</td><td>Lucas</td></tr>
+  </table>
+</section>
+<div class="foot">
+  <b>Controle — Residência 8 · La Reserva II-B · Rev. 7 · 14/08/2026</b><br>
+  Substitui a rev. 6 (13/08/2026). Datas e dias úteis calculados contra o calendário de 2026 com feriados nacionais.<br>
+  Preços de mercado apurados ao vivo em 14/08/2026. Especificações do forno extraídas do manual de instalação do fabricante (TC-80P2 Rev.03), não de página de varejo.<br>
+  Valores marcados "est." são estimativa; valores marcados "premissa" precisam de confirmação antes da rev. 8.
+</div>
+</div>
+</body>
+</html>`;
+
+export default {
+  async fetch(request, env, ctx) {
+    return new Response(HTML, {
+      headers: {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "no-cache, must-revalidate",
+        "x-content-type-options": "nosniff",
+        "x-frame-options": "SAMEORIGIN",
+        "referrer-policy": "no-referrer"
+      }
+    });
+  }
+};
