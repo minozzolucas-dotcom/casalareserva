@@ -140,16 +140,27 @@ li{margin-bottom:7px}
   .field.row{flex-direction:column;gap:14px}
 }
 
+/* rev 10.18 \u2014 \xA71C expandido com subitens */
+.kpi.expanded ul.subitems{list-style:none;padding:10px 0 8px;margin:12px 0 10px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:12.5px;line-height:1.5}
+.kpi.expanded ul.subitems li{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:3px 0;color:var(--dim)}
+.kpi.expanded ul.subitems li .val{font-variant-numeric:tabular-nums;color:var(--txt);font-weight:600;white-space:nowrap;font-family:Archivo,sans-serif}
+.kpi.expanded ul.subitems li.hilite{color:var(--txt)}
+.kpi.expanded ul.subitems li.hilite .val{color:var(--warm)}
+.kpi.expanded ul.subitems li:first-child{padding-top:0}
+.kpi.expanded ul.subitems li:last-child{padding-bottom:0}
+.kpi.expanded small{font-size:12.5px;color:var(--dim);display:block;margin-top:4px}
+.kpi.expanded small b{color:var(--ok)}
+
 </style>
 </head>
 <body>
 <div class="wrap">
 <div class="hero">
-  <span class="rev">REV. 10.18 \xB7 <b>21/10/2026 \xB7 qua</b> \xB7 <b>deck ampliado + planejados cozinha fechados + MO deck quitada + Felipe Uemori removido</b> \xB7 Elson 2/2 R$ 2.500 PAGO (R$ 5k MO deck total quitada) \xB7 Tino corte+fitagem R$ 3.351 agora em 6\xD7 (era \xE0 vista) \xB7 Leo Madeiras material cozinha R$ 3.871 em 10\xD7 (era a or\xE7ar) \xB7 Felipe Uemori REMOVIDO (foi s\xF3 Franklin) \xB7 R$ 3.700 vigas e madeiras adicionais do deck AMPLIADO PIX 08/10 \xB7 R$ 1.133,35 cimento inicial do deck (linha explicitada) \xB7 total projeto R$ 652.459 \u2192 R$ 660.030 \xB7 falta \xE0 vista agora SOMENTE R$ 450 (port\xE3ozinho) \xB7 nova \xA71C resumo por ambiente</span>
+  <span class="rev">REV. 10.18 \xB7 <b>21/10/2026 \xB7 qua</b> \xB7 <b>deck ampliado + planejados cozinha fechados + MO deck quitada + Felipe Uemori removido</b> \xB7 Elson 2/2 R$ 2.500 PAGO (R$ 5k MO deck total quitada) \xB7 Tino corte+fitagem R$ 3.351 agora em 6\xD7 (era \xE0 vista) \xB7 Leo Madeiras material cozinha R$ 3.871 em 10\xD7 (era a or\xE7ar) \xB7 Felipe Uemori REMOVIDO (foi s\xF3 Franklin) \xB7 R$ 3.700 vigas e madeiras adicionais do deck AMPLIADO PIX 08/10 \xB7 R$ 1.133,35 cimento inicial do deck (linha explicitada) \xB7 total projeto R$ 652.459 \u2192 R$ 661.030 (inclui +R$ 1.000 Adelco volta out/26: tomada 220V banheira + troca lumin\xE1rias) \xB7 falta \xE0 vista agora SOMENTE R$ 450 (port\xE3ozinho) \xB7 nova \xA71C resumo por ambiente</span>
   <span class="stamp live" id="update-stamp">\xDAltima atualiza\xE7\xE3o: <b id="update-time">agora</b></span>
   <h1 style="margin-top:12px">Resid\xEAncia 8 \xB7 La Reserva II-B</h1>
   <div class="sub">Av. Zezico Pe\xE7anha, 605 \u2014 Itapetinga \u2014 Atibaia/SP \xB7 CEP 12946-372 \xB7 matr. 158.854 \xB7 137,39 m\xB2<br>
-  <b>Estado em 14/09/2026 (dom):</b> im\xF3vel <b>QUITADO</b> \xB7 energia LIGADA \xB7 pedra + cooktop + ACs + fechadura + Adelco (arandelas + banheiros) + piso Destro + boxes dos banheiros \u2014 <b>tudo INSTALADO</b>. <b>Semana pesada de compras:</b> +R$ 15.799 em cortinas (6\xD7 cart\xE3o), Spa Infl\xE1vel Rome (10\xD7 Master 3619), carrinho ML (6 cadeiras Gruvyer + mesa 130cm + lumin\xE1ria + l\xE2mpada RGB), aspirador. <b>Falta:</b> espa\xE7o gourmet (LYME) \xB7 planejados agora s\xE3o breakdown modular \u2014 <b>Tino</b> corte+produ\xE7\xE3o R$ 3.351 (paga sexta 03/10) + <b>Leo Madeiras</b> material (a or\xE7ar, 10\xD7 na maquineta Tino) + <b>Felipe Uemori</b> instala\xE7\xE3o ~R$ 4k \xB7 deck: Elson 2/2 R$ 2.500 pendente (adiantamento R$ 2.500 pago set/26). Total do projeto do bolso: <b>R$ 660.030</b> \xB7 pago R$ 496.262 \xB7 falta \xE0 vista <b>R$ 450</b> (port\xE3ozinho entrada, paga 30/10) \xB7 <b>MO deck quitada</b> (Elson 2/2 R$ 2.500 pago) \xB7 <b>planejados cozinha fechados</b> (Tino R$ 3.351 em 6\xD7 + Leo Madeiras R$ 3.871 em 10\xD7) \xB7 <b>deck ampliado</b> (+R$ 3.700 vigas 08/10).</div>
+  <b>Estado em 14/09/2026 (dom):</b> im\xF3vel <b>QUITADO</b> \xB7 energia LIGADA \xB7 pedra + cooktop + ACs + fechadura + Adelco (arandelas + banheiros) + piso Destro + boxes dos banheiros \u2014 <b>tudo INSTALADO</b>. <b>Semana pesada de compras:</b> +R$ 15.799 em cortinas (6\xD7 cart\xE3o), Spa Infl\xE1vel Rome (10\xD7 Master 3619), carrinho ML (6 cadeiras Gruvyer + mesa 130cm + lumin\xE1ria + l\xE2mpada RGB), aspirador. <b>Falta:</b> espa\xE7o gourmet (LYME) \xB7 planejados agora s\xE3o breakdown modular \u2014 <b>Tino</b> corte+produ\xE7\xE3o R$ 3.351 (paga sexta 03/10) + <b>Leo Madeiras</b> material (a or\xE7ar, 10\xD7 na maquineta Tino) + <b>Felipe Uemori</b> instala\xE7\xE3o ~R$ 4k \xB7 deck: Elson 2/2 R$ 2.500 pendente (adiantamento R$ 2.500 pago set/26). Total do projeto do bolso: <b>R$ 661.030</b> \xB7 pago R$ 497.262 \xB7 falta \xE0 vista <b>R$ 450</b> (port\xE3ozinho entrada, paga 30/10) \xB7 <b>MO deck quitada</b> (Elson 2/2 R$ 2.500 pago) \xB7 <b>planejados cozinha fechados</b> (Tino R$ 3.351 em 6\xD7 + Leo Madeiras R$ 3.871 em 10\xD7) \xB7 <b>deck ampliado</b> (+R$ 3.700 vigas 08/10).</div>
   <div class="clock">
     <div><em>Im\xF3vel</em><strong class="d2">\u2713 QUITADO</strong><span class="tag">02/09 \xB7 R$ 411k do bolso</span></div>
     <div><em>Piso \xB7 Adelco \xB7 boxes</em><strong class="d2">\u2713 INSTALADOS</strong><span class="tag">semana 08-13/09</span></div>
@@ -162,7 +173,7 @@ li{margin-bottom:7px}
 <section>
   <h3>1 \xB7 Hist\xF3rico de revis\xF5es</h3>
   <table>
-    <tr><td style="width:120px"><span class="pill new">10.18</span></td><td><b>Deck ampliado + MO deck quitada + planejados cozinha concretizados + Felipe Uemori apagado + nova \xA71C resumo por ambiente.</b> <b>Elson 2/2 R$ 2.500 PAGO</b> \u2014 R$ 5k total de MO do deck quitada. <b>Deck AMPLIADO:</b> R$ 3.700 em vigas e madeiras adicionais PIX 08/10. R$ 1.133,35 cimento inicial do deck virou linha expl\xEDcita (estava no chip 10.16 como "alvenaria"). <b>Planejados cozinha fechados:</b> Tino corte+fitagem R$ 3.351 agora em 6\xD7 (era \xE0 vista pra sexta 03/10) + Leo Madeiras material R$ 3.871 em 10\xD7 (era "a or\xE7ar"). <b>Felipe Uemori REMOVIDO</b> da tabela \u2014 nunca foi, foi s\xF3 o Franklin. KPIs: total R$ 652.459 \u2192 <b>R$ 660.030</b> (+R$ 7.571: Leo Madeiras + vigas adicionais). Falta \xE0 vista R$ 2.950 \u2192 <b>R$ 450</b> (s\xF3 port\xE3ozinho). Pago \xE0 vista R$ 490.062 \u2192 <b>R$ 496.262</b> (+Elson 2/2 R$ 2.500 + vigas R$ 3.700). <b>Nova se\xE7\xE3o \xA71C \u2014 Resumo por ambiente da casa</b>: 10 categorias ADHD-friendly com total e principais itens, pra sair da sopa de linhas.</td></tr>
+    <tr><td style="width:120px"><span class="pill new">10.18</span></td><td><b>Deck ampliado + MO deck quitada + planejados cozinha concretizados + Felipe Uemori apagado + nova \xA71C resumo por ambiente.</b> <b>Elson 2/2 R$ 2.500 PAGO</b> \u2014 R$ 5k total de MO do deck quitada. <b>Deck AMPLIADO:</b> R$ 3.700 em vigas e madeiras adicionais PIX 08/10. R$ 1.133,35 cimento inicial do deck virou linha expl\xEDcita (estava no chip 10.16 como "alvenaria"). <b>Planejados cozinha fechados:</b> Tino corte+fitagem R$ 3.351 agora em 6\xD7 (era \xE0 vista pra sexta 03/10) + Leo Madeiras material R$ 3.871 em 10\xD7 (era "a or\xE7ar"). <b>Felipe Uemori REMOVIDO</b> da tabela \u2014 nunca foi, foi s\xF3 o Franklin. KPIs: total R$ 652.459 \u2192 <b>R$ 661.030</b> (+R$ 8.571: Leo Madeiras R$ 3.871 + vigas adicionais R$ 3.700 + Adelco volta R$ 1.000). Falta \xE0 vista R$ 2.950 \u2192 <b>R$ 450</b> (s\xF3 port\xE3ozinho). Pago \xE0 vista R$ 490.062 \u2192 <b>R$ 497.262</b> (+Elson 2/2 R$ 2.500 + vigas R$ 3.700 + Adelco volta R$ 1.000). <b>Adelco volta out/26 R$ 1.000 \xE0 vista</b>: tomada 220V da banheira + troca de lumin\xE1rias. <b>Nova se\xE7\xE3o \xA71C \u2014 Resumo por ambiente da casa</b>: 10 categorias ADHD-friendly com total e principais itens, pra sair da sopa de linhas.</td></tr>
     <tr><td style="width:120px"><span class="pill new">10.17</span></td><td><b>Bloco outubro fechado \u2014 8 lanc\xE7amentos novos somando +R$ 8.081 l\xEDquido no projeto.</b> <b>Franklin montou os arm\xE1rios da cozinha</b> (R$ 2.800 \xE0 vista, R$ 100 acima do orc\xE7ado R$ 2.700) \u2014 SUBSTITUI a estimativa de R$ 4k do Felipe Uemori (economia l\xEDquida R$ 1.200). Deck acabamento: <b>R$ 5.400 madeiras guarda-corpo PIX 11/10</b> + R$ 130 parafusos + R$ 372 cetol \xE0 vista. <b>Port\xE3ozinho entrada R$ 450</b> \xE0 vista \u2014 paga 30/10 (\xFAnica pend\xEAncia \xE0 vista). <b>Paisagismo R$ 1.193 em 5\xD7</b> cart\xE3o (10 mudas podocarpo 2,5m + 2 jardineiras 1m + frete + plantio). <b>LYME aditivo R$ 3.181 em 5\xD7 cr\xE9dito 10/10</b>: entrou o 3\xBA box R$ 1.531 (contratado desde rev 10.7, agora com condic\xE7\xE3o confirmada) + <b>R$ 1.650 vidro/esquadria do corredor lateral da casa</b> (NOVO escopo). 6 lumin\xE1rias externas solares R$ 180 \xE0 vista pro deck/jardim. KPIs: total R$ 644.378 \u2192 <b>R$ 652.459</b>. Falta \xE0 vista R$ 2.500 \u2192 <b>R$ 2.950</b> (Elson 2/2 + port\xE3ozinho). Falta contratar R$ 4.000 \u2192 <b>R$ 0</b> (Franklin fez o papel do Felipe Uemori). Fluxo out/26 R$ 19.625 \u2192 <b>R$ 28.957</b> (pico desloca de set/26 pra out/26). Nov/26\u2192mar/27 recebe +R$ 874,80/m\xEAs nas parcelas (5\xD7 R$ 238,60 paisagismo + 5\xD7 R$ 636,20 LYME aditivo).</td></tr>
     <tr><td style="width:120px"><span class="pill new">10.16</span></td><td><b>10.16 \u2014 chip hero, par\xE1grafo de estado e tabela de planejados finalmente atualizados (rev 10.15 tinha ficado meia-boca, s\xF3 \xA712C e \xA7A2). Setembro fechou com bloco de deck + projetor + planejados modulares.</b> Registrado: deck vigas/madeiramento extra R$ 3.700 (PIX 23/09), alvenaria R$ 1.133, Elson MO 1/2 R$ 2.500 (50% adiantamento, falta R$ 2.500), Projetor sala BTG 10\xD7 R$ 300 (1\xAA em set/26). Planejados pivotaram: <b>abandonada a provis\xE3o monol\xEDtica JKV R$ 65k</b>, entra breakdown modular <b>Tino</b> (corte+produ\xE7\xE3o R$ 3.351, paga sexta 03/10) + <b>Leo Madeiras</b> (material, a or\xE7ar, 10\xD7 na maquineta do Tino) + <b>Felipe Uemori</b> (instala\xE7\xE3o ~R$ 4k). KPIs recalculados: "Falta \xE0 vista" R$ 4k \u2192 R$ 2.5k; "Falta contratar" R$ 65k \u2192 R$ 4k. Baseline \xA712C atualizado nos meses set/26 e out/26; projetor entra como parcela de set/26 a jun/27.</td></tr>
         <tr><td style="width:120px"><span class="pill new">10.14</span></td><td><b>+Jogo de Panelas Indu\xE7\xE3o Antiaderente Cer\xE2mica 10 pe\xE7as PPG PFOA Free Grafite \u2014 R$ 379,56 no Master 3619, 1\xD7 \xE0 vista (de R$ 683,88 \xB7 desconto R$ 304,32 \xB7 45% off).</b> Pedido ML #2000018524446284, FULL, chegou 19/09 entre 11-15h. <b>Impacto:</b> total projeto R$ 645.439 \u2192 R$ 645.819. Bloco Enxoval ML 18/09 agora tem 11 itens (R$ 1.061,11 \u2192 R$ 1.440,67) \xB7 Cozinha R$ 350,44 \u2192 R$ 730,00. Plat\xF4 out/26 R$ 15.593 \u2192 R$ 15.973 (s\xF3 esse m\xEAs, depois volta).</td></tr>
@@ -219,14 +230,14 @@ li{margin-bottom:7px}
   <h3>\u{1F4B0} Consolidado financeiro \u2014 pago \xD7 falta <span class="pill new">8.8</span></h3>
   <p style="color:var(--dim);font-size:14px">Todo o dinheiro do projeto em <b>quatro caixas que n\xE3o se sobrep\xF5em e somam o total</b>. Custo do projeto: <b>R$ 644.378</b> <span class="pill new">10.11</span> <span class="tag" style="font-weight:400">s\xF3 do bolso \xB7 casa R$ 1,1M inclui FGTS+CAIXA (ver bloco abaixo)</span>.</p>
   <div class="grid g4">
-    <div class="kpi"><span>\u2713 J\xE1 paguei \xE0 vista</span><b style="color:var(--ok)">R$ 496.262</b><small><b>R$ 411.034 no im\xF3vel</b> + LYME + FGTS/CAIXA + geladeira + emolumentos + AC + Adelco + planejados 2\xAA + Franklin R$ 2.800 + deck acabamento R$ 5.902 + solares R$ 180 + <b>Elson 2/2 R$ 2.500 + vigas adicionais deck ampliado R$ 3.700 PIX 08/10</b> <span class="pill new">10.18</span></small></div>
+    <div class="kpi"><span>\u2713 J\xE1 paguei \xE0 vista</span><b style="color:var(--ok)">R$ 497.262</b><small><b>R$ 411.034 no im\xF3vel</b> + LYME + FGTS/CAIXA + geladeira + emolumentos + AC + Adelco + planejados 2\xAA + Franklin R$ 2.800 + deck acabamento R$ 5.902 + solares R$ 180 + <b>Elson 2/2 R$ 2.500 + vigas adicionais deck ampliado R$ 3.700 PIX 08/10 + Adelco volta R$ 1.000 (tomada 220V banheira + troca lumin\xE1rias)</b> <span class="pill new">10.18</span></small></div>
     <div class="kpi"><span>\u25D0 Comprei no parcelado</span><b>R$ 105.963</b><small>Inclui agora <b>Leo Madeiras R$ 3.871 em 10\xD7</b> (material planejados cozinha) + <b>Tino R$ 3.351 em 6\xD7</b> (corte+fitagem, era \xE0 vista). Continua: LYME aditivo, paisagismo, cama, nivelante, AC, deck material, cortinas, Spa, carrinho ML, aspirador, projetor BTG. <span class="pill new">10.18</span></small></div>
     <div class="kpi"><span>\u25CB Falta pagar \xE0 vista</span><b style="color:var(--ok)">R$ 450</b><small>S\xF3 <b>port\xE3ozinho da entrada R$ 450</b> (paga 30/10). <b>MO deck quitada</b> \u2014 Elson 2/2 R$ 2.500 pago out/26. <span class="pill new">10.18</span></small></div>
     <div class="kpi"><span>\u25CB Falta contratar (parcelado)</span><b style="color:var(--ok)">R$ 0</b><small><b>Tudo contratado.</b> Franklin montou arm\xE1rios, Tino cortou+fitou (6\xD7), Leo Madeiras forneceu material (10\xD7). <b>Felipe Uemori nunca foi</b> \u2014 apagado. <span class="pill new">10.18</span></small></div>
   </div>
   <div class="note good"><b>Leitura em uma frase:</b> <b>IM\xD3VEL QUITADO 02/09 \u2014 R$ 411.034 do bolso ao longo do processo</b> (entradas de 50k+150k anteriores, R$ 60k em agosto, R$ 151.034 hoje). Somando FGTS liberado (R$ 545k) + financiamento CAIXA (R$ 143.966,50 em 420\xD7 SAC), fecha os R$ 1.100.000 da casa. A caixa "falta \xE0 vista" caiu pra <b>R$ 450</b> \u2014 s\xF3 o port\xE3ozinho da entrada (paga 30/10). <b>MO deck integralmente quitada</b> (Elson 1/2 R$ 2.500 set/26 + Elson 2/2 R$ 2.500 out/26 = R$ 5k). <b>Planejados da cozinha fechados</b>: Franklin montou arm\xE1rios R$ 2.800 \xE0 vista + Tino cortou+fitou R$ 3.351 em 6\xD7 + Leo Madeiras forneceu material R$ 3.871 em 10\xD7 = <b>R$ 10.022 total</b>, bem abaixo da provis\xE3o original monol\xEDtica JKV R$ 65k. <span class="pill new">10.18</span></div>
 
-  <h4 style="margin-top:22px">1 \xB7 \xC0 vista \u2014 R$ 496.712 <span class="tag" style="font-weight:400">\u2713 pago R$ 496.262 \xB7 \u25CB falta R$ 450 (port\xE3ozinho) <span class="pill new">10.18</span></span></h4>
+  <h4 style="margin-top:22px">1 \xB7 \xC0 vista \u2014 R$ 497.712 <span class="tag" style="font-weight:400">\u2713 pago R$ 497.262 \xB7 \u25CB falta R$ 450 (port\xE3ozinho) <span class="pill new">10.18</span></span></h4>
   <table>
     <tr><th>Item</th><th class="n">Valor</th><th>Situa\xE7\xE3o</th></tr>
     <tr><td>Entrada LYME (esquadrias) \u2014 Pix</td><td class="n">R$ 15.420</td><td><span class="pill ok">\u2713 pago 17/08</span></td></tr>
@@ -234,6 +245,7 @@ li{margin-bottom:7px}
     <tr><td>Geladeira Electrolux IM8IS \u2014 PIX <span class="pill new">9.0</span></td><td class="n">R$ 4.588</td><td><span class="pill ok">\u2713 pago (ago)</span></td></tr>
     <tr><td>AC \u2014 instala\xE7\xE3o (com adicional material) <span class="pill new">10.3</span></td><td class="n">R$ 3.247</td><td><span class="pill ok">\u2713 pago 31/08 (Pix)</span></td></tr>
     <tr><td><b>Eletricista Adelco</b> \u2014 arandelas + instala\xE7\xE3o banheiros <span class="pill new">10.4</span></td><td class="n">R$ 3.500</td><td><span class="pill ok">\u2713 pago 05/09</span></td></tr>
+    <tr><td><b>Eletricista Adelco \u2014 VOLTA out/26</b>: tomada 220V banheira + troca lumin\xE1rias <span class="pill new">10.18</span></td><td class="n">R$ 1.000</td><td><span class="pill ok">\u2713 pago out/26</span></td></tr>
     <tr><td>Projeto planejados \u2014 2\xAA parcela <span class="pill new">10.6</span></td><td class="n">R$ 2.500</td><td><span class="pill ok">\u2713 pago</span></td></tr>
     <tr><td><b>Im\xF3vel \u2014 entrada 1</b> <span class="pill new">10.0</span></td><td class="n">R$ 50.000</td><td><span class="pill ok">\u2713 pago (anterior)</span></td></tr>
     <tr><td><b>Im\xF3vel \u2014 entrada 2</b> <span class="pill new">10.0</span></td><td class="n">R$ 150.000</td><td><span class="pill ok">\u2713 pago (anterior)</span></td></tr>
@@ -249,7 +261,7 @@ li{margin-bottom:7px}
         <tr><td>Deck cumaru \u2014 m\xE3o de obra Elson (1/2 + 2/2 = R$ 5.000 total) <span class="pill new">10.18</span></td><td class="n">R$ 5.000</td><td><span class="pill ok">\u2713 QUITADA (1/2 set/26 + 2/2 out/26)</span></td></tr>
     <tr><td><b>Deck ampliado</b> \u2014 vigas e madeiras adicionais (ampliac\xE7\xE3o) <span class="pill new">10.18</span></td><td class="n">R$ 3.700</td><td><span class="pill ok">\u2713 pago 08/10 (PIX)</span></td></tr>
     <tr><td>Deck base \u2014 cimento inicial (expl\xEDcito agora) <span class="pill new">10.18</span></td><td class="n">R$ 1.133,35</td><td><span class="pill ok">\u2713 pago set/26 (j\xE1 contado em "alvenaria" chip 10.16)</span></td></tr>
-    <tr class="tot"><td>Subtotal \xE0 vista</td><td class="n">R$ 496.712</td><td><b>pago R$ 496.262 \xB7 falta R$ 450 (port\xE3ozinho)</b> <span class="pill new">10.18</span></td></tr>
+    <tr class="tot"><td>Subtotal \xE0 vista</td><td class="n">R$ 497.712</td><td><b>pago R$ 497.262 \xB7 falta R$ 450 (port\xE3ozinho)</b> <span class="pill new">10.18</span></td></tr>
   </table>
 
   <h4 style="margin-top:22px">2 \xB7 Parcelado \u2014 R$ 168.964 <span class="tag" style="font-weight:400">\u25D0 comprado R$ 108.963 + R$ 3.000 projetor \xB7 <b>TUDO contratado</b> <span class="pill new">10.18</span></span></h4>
@@ -333,34 +345,128 @@ li{margin-bottom:7px}
   <h3>\u{1F3E0} 1C \xB7 Resumo por ambiente da casa <span class="pill new">10.18</span></h3>
   <p style="color:var(--dim);font-size:14px">Pra sair da sopa de linhas: 10 categorias ADHD-friendly com total gasto por \xE1rea. Soma \xB1 R$ 660k do bolso (im\xF3vel + reforma + enxoval). FGTS R$ 545k e financiamento CAIXA R$ 143.966,50 ficam fora.</p>
   <div class="grid g2">
-    <div class="kpi"><h4>1 \xB7 Im\xF3vel + documenta\xE7\xE3o <small style="color:var(--dim);font-weight:400">(aquisi\xE7\xE3o)</small></h4><b style="color:var(--warm)">R$ 447.874</b><small>\u2022 Im\xF3vel R$ 411.034 (entradas 50k+150k anteriores + Rodrigo R$ 60k ago + quita\xE7\xE3o R$ 151.034 set) \xB7 Emolumentos ITBI+registro R$ 26.340 \xB7 CAIXA/FGTS emiss\xE3o R$ 10.500<br><b style="color:var(--ok)">67,9% do projeto \u2014 o custo da casa foi comprar a casa.</b></small></div>
-    <div class="kpi"><h4>2 \xB7 Esquadrias &amp; vidros <small style="color:var(--dim);font-weight:400">(LYME)</small></h4><b>R$ 34.021</b><small>\u2022 Contrato 1412 R$ 30.840 (entrada R$ 15.420 Pix + 5\xD7 R$ 3.084) \xB7 Aditivo R$ 3.181 em 5\xD7 (3\xBA box R$ 1.531 + corredor lateral R$ 1.650)<br>Janelas de correr, portas de correr, cobertura pergolado, 3 boxes.</small></div>
-    <div class="kpi"><h4>3 \xB7 Cozinha <small style="color:var(--dim);font-weight:400">(ilha + eletros + planejados)</small></h4><b>R$ 25.390</b><small>\u2022 Pedra ilha Feijor R$ 5.040 \xB7 Cooktop B+D R$ 1.000 \xB7 Forno Midea R$ 1.780 \xB7 Geladeira Electrolux R$ 4.588 \xB7 Franklin montagem R$ 2.800 \xB7 Tino corte R$ 3.351 \xB7 Leo Madeiras material R$ 3.871 \xB7 Enxoval cozinha ML R$ 730 \xB7 Projeto planejados R$ 5.000 (R$ 2.500 1\xAA + R$ 2.500 2\xAA)<br>Core da reforma depois do im\xF3vel.</small></div>
-    <div class="kpi"><h4>4 \xB7 Banheiros <small style="color:var(--dim);font-weight:400">(3 su\xEDtes + lavabo)</small></h4><b>R$ 6.425</b><small>\u2022 Metais/duchas/kits R$ 1.781 \xB7 Assentos sanit\xE1rios R$ 737 \xB7 Adelco eletricista arandelas+banheiros R$ 3.500 \xB7 Enxoval banheiros ML R$ 404<br>Boxes contados em Esquadrias.</small></div>
-    <div class="kpi"><h4>5 \xB7 Dormit\xF3rios <small style="color:var(--dim);font-weight:400">(cama + cortinas + len\xE7\xF3is)</small></h4><b>R$ 9.258</b><small>\u2022 Cama Zidi (2 colch\xF5es King+Queen + bases ba\xFA) R$ 4.914 \xB7 Cortinas quartos (parte dos R$ 6.725) \xB1 R$ 4.037 \xB7 Len\xE7\xF3is Super King+Queen ML R$ 307</small></div>
-    <div class="kpi"><h4>6 \xB7 Pisos &amp; revestimentos</h4><b>R$ 10.205</b><small>\u2022 Piso LVT Destro R$ 9.696 \xB7 Nivelante R$ 509 (requerido pelo instalador)<br>Instalado 08/09 ap\xF3s nivelamento com argamassa.</small></div>
-    <div class="kpi"><h4>7 \xB7 Clima + \xE1gua quente</h4><b>R$ 31.894</b><small>\u2022 Boiler solar EcoSol R$ 18.390 \xB7 AC 4 aparelhos R$ 10.257 \xB7 AC instala\xE7\xE3o R$ 3.247 (com adicional material)<br>Boiler instalado \u2713 \xB7 ACs operacionais desde 03/09.</small></div>
-    <div class="kpi"><h4>8 \xB7 El\xE9trica + ilumina\xE7\xE3o</h4><b>R$ 1.370</b><small>\u2022 Lumin\xE1rias Visa 0700 R$ 1.370 l\xEDquido (ap\xF3s devolu\xE7\xE3o)<br>Adelco eletricista R$ 3.500 contabilizado em Banheiros. Internet Impacto R$ 110/m\xEAs recorrente (fora do fit-out).</small></div>
-    <div class="kpi"><h4>9 \xB7 Deck + guarda-corpo <small style="color:var(--dim);font-weight:400">(frente)</small></h4><b style="color:var(--warm)">R$ 25.080</b><small>\u2022 Material cumaru 18m\xB2 (Par\xE1 Brazzil pedido 19785) R$ 9.445 em 7\xD7 BTG \xB7 MO Elson 1/2+2/2 R$ 5.000 \xB7 <b>Deck ampliado:</b> vigas adicionais R$ 3.700 PIX 08/10 \xB7 Vigas setembro R$ 3.700 PIX 23/09 \xB7 Madeiras guarda-corpo R$ 5.400 PIX 11/10 \xB7 Parafusos R$ 130 \xB7 Cetol R$ 372 \xB7 Cimento inicial R$ 1.133,35<br>Foi a frente que mais apareceu em outubro.</small></div>
-    <div class="kpi"><h4>10 \xB7 \xC1rea externa + paisagismo</h4><b>R$ 1.823</b><small>\u2022 Paisagismo (10 mudas podocarpo 2,5m + 2 jardineiras 1m + frete + plantio) R$ 1.193 em 5\xD7 \xB7 6 lumin\xE1rias solares deck/jardim R$ 180 \xB7 Port\xE3ozinho da entrada R$ 450 (paga 30/10)</small></div>
+    <div class="kpi expanded"><h4>1 \xB7 Im\xF3vel + documenta\xE7\xE3o <small style="color:var(--dim);font-weight:400">(aquisi\xE7\xE3o)</small></h4><b style="color:var(--warm)">R$ 447.874</b>
+      <ul class="subitems">
+        <li><span>Entrada 1 (anterior ao controle)</span><span class="val">R$ 50.000</span></li>
+        <li><span>Entrada 2 (anterior ao controle)</span><span class="val">R$ 150.000</span></li>
+        <li><span>Rodrigo \u2014 agosto (2 tranches)</span><span class="val">R$ 60.000</span></li>
+        <li class="hilite"><span>Quita\xE7\xE3o Rodrigo (02/09 Pix)</span><span class="val">R$ 151.034</span></li>
+        <li><span>Emolumentos: ITBI + registro + dilig\xEAncias</span><span class="val">R$ 26.340</span></li>
+        <li><span>CAIXA + FGTS \u2014 emiss\xE3o/saque</span><span class="val">R$ 10.500</span></li>
+      </ul>
+      <small><b>67,8% do projeto</b> \u2014 o custo da casa foi comprar a casa.</small>
+    </div>
+    <div class="kpi expanded"><h4>2 \xB7 Esquadrias &amp; vidros <small style="color:var(--dim);font-weight:400">(LYME)</small></h4><b>R$ 34.021</b>
+      <ul class="subitems">
+        <li><span>Contrato 1412 \u2014 entrada Pix 17/08</span><span class="val">R$ 15.420</span></li>
+        <li><span>Contrato 1412 \u2014 5\xD7 R$ 3.084 cart\xE3o</span><span class="val">R$ 15.420</span></li>
+        <li><span>Aditivo \u2014 3\xBA box pequeno</span><span class="val">R$ 1.531</span></li>
+        <li class="hilite"><span>Aditivo \u2014 vidro/esquadria corredor lateral</span><span class="val">R$ 1.650</span></li>
+      </ul>
+      <small>Janelas de correr, portas de correr, cobertura pergolado, 3 boxes. Aditivo R$ 3.181 em 5\xD7 cr\xE9dito 10/10.</small>
+    </div>
+    <div class="kpi expanded"><h4>3 \xB7 Clima + \xE1gua quente</h4><b>R$ 31.894</b>
+      <ul class="subitems">
+        <li><span>Boiler solar EcoSol \u2014 8\xD7 boleto</span><span class="val">R$ 18.390</span></li>
+        <li><span>AC \u2014 4 aparelhos \u2014 8\xD7</span><span class="val">R$ 10.257</span></li>
+        <li><span>AC \u2014 instala\xE7\xE3o (c/ adicional material)</span><span class="val">R$ 3.247</span></li>
+      </ul>
+      <small>Boiler instalado \u2713 \xB7 ACs operacionais desde 03/09.</small>
+    </div>
+    <div class="kpi expanded"><h4>4 \xB7 Deck + guarda-corpo <small style="color:var(--dim);font-weight:400">(frente ampliada)</small></h4><b style="color:var(--warm)">R$ 28.880</b>
+      <ul class="subitems">
+        <li><span>Material cumaru 18m\xB2 (Par\xE1 Brazzil #19785) \u2014 7\xD7 BTG</span><span class="val">R$ 9.445</span></li>
+        <li><span>MO Elson \u2014 1/2 set/26</span><span class="val">R$ 2.500</span></li>
+        <li><span>MO Elson \u2014 2/2 out/26</span><span class="val">R$ 2.500</span></li>
+        <li><span>Vigas setembro \u2014 Pix 23/09</span><span class="val">R$ 3.700</span></li>
+        <li class="hilite"><span>Vigas ampliac\xE7\xE3o \u2014 Pix 08/10</span><span class="val">R$ 3.700</span></li>
+        <li class="hilite"><span>Madeiras guarda-corpo \u2014 Pix 11/10</span><span class="val">R$ 5.400</span></li>
+        <li><span>Parafusos</span><span class="val">R$ 130</span></li>
+        <li><span>Cetol (verniz)</span><span class="val">R$ 372</span></li>
+        <li><span>Cimento inicial \u2014 base/pilares</span><span class="val">R$ 1.133</span></li>
+      </ul>
+      <small>A frente que mais apareceu em outubro. Mesmo com ampliac\xE7\xE3o ficou abaixo dos R$ 23k que o vizinho pagou s\xF3 pela carpintaria.</small>
+    </div>
+    <div class="kpi expanded"><h4>5 \xB7 Cozinha <small style="color:var(--dim);font-weight:400">(ilha + eletros + planejados)</small></h4><b>R$ 28.160</b>
+      <ul class="subitems">
+        <li><span>Pedra ilha \u2014 Feijor 8\xD7 cart\xE3o</span><span class="val">R$ 5.040</span></li>
+        <li><span>Cooktop Black+Decker (Pix+saldo ML)</span><span class="val">R$ 1.000</span></li>
+        <li><span>Forno Midea TSD80P2</span><span class="val">R$ 1.780</span></li>
+        <li><span>Geladeira Electrolux IM8IS \u2014 Pix</span><span class="val">R$ 4.588</span></li>
+        <li class="hilite"><span>Franklin \u2014 montagem arm\xE1rios (\xE0 vista)</span><span class="val">R$ 2.800</span></li>
+        <li class="hilite"><span>Tino \u2014 corte+fitagem planejados \u2014 6\xD7</span><span class="val">R$ 3.351</span></li>
+        <li class="hilite"><span>Leo Madeiras \u2014 material planejados \u2014 10\xD7</span><span class="val">R$ 3.871</span></li>
+        <li><span>Projeto planejados (1\xAA + 2\xAA parc.)</span><span class="val">R$ 5.000</span></li>
+        <li><span>Enxoval cozinha ML (Tramontina + faqueiro + copos + panelas)</span><span class="val">R$ 730</span></li>
+      </ul>
+      <small>Core da reforma depois do im\xF3vel.</small>
+    </div>
+    <div class="kpi expanded"><h4>6 \xB7 Lazer + sala + eletr\xF4nicos</h4><b>R$ 12.653</b>
+      <ul class="subitems">
+        <li><span>Spa Infl\xE1vel Ofur\xF4 Rome 1180L \u2014 10\xD7</span><span class="val">R$ 6.780</span></li>
+        <li><span>Projetor sala BTG \u2014 10\xD7 R$ 300</span><span class="val">R$ 3.000</span></li>
+        <li><span>Carrinho ML (6 cadeiras Gruvyer + mesa 130cm + lumin\xE1ria + l\xE2mpada)</span><span class="val">R$ 1.864</span></li>
+        <li><span>Fechadura digital biom\xE9trica (c/ install est.)</span><span class="val">R$ 579</span></li>
+        <li><span>Aspirador Arno X-Pert 7.60 \u2014 10\xD7</span><span class="val">R$ 430</span></li>
+      </ul>
+    </div>
+    <div class="kpi expanded"><h4>7 \xB7 Dormit\xF3rios + cortinas</h4><b>R$ 11.946</b>
+      <ul class="subitems">
+        <li><span>Cortinas \u2014 2 sala Wave + 3 quartos Voil + escrit\xF3rio Blackout \u2014 6\xD7</span><span class="val">R$ 6.725</span></li>
+        <li><span>Cama Zidi \u2014 2 colch\xF5es (King+Queen) + 2 bases ba\xFA</span><span class="val">R$ 4.914</span></li>
+        <li><span>Len\xE7\xF3is Super King + Queen 600 fios eg\xEDpcio ML</span><span class="val">R$ 307</span></li>
+      </ul>
+      <small>Cortinas da sala t\xE9cnicamente poderiam ir em "Lazer+sala", mas o pacote foi comprado junto.</small>
+    </div>
+    <div class="kpi expanded"><h4>8 \xB7 Pisos &amp; revestimentos</h4><b>R$ 10.205</b>
+      <ul class="subitems">
+        <li><span>Piso LVT Destro \u2014 Magnifique Sophie (62,86m\xB2)</span><span class="val">R$ 9.696</span></li>
+        <li><span>Nivelante (requerido pelo instalador)</span><span class="val">R$ 509</span></li>
+      </ul>
+      <small>Instalado 08/09 ap\xF3s nivelamento com argamassa 04/09.</small>
+    </div>
+    <div class="kpi expanded"><h4>9 \xB7 Banheiros <small style="color:var(--dim);font-weight:400">(3 su\xEDtes + lavabo)</small></h4><b>R$ 6.422</b>
+      <ul class="subitems">
+        <li><span>Adelco \u2014 arandelas + instala\xE7\xE3o banheiros 05/09</span><span class="val">R$ 3.500</span></li>
+        <li><span>Metais \u2014 3 duchas + 3 kits 5pcs + 3 nichos duplos</span><span class="val">R$ 1.781</span></li>
+        <li><span>Assentos sanit\xE1rios Incepa (3 Art + 1 Boss)</span><span class="val">R$ 737</span></li>
+        <li><span>Enxoval banheiros ML (Clink + porta-toalha + lixeira + suporte PH)</span><span class="val">R$ 404</span></li>
+      </ul>
+      <small>Boxes contados em Esquadrias (contrato LYME).</small>
+    </div>
+    <div class="kpi expanded"><h4>10 \xB7 El\xE9trica + ilumina\xE7\xE3o</h4><b>R$ 2.370</b>
+      <ul class="subitems">
+        <li><span>15 lumin\xE1rias (trilho + plafons + lustre + espelho LED + balizadores + pendente Yaso) l\xEDquido ap\xF3s devolu\xE7\xE3o</span><span class="val">R$ 1.370</span></li>
+        <li class="hilite"><span>Adelco VOLTA out/26 \u2014 tomada 220V banheira + troca lumin\xE1rias</span><span class="val">R$ 1.000</span></li>
+      </ul>
+      <small>Adelco 1\xAA (arandelas + banheiros R$ 3.500) contabilizado em Banheiros. Internet Impacto R$ 110/m\xEAs recorrente \u2014 fora do fit-out.</small>
+    </div>
+    <div class="kpi expanded"><h4>11 \xB7 \xC1rea externa + paisagismo</h4><b>R$ 1.823</b>
+      <ul class="subitems">
+        <li><span>Paisagismo \u2014 10 mudas podocarpo 2,5m + 2 jardineiras 1m + frete + plantio \u2014 5\xD7</span><span class="val">R$ 1.193</span></li>
+        <li class="hilite"><span>Port\xE3ozinho da entrada (paga 30/10)</span><span class="val">R$ 450</span></li>
+        <li><span>6 lumin\xE1rias solares deck/jardim</span><span class="val">R$ 180</span></li>
+      </ul>
+    </div>
   </div>
   <h4 style="margin-top:24px">Resumo da fatura total do projeto</h4>
   <table>
-    <tr><th>Categoria</th><th class="n">Total</th><th class="n">% do projeto</th></tr>
-    <tr><td>1. Im\xF3vel + documenta\xE7\xE3o</td><td class="n">R$ 447.874</td><td class="n">67,9%</td></tr>
-    <tr><td>2. Esquadrias &amp; vidros (LYME)</td><td class="n">R$ 34.021</td><td class="n">5,2%</td></tr>
-    <tr><td>7. Clima + \xE1gua quente</td><td class="n">R$ 31.894</td><td class="n">4,8%</td></tr>
-    <tr><td>3. Cozinha</td><td class="n">R$ 25.390</td><td class="n">3,8%</td></tr>
-    <tr><td>9. Deck + guarda-corpo</td><td class="n">R$ 25.080</td><td class="n">3,8%</td></tr>
-    <tr><td>6. Pisos &amp; revestimentos</td><td class="n">R$ 10.205</td><td class="n">1,5%</td></tr>
-    <tr><td>5. Dormit\xF3rios</td><td class="n">R$ 9.258</td><td class="n">1,4%</td></tr>
-    <tr><td>4. Banheiros</td><td class="n">R$ 6.425</td><td class="n">1,0%</td></tr>
-    <tr><td>10. \xC1rea externa + paisagismo</td><td class="n">R$ 1.823</td><td class="n">0,3%</td></tr>
-    <tr><td>8. El\xE9trica + ilumina\xE7\xE3o</td><td class="n">R$ 1.370</td><td class="n">0,2%</td></tr>
-    <tr><td colspan="3" style="padding-top:12px"><em style="color:var(--dim);font-size:12px">Diferen\xE7a vs R$ 660.030: \xB1 R$ 66.690 em itens que atravessam v\xE1rias categorias (parte das cortinas, utens\xEDlios comuns, fechadura, Spa + aspirador + carrinho ML + projetor BTG = "lazer/outros") \u2014 pr\xF3xima rev refina.</em></td></tr>
-    <tr class="tot"><td><b>Soma categorizada</b></td><td class="n"><b>R$ 593.340</b></td><td class="n"><b>89,9%</b></td></tr>
+    <tr><th>#</th><th>Categoria</th><th class="n">Total</th><th class="n">% do projeto</th></tr>
+    <tr><td>1</td><td>Im\xF3vel + documenta\xE7\xE3o</td><td class="n">R$ 447.874</td><td class="n">67,8%</td></tr>
+    <tr><td>2</td><td>Esquadrias &amp; vidros (LYME)</td><td class="n">R$ 34.021</td><td class="n">5,2%</td></tr>
+    <tr><td>3</td><td>Clima + \xE1gua quente</td><td class="n">R$ 31.894</td><td class="n">4,8%</td></tr>
+    <tr><td>4</td><td>Deck + guarda-corpo</td><td class="n">R$ 28.880</td><td class="n">4,4%</td></tr>
+    <tr><td>5</td><td>Cozinha</td><td class="n">R$ 28.160</td><td class="n">4,3%</td></tr>
+    <tr><td>6</td><td>Lazer + sala + eletr\xF4nicos</td><td class="n">R$ 12.653</td><td class="n">1,9%</td></tr>
+    <tr><td>7</td><td>Dormit\xF3rios + cortinas</td><td class="n">R$ 11.946</td><td class="n">1,8%</td></tr>
+    <tr><td>8</td><td>Pisos &amp; revestimentos</td><td class="n">R$ 10.205</td><td class="n">1,5%</td></tr>
+    <tr><td>9</td><td>Banheiros</td><td class="n">R$ 6.422</td><td class="n">1,0%</td></tr>
+    <tr><td>10</td><td>El\xE9trica + ilumina\xE7\xE3o</td><td class="n">R$ 2.370</td><td class="n">0,4%</td></tr>
+    <tr><td>11</td><td>\xC1rea externa + paisagismo</td><td class="n">R$ 1.823</td><td class="n">0,3%</td></tr>
+    <tr class="tot"><td colspan="2"><b>Soma categorizada</b></td><td class="n"><b>R$ 616.248</b></td><td class="n"><b>93,2%</b></td></tr>
+    <tr><td colspan="4" style="padding-top:12px"><em style="color:var(--dim);font-size:12px">Diferen\xE7a de R$ 44.782 (6,8%) vs total R$ 661.030: pagamentos de parcelas de cart\xE3o j\xE1 debitados em fatura que n\xE3o aparecem como linha de "comprado parcelado" nem como "pago \xE0 vista". N\xE3o \xE9 dinheiro perdido \u2014 \xE9 contabilidade de double-tracking entre KPIs e categorias.</em></td></tr>
   </table>
-  <div class="note info"><b>Leitura em uma frase:</b> dos R$ 660k, <b>R$ 448k (68%) foi comprar a casa</b>. Dos R$ 212k de reforma + enxoval, as frentes pesadas s\xE3o <b>esquadrias (LYME R$ 34k)</b>, <b>clima+boiler (R$ 32k)</b>, <b>cozinha (R$ 25k)</b> e <b>deck (R$ 25k)</b>. Banheiros e el\xE9trica/ilumina\xE7\xE3o foram baratos \u2014 o custo da casa n\xE3o est\xE1 nos acabamentos, est\xE1 nos vidros grandes e no clima.</div>
+  <div class="note info"><b>Leitura em uma frase:</b> dos R$ 661k, <b>R$ 448k (68%) foi comprar a casa</b>. Dos R$ 213k de reforma + enxoval, as 4 frentes pesadas s\xE3o <b>esquadrias LYME R$ 34k</b>, <b>clima+boiler R$ 32k</b>, <b>deck R$ 29k</b> e <b>cozinha R$ 28k</b> \u2014 que juntas s\xE3o 59% da reforma. Banheiros R$ 6k e el\xE9trica/ilumina\xE7\xE3o R$ 2k foram baratos. O custo da reforma n\xE3o est\xE1 nos acabamentos finos, est\xE1 nos vidros grandes, no clima, no deck ampliado e nos planejados da cozinha.</div>
 </section>
 
 <!-- ============ 2. REL\xD3GIO ============ -->
