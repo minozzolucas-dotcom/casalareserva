@@ -481,7 +481,7 @@ li{margin-bottom:7px}
 
 <!-- ============ 1D. RECEITAS ============ -->
 <section id="receitas">
-  <h3>\u1F4B0 1D \xB7 Receitas da casa <span class="pill new">10.19</span></h3>
+  <h3>\u{1F4B0} 1D \xB7 Receitas da casa <span class="pill new">10.19</span></h3>
   <p style="color:var(--dim);font-size:14px">Alugu\xE9is recebidos. Ficam separados e <b>n\xE3o abatem o custo do projeto</b> (R$ 660.660).</p>
   <table>
     <tr><th>Per\xEDodo</th><th>Origem</th><th class="n">Valor</th></tr>
