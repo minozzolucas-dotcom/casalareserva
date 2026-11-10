@@ -20,4 +20,6 @@ Ver seção 1 do próprio HTML — cada rev fica registrada lá com timestamp e 
 
 ## Rev atual
 
-**10.10** — 14/09/2026 · fluxo mensal §12B com CAIXA + condomínio · pico set/26 R$ 19.275
+**10.19** — 10/11/2026 · planejados gourmet + closet master (R$ 13.910) · total R$ 671.640 · armários acumulados R$ 28.932
+
+Obs.: desde a 10.16 o `worker.js` é a fonte viva; `controle-casa-la-reserva.html` está parado na 10.10.
