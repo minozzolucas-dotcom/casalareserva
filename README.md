@@ -20,6 +20,6 @@ Ver seção 1 do próprio HTML — cada rev fica registrada lá com timestamp e 
 
 ## Rev atual
 
-**10.19** — 10/11/2026 · planejados gourmet + closet master (R$ 13.910) · total R$ 671.640 · armários acumulados R$ 28.932
+**10.20** — 10/11/2026 · puxadores + pezinhos dos armários R$ 167 · total R$ 671.807 · armários acumulados R$ 29.099
 
 Obs.: desde a 10.16 o `worker.js` é a fonte viva; `controle-casa-la-reserva.html` está parado na 10.10.
