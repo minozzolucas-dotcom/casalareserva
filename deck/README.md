@@ -21,33 +21,19 @@ Projeto executivo do deck da **Casa 8** (proprietário Lucas Vital Pereira Minoz
 
 ---
 
-## 🏠 `casa-07-anderson/` — ⏳ AGUARDANDO Nº DA ART
+## 🏠 `casa-07-anderson/` — ✅ COMPLETO
 
 Projeto executivo do deck da **Casa 7** (proprietário Anderson Soares Silva), dimensões **4,00 × 3,00 m** (12 m²), estrutura em madeira de demolição. Regularização espontânea.
 
 | Arquivo | Descrição |
 |---|---|
-| `projeto-deck-anderson-rev03.pdf` | Projeto executivo (4 folhas A4) — campo "Nº da ART" ainda em branco |
+| `Deck-Casa7-Anderson-Projeto-Rev04-com-ART.pdf` | **Pacote final** — projeto Rev.04 (4 folhas) + ART assinada (2 folhas) num PDF só, pronto pra entregar ao condomínio |
+| `projeto-deck-anderson-rev04.pdf` | Projeto executivo Rev.04 com nº da ART lançado |
+| `ART-2620263489868-assinada.pdf` | **ART CREA-SP nº 2620263489868** — registrada 07/11/2026, quitada (R$ 285,59), assinada via GOV.BR em 13/11/2026 |
 | `projeto-deck-anderson.html` | Fonte HTML editável |
-| `estudo-preliminar.jpg` | Croqui preliminar colorido (Gemini) |
+| `estudo-preliminar.jpg` | Croqui ilustrado |
 
-**Responsável técnico:** Eng. Civil José Carlos Minozzo — CREA/SP 0600.490.414 (dados já preenchidos no projeto)
-**Status:** Rev.03 enviado por WhatsApp em 01/11/2026 para Bruna (escritório do Minozzo) emitir ART de Regularização. Aguardando:
-1. Emissão da ART no CREAnet pela Bruna
-2. Pagamento do boleto da taxa CREA (~R$ 285) pelo Anderson
-3. Assinatura digital do Minozzo via GOV.BR
-4. Lançamento do nº da ART no campo 13 do projeto → republicação como Rev.04
-
-### 📝 Como atualizar quando a ART chegar
-
-1. Receber o número da ART (ex.: 262XXXXXXXXXX) e a data de emissão
-2. Editar `projeto-deck-anderson.html` → procurar `(a preencher após emissão no CREAnet)` → trocar pelo número
-3. Procurar `____ / ____ / 2026` dentro da tabela de Responsabilidade Técnica → trocar pela data real
-4. Trocar `Rev. 03` → `Rev. 04` em todas as ocorrências
-5. Gerar novo PDF: `chromium --headless --print-to-pdf="projeto-deck-anderson-rev04.pdf" projeto-deck-anderson.html`
-6. Commitar: `git add deck/casa-07-anderson/ && git commit -m "deck/casa-07-anderson: Rev.04 - ART emitida e lançada" && git push`
-
-Ou simplesmente abrir chat novo e pedir pra atualizar o nº da ART no projeto do Anderson — tudo já está aqui no repo pra retomar.
+**Status:** ART emitida, assinada e lançada no projeto (Rev.04, 13/11/2026). Falta só o Anderson assinar a declaração do proprietário (folha 4) e protocolar na administração do condomínio.
 
 ---
 
