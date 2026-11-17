@@ -20,6 +20,6 @@ Ver seção 1 do próprio HTML — cada rev fica registrada lá com timestamp e 
 
 ## Rev atual
 
-**10.21** — 17/11/2026 · persianas rolô área gourmet R$ 991 (10× R$ 99,10 Santander) · total R$ 672.798
+**10.22** — 17/11/2026 · nova §1D receitas Airbnb: 3 reservas R$ 9.615,91 líquidos (incl. Réveillon) · investimento líquido R$ 663.182 · total do projeto R$ 672.798
 
 Obs.: desde a 10.16 o `worker.js` é a fonte viva; `controle-casa-la-reserva.html` está parado na 10.10.
