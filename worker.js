@@ -158,7 +158,7 @@ li{margin-bottom:7px}
 <body>
 <div class="wrap">
 <div class="hero">
-  <span class="rev">REV. 10.20 \xB7 <b>10/11/2026 \xB7 ter</b> \xB7 <b>puxadores + pezinhos dos arm\xE1rios R$ 167</b> (pago) \xB7 total <b>R$ 671.807</b> \xB7 arm\xE1rios acumulam <b>R$ 29.099</b><br>anterior 10.19 \xB7 <b>planejados gourmet + closet master</b>: material+corte R$ 9.960 em 10\xD7 R$ 996 + Franklin MO R$ 3.500 + gasolina R$ 450 (pagos) \xB7 total projeto R$ 657.730 \u2192 <b>R$ 671.640</b> \xB7 armários planejados acumulam <b>R$ 28.932</b><br>anterior 10.18 \xB7 21/10/2026 \xB7 <b>deck ampliado + planejados cozinha fechados + MO deck quitada + Felipe Uemori removido</b> \xB7 Elson 2/2 R$ 2.500 PAGO (R$ 5k MO deck total quitada) \xB7 Tino corte+fitagem R$ 3.351 agora em 6\xD7 (era \xE0 vista) \xB7 Leo Madeiras material cozinha R$ 3.871 em 10\xD7 (era a or\xE7ar) \xB7 Felipe Uemori REMOVIDO (foi s\xF3 Franklin) \xB7 R$ 3.700 vigas e madeiras adicionais do deck AMPLIADO PIX 08/10 \xB7 R$ 1.133,35 cimento inicial do deck (linha explicitada) \xB7 total projeto R$ 652.459 \u2192 <b>R$ 657.730</b> (corrigido duplicado R$ 3.700 vigas deck + R$ 400 MO piso quartos adicional \xE0 vista) \xB7 falta \xE0 vista agora SOMENTE R$ 450 (port\xE3ozinho) \xB7 nova \xA71C resumo por ambiente</span>
+  <span class="rev">REV. 10.21 \xB7 <b>17/11/2026 \xB7 ter</b> \xB7 <b>persianas rol\xF4 \xE1rea gourmet R$ 991</b> (10\xD7 R$ 99,10 Santander) \xB7 total <b>R$ 672.798</b><br>anterior 10.20 \xB7 <b>puxadores + pezinhos dos arm\xE1rios R$ 167</b> (pago) \xB7 total R$ 671.807 \xB7 arm\xE1rios acumulam R$ 29.099<br>anterior 10.19 \xB7 <b>planejados gourmet + closet master</b>: material+corte R$ 9.960 em 10\xD7 R$ 996 + Franklin MO R$ 3.500 + gasolina R$ 450 (pagos) \xB7 total projeto R$ 657.730 \u2192 <b>R$ 671.640</b> \xB7 armários planejados acumulam <b>R$ 28.932</b><br>anterior 10.18 \xB7 21/10/2026 \xB7 <b>deck ampliado + planejados cozinha fechados + MO deck quitada + Felipe Uemori removido</b> \xB7 Elson 2/2 R$ 2.500 PAGO (R$ 5k MO deck total quitada) \xB7 Tino corte+fitagem R$ 3.351 agora em 6\xD7 (era \xE0 vista) \xB7 Leo Madeiras material cozinha R$ 3.871 em 10\xD7 (era a or\xE7ar) \xB7 Felipe Uemori REMOVIDO (foi s\xF3 Franklin) \xB7 R$ 3.700 vigas e madeiras adicionais do deck AMPLIADO PIX 08/10 \xB7 R$ 1.133,35 cimento inicial do deck (linha explicitada) \xB7 total projeto R$ 652.459 \u2192 <b>R$ 657.730</b> (corrigido duplicado R$ 3.700 vigas deck + R$ 400 MO piso quartos adicional \xE0 vista) \xB7 falta \xE0 vista agora SOMENTE R$ 450 (port\xE3ozinho) \xB7 nova \xA71C resumo por ambiente</span>
   <span class="stamp live" id="update-stamp">\xDAltima atualiza\xE7\xE3o: <b id="update-time">agora</b></span>
   <h1 style="margin-top:12px">Resid\xEAncia 8 \xB7 La Reserva II-B</h1>
   <div class="sub">Av. Zezico Pe\xE7anha, 605 \u2014 Itapetinga \u2014 Atibaia/SP \xB7 CEP 12946-372 \xB7 matr. 158.854 \xB7 137,39 m\xB2<br>
@@ -175,6 +175,7 @@ li{margin-bottom:7px}
 <section>
   <h3>1 \xB7 Hist\xF3rico de revis\xF5es</h3>
   <table>
+    <tr><td style="width:120px"><span class="pill new">10.21</span></td><td><b>Persianas rol\xF4 da \xE1rea gourmet \u2014 R$ 991 em 10\xD7 R$ 99,10 no cart\xE3o Santander, pago 17/11.</b> Italian Persianas (loja oficial ML, an\xFAncio MLB3255558521): 3 rol\xF4s tela solar 3% <b>cinza</b>, 1,33 \xD7 2,66 m cada, sem band\xF4, suporte frontal no perfil da esquadria, frete gr\xE1tis. Negociado R$ 1.041 \u2212 R$ 50 desconto Santander = <b>R$ 991</b> (lojas de Atibaia cotaram R$ 2,5\u20133k). Instala\xE7\xE3o pelo Franklin (a lan\xE7ar quando cobrar). Categoria 11 (\xC1rea externa + gourmet). KPIs: total R$ 671.807 \u2192 <b>R$ 672.798</b> \xB7 parcelado comprado R$ 115.923 \u2192 <b>R$ 116.914</b>. Parcelas dez/26 \u2192 set/27 no \xA712B.</td></tr>
     <tr><td style="width:120px"><span class="pill new">10.20</span></td><td><b>Puxadores + pezinhos dos arm\xE1rios \u2014 R$ 167 \xE0 vista, pago.</b> Lan\xE7ado na categoria Cozinha (5). KPIs: total R$ 671.640 \u2192 <b>R$ 671.807</b> \xB7 pago \xE0 vista R$ 497.912 \u2192 <b>R$ 498.079</b>. Arm\xE1rios planejados acumulados: <b>R$ 29.099</b>.</td></tr>
     <tr><td style="width:120px"><span class="pill new">10.19</span></td><td><b>Planejados gourmet + closet master fechados \u2014 +R$ 13.910 no projeto.</b> Material + corte (gourmet + closet master) <b>R$ 9.960 em 10\xD7 R$ 996</b>. <b>Franklin MO R$ 3.500 + gasolina R$ 450</b> (v\xE1rias idas e vindas) \u2014 ambos pagos; o escopo do Franklin inclui tamb\xE9m a bancada do escrit\xF3rio e o acabamento final da cozinha (fitagem + p\xE9s). Nova categoria 12 na \xA71C. KPIs: total R$ 657.730 \u2192 <b>R$ 671.640</b> \xB7 pago \xE0 vista R$ 493.962 \u2192 <b>R$ 497.912</b> \xB7 parcelado comprado R$ 108.963 \u2192 <b>R$ 118.923</b>. Arm\xE1rios planejados acumulados (cozinha + gourmet + closet + projeto): <b>R$ 28.932</b>. \xA712B (fluxo mensal) ainda sem as 10\xD7 R$ 996 \u2014 falta a data da 1\xAA parcela.</td></tr>
     <tr><td style="width:120px"><span class="pill new">10.18</span></td><td><b>Deck ampliado + MO deck quitada + planejados cozinha concretizados + Felipe Uemori apagado + nova \xA71C resumo por ambiente.</b> <b>Elson 2/2 R$ 2.500 PAGO</b> \u2014 R$ 5k total de MO do deck quitada. <b>Deck AMPLIADO:</b> R$ 3.700 em vigas e madeiras adicionais PIX 08/10. R$ 1.133,35 cimento inicial do deck virou linha expl\xEDcita (estava no chip 10.16 como "alvenaria"). <b>Planejados cozinha fechados:</b> Tino corte+fitagem R$ 3.351 agora em 6\xD7 (era \xE0 vista pra sexta 03/10) + Leo Madeiras material R$ 3.871 em 10\xD7 (era "a or\xE7ar"). <b>Felipe Uemori REMOVIDO</b> da tabela \u2014 nunca foi, foi s\xF3 o Franklin. KPIs: total R$ 652.459 \u2192 <b>R$ 657.730</b> (+R$ 5.271 l\xEDquido: Leo Madeiras R$ 3.871 + Adelco volta R$ 1.000 + MO piso quartos R$ 400; vigas R$ 3.700 eram duplicata do chip 10.16 \u2014 abatido). Falta \xE0 vista R$ 2.950 \u2192 <b>R$ 450</b> (s\xF3 port\xE3ozinho). Pago \xE0 vista R$ 490.062 \u2192 <b>R$ 493.962</b> (+Elson 2/2 R$ 2.500 + vigas R$ 3.700 \xFAnico + Adelco volta R$ 1.000 + MO piso quartos R$ 400 \u2212 R$ 3.700 duplicata abatida). <b>Corre\xE7\xE3o 21/10 15h:</b> R$ 3.700 vigas estavam contados 2\xD7 \u2014 abatido. R$ 5.000 do projeto planejados era da casa toda (sala + cozinha + gourmet + lavanderia + quartos), dividido R$ 1.000 por ambiente nas respectivas categorias da \xA71C. <b>Adelco volta out/26 R$ 1.000 \xE0 vista</b>: tomada 220V da banheira + troca de lumin\xE1rias. <b>Nova se\xE7\xE3o \xA71C \u2014 Resumo por ambiente da casa</b>: 10 categorias ADHD-friendly com total e principais itens, pra sair da sopa de linhas.</td></tr>
@@ -232,10 +233,10 @@ li{margin-bottom:7px}
 <!-- ============ 1B. CONSOLIDADO FINANCEIRO ============ -->
 <section id="dinheiro">
   <h3>\u{1F4B0} Consolidado financeiro \u2014 pago \xD7 falta <span class="pill new">8.8</span></h3>
-  <p style="color:var(--dim);font-size:14px">Todo o dinheiro do projeto em <b>quatro caixas que n\xE3o se sobrep\xF5em e somam o total</b>. Custo do projeto: <b>R$ 671.807</b> <span class="pill new">10.19</span> <span class="tag" style="font-weight:400">s\xF3 do bolso \xB7 casa R$ 1,1M inclui FGTS+CAIXA (ver bloco abaixo)</span>.</p>
+  <p style="color:var(--dim);font-size:14px">Todo o dinheiro do projeto em <b>quatro caixas que n\xE3o se sobrep\xF5em e somam o total</b>. Custo do projeto: <b>R$ 672.798</b> <span class="pill new">10.21</span> <span class="tag" style="font-weight:400">s\xF3 do bolso \xB7 casa R$ 1,1M inclui FGTS+CAIXA (ver bloco abaixo)</span>.</p>
   <div class="grid g4">
     <div class="kpi"><span>\u2713 J\xE1 paguei \xE0 vista</span><b style="color:var(--ok)">R$ 498.079</b><small><b>R$ 411.034 no im\xF3vel</b> + <b>puxadores + pezinhos R$ 167</b> <span class="pill new">10.20</span> + <b>Franklin gourmet/closet R$ 3.500 + gasolina R$ 450</b> <span class="pill new">10.19</span> + LYME + FGTS/CAIXA + geladeira + emolumentos + AC + Adelco + planejados 2\xAA + Franklin R$ 2.800 + deck acabamento R$ 5.902 + solares R$ 180 + <b>Elson 2/2 R$ 2.500 + vigas adicionais deck ampliado R$ 3.700 PIX 08/10 + Adelco volta R$ 1.000 + MO piso quartos R$ 400 (adicional)</b> <span class="pill new">10.18</span></small></div>
-    <div class="kpi"><span>\u25D0 Comprei no parcelado</span><b>R$ 115.923</b><small>Inclui agora <b>material+corte gourmet + closet master R$ 9.960 em 10\xD7 R$ 996</b> <span class="pill new">10.19</span> \xB7 <b>Leo Madeiras R$ 3.871 em 10\xD7</b> (material planejados cozinha) + <b>Tino R$ 3.351 em 6\xD7</b> (corte+fitagem, era \xE0 vista). Continua: LYME aditivo, paisagismo, cama, nivelante, AC, deck material, cortinas, Spa, carrinho ML, aspirador, projetor BTG. <span class="pill new">10.18</span></small></div>
+    <div class="kpi"><span>\u25D0 Comprei no parcelado</span><b>R$ 116.914</b><small>Inclui agora <b>persianas gourmet R$ 991 em 10\xD7 R$ 99,10 Santander</b> <span class="pill new">10.21</span> \xB7 <b>material+corte gourmet + closet master R$ 9.960 em 10\xD7 R$ 996</b> <span class="pill new">10.19</span> \xB7 <b>Leo Madeiras R$ 3.871 em 10\xD7</b> (material planejados cozinha) + <b>Tino R$ 3.351 em 6\xD7</b> (corte+fitagem, era \xE0 vista). Continua: LYME aditivo, paisagismo, cama, nivelante, AC, deck material, cortinas, Spa, carrinho ML, aspirador, projetor BTG. <span class="pill new">10.18</span></small></div>
     <div class="kpi"><span>\u25CB Falta pagar \xE0 vista</span><b style="color:var(--ok)">R$ 450</b><small>S\xF3 <b>port\xE3ozinho da entrada R$ 450</b> (paga 30/10). <b>MO deck quitada</b> \u2014 Elson 2/2 R$ 2.500 pago out/26. <span class="pill new">10.18</span></small></div>
     <div class="kpi"><span>\u25CB Falta contratar (parcelado)</span><b style="color:var(--ok)">R$ 0</b><small><b>Tudo contratado.</b> Franklin montou arm\xE1rios, Tino cortou+fitou (6\xD7), Leo Madeiras forneceu material (10\xD7). <b>Felipe Uemori nunca foi</b> \u2014 apagado. <span class="pill new">10.18</span></small></div>
   </div>
@@ -272,7 +273,7 @@ li{margin-bottom:7px}
     <tr class="tot"><td>Subtotal \xE0 vista</td><td class="n">R$ 498.529</td><td><b>pago R$ 498.079 \xB7 falta R$ 450 (port\xE3ozinho)</b> <span class="pill new">10.18</span></td></tr>
   </table>
 
-  <h4 style="margin-top:22px">2 \xB7 Parcelado \u2014 R$ 178.924 <span class="tag" style="font-weight:400">\u25D0 comprado R$ 118.923 + R$ 3.000 projetor \xB7 <b>TUDO contratado</b> <span class="pill new">10.18</span></span></h4>
+  <h4 style="margin-top:22px">2 \xB7 Parcelado \u2014 R$ 179.915 <span class="tag" style="font-weight:400">\u25D0 comprado R$ 119.914 + R$ 3.000 projetor \xB7 <b>TUDO contratado</b> <span class="pill new">10.18</span></span></h4>
   <table>
     <tr><th>Item</th><th class="n">Valor</th><th>Condi\xE7\xE3o</th><th>Situa\xE7\xE3o</th></tr>
     <tr><td>Esquadrias + 2 boxes \u2014 LYME</td><td class="n">R$ 15.420</td><td>5\xD7 cart\xE3o</td><td><span class="pill ok">\u25D0 em curso</span></td></tr>
@@ -297,7 +298,8 @@ li{margin-bottom:7px}
     <tr><td><b>Paisagismo</b> \u2014 10 mudas podocarpo 2,5m + 2 jardineiras 1m + frete + plantio <span class="pill new">10.17</span></td><td class="n">R$ 1.193</td><td>5\xD7 R$ 238,60 \xB7 cart\xE3o</td><td><span class="pill ok">\u2713 comprado out/26</span></td></tr>
     <tr><td><b>Projetor sala BTG</b> <span class="pill new">10.15</span></td><td class="n">R$ 3.000</td><td>10\xD7 R$ 300 (BTG)</td><td><span class="pill ok">\u2713 1\xAA parc. set/26</span></td></tr>
     <tr><td><b>Planejados gourmet + closet master</b> \u2014 material + corte <span class="pill new">10.19</span></td><td class="n">R$ 9.960</td><td>10\xD7 R$ 996</td><td><span class="pill ok">\u2713 fechado nov/26</span></td></tr>
-    <tr class="tot"><td>Subtotal parcelado</td><td class="n">R$ 178.924</td><td colspan="2"><b>comprado R$ 118.923 (com planejados gourmet+closet + projetor + LYME aditivo + paisagismo + Tino 6\xD7 + Leo Madeiras 10\xD7) \xB7 Felipe Uemori removido \xB7 TUDO contratado</b> <span class="pill new">10.18</span></td></tr>
+    <tr><td><b>Persianas rol\xF4 \xE1rea gourmet</b> \u2014 Italian Persianas ML, 3\xD7 tela solar 3% cinza 1,33\xD72,66 m <span class="pill new">10.21</span></td><td class="n">R$ 991</td><td>10\xD7 R$ 99,10 \xB7 Santander (R$ 1.041 \u2212 R$ 50 desc.)</td><td><span class="pill ok">\u2713 pago 17/11 \xB7 aguarda produ\xE7\xE3o</span></td></tr>
+    <tr class="tot"><td>Subtotal parcelado</td><td class="n">R$ 179.915</td><td colspan="2"><b>comprado R$ 119.914 (+ persianas gourmet 10.21) (com planejados gourmet+closet + projetor + LYME aditivo + paisagismo + Tino 6\xD7 + Leo Madeiras 10\xD7) \xB7 Felipe Uemori removido \xB7 TUDO contratado</b> <span class="pill new">10.18</span></td></tr>
   </table>
   <div class="note info"><b>O parcelado "em curso" n\xE3o \xE9 dinheiro que falta juntar \u2014 \xE9 dinheiro que j\xE1 flui todo m\xEAs.</b> No pico (quando boiler + AC + esquadrias + piso + Feijor coincidem) pesa <b>~R$ 9.367/m\xEAs</b>, coberto pelos R$ 15.000 do sal\xE1rio destinados \xE0 casa (\xA712). <b>Rev 10.18:</b> tudo contratado \u2014 Tino (6\xD7) + Leo Madeiras (10\xD7) + Franklin (\xE0 vista pago) + Elson 2/2 (\xE0 vista pago). N\xE3o h\xE1 mais item esperando contrata\xE7\xE3o. <span class="pill new">10.18</span></div>
   <div class="note bad"><b>Fora das quatro caixas (ainda sem n\xFAmero fechado):</b> instala\xE7\xE3o da fechadura R$ 250 \xB7 revestimento da escada R$ 2.000\u20135.000 \xB7 i\xE7amento da carga do piso \xB7 materiais de instala\xE7\xE3o da Feijor R$ 150\u2013300 \xB7 rack/TV. Some <b>R$ 2.000\u20135.000+</b> que ainda v\xE3o aparecer. <b>\u26A0 Pergunta pendente sobre a instala\xE7\xE3o dos banheiros:</b> o eletricista vai fazer isso 05/09 (junto com as lumin\xE1rias) \u2014 <b>est\xE1 inclu\xEDdo nos R$ 2.000 originais das arandelas ou \xE9 adicional?</b> Se for adicional, entra como linha nova.</div>
@@ -454,8 +456,9 @@ li{margin-bottom:7px}
       </ul>
       <small>Adelco 1\xAA (arandelas + banheiros R$ 3.500) contabilizado em Banheiros. Internet Impacto R$ 110/m\xEAs recorrente \u2014 fora do fit-out.</small>
     </div>
-    <div class="kpi expanded"><h4>11 \xB7 \xC1rea externa + paisagismo + gourmet</h4><b>R$ 2.823</b>
+    <div class="kpi expanded"><h4>11 \xB7 \xC1rea externa + paisagismo + gourmet</h4><b>R$ 3.814</b>
       <ul class="subitems">
+        <li class="hilite"><span>Persianas rol\xF4 gourmet \u2014 3\xD7 tela solar 3% cinza \u2014 10\xD7 Santander <span class="pill new">10.21</span></span><span class="val">R$ 991</span></li>
         <li><span>Paisagismo \u2014 10 mudas podocarpo 2,5m + 2 jardineiras 1m + frete + plantio \u2014 5\xD7</span><span class="val">R$ 1.193</span></li>
         <li><span>Projeto planejados gourmet (rateio 1/5)</span><span class="val">R$ 1.000</span></li>
         <li class="hilite"><span>Port\xE3ozinho da entrada (paga 30/10)</span><span class="val">R$ 450</span></li>
@@ -484,10 +487,10 @@ li{margin-bottom:7px}
     <tr><td>8</td><td>Pisos &amp; revestimentos</td><td class="n">R$ 10.605</td><td class="n">1,6%</td></tr>
     <tr><td>9</td><td>Banheiros + Lavanderia</td><td class="n">R$ 7.422</td><td class="n">1,1%</td></tr>
     <tr><td>10</td><td>El\xE9trica + ilumina\xE7\xE3o</td><td class="n">R$ 2.370</td><td class="n">0,4%</td></tr>
-    <tr><td>11</td><td>\xC1rea externa + paisagismo + gourmet</td><td class="n">R$ 2.823</td><td class="n">0,4%</td></tr>
+    <tr><td>11</td><td>\xC1rea externa + paisagismo + gourmet</td><td class="n">R$ 3.814</td><td class="n">0,6%</td></tr>
     <tr><td>12</td><td>Planejados gourmet + closet master <span class="pill new">10.19</span></td><td class="n">R$ 13.910</td><td class="n">2,1%</td></tr>
-    <tr class="tot"><td colspan="2"><b>Soma categorizada</b></td><td class="n"><b>R$ 627.025</b></td><td class="n"><b>93,3%</b></td></tr>
-    <tr><td colspan="4" style="padding-top:12px"><em style="color:var(--dim);font-size:12px">Diferen\xE7a de R$ 44.782 (6,7%) vs total R$ 671.807: pagamentos de parcelas de cart\xE3o j\xE1 debitados em fatura que n\xE3o aparecem como linha de "comprado parcelado" nem como "pago \xE0 vista". N\xE3o \xE9 dinheiro perdido \u2014 \xE9 contabilidade de double-tracking entre KPIs e categorias.</em></td></tr>
+    <tr class="tot"><td colspan="2"><b>Soma categorizada</b></td><td class="n"><b>R$ 628.016</b></td><td class="n"><b>93,3%</b></td></tr>
+    <tr><td colspan="4" style="padding-top:12px"><em style="color:var(--dim);font-size:12px">Diferen\xE7a de R$ 44.782 (6,7%) vs total R$ 672.798: pagamentos de parcelas de cart\xE3o j\xE1 debitados em fatura que n\xE3o aparecem como linha de "comprado parcelado" nem como "pago \xE0 vista". N\xE3o \xE9 dinheiro perdido \u2014 \xE9 contabilidade de double-tracking entre KPIs e categorias.</em></td></tr>
   </table>
   <div class="note info"><b>Leitura em uma frase:</b> dos R$ 672k, <b>R$ 448k (67%) foi comprar a casa</b>. Dos R$ 224k de reforma + enxoval (agora com <b>R$ 29,1k em arm\xE1rios planejados</b>), as 4 frentes pesadas s\xE3o <b>esquadrias LYME R$ 34k</b>, <b>clima+boiler R$ 32k</b>, <b>deck R$ 25k</b> e <b>cozinha R$ 24k</b> \u2014 que juntas s\xE3o 55% da reforma. Banheiros+Lavanderia R$ 7k e el\xE9trica/ilumina\xE7\xE3o R$ 2k foram baratos. O custo da reforma n\xE3o est\xE1 nos acabamentos finos, est\xE1 nos vidros grandes, no clima, no deck ampliado e nos planejados da cozinha.</div>
 </section>
@@ -1061,7 +1064,8 @@ li{margin-bottom:7px}
     <tr><td>Carrinho ML (parcelado)</td><td class="n">R$ 190</td><td>6\xD7 R$ 32</td><td>out/26</td><td><span class="tag">Master 3619</span></td></tr>
     <tr><td>Aspirador Arno X-Pert</td><td class="n">R$ 430</td><td>10\xD7 R$ 43</td><td>out/26</td><td><span class="tag">Master 6369</span></td></tr>
     <tr><td>LYME 3\xBA box (fora contr.)</td><td class="n">R$ 1.532</td><td>5\xD7 R$ 306</td><td>out/26</td><td><span class="tag">cart\xE3o</span></td></tr>
-    <tr class="tot"><td>Total contratado <span class="pill new">10.11</span></td><td class="n"><b>R$ 98.385</b></td><td colspan="3">valor bruto dos parcelamentos \xB7 <b>\u2212R$ 1.194</b> deck real vs estimado</td></tr>
+    <tr><td>Persianas rol\xF4 gourmet <span class="pill new">10.21</span></td><td class="n">R$ 991</td><td>10\xD7 R$ 99,10</td><td>dez/26</td><td><span class="tag">Santander</span></td></tr>
+    <tr class="tot"><td>Total contratado <span class="pill new">10.21</span></td><td class="n"><b>R$ 99.376</b></td><td colspan="3">valor bruto dos parcelamentos \xB7 <b>\u2212R$ 1.194</b> deck real vs estimado</td></tr>
   </table>
 
   <h4 style="margin-top:22px">A2 \xB7 Despesas mensais recorrentes <span class="pill new">10.10</span></h4>
@@ -1452,6 +1456,7 @@ const BASELINE = [
     ["Aspirador Arno 2/10",43],["LYME 3\xBA box 2/5",306],
   ]},
   {m:"2026-12", items:[
+["Persianas gourmet 1/10",99.1],
         ["Projetor sala BTG 4/10",300],
 ["Condom\xEDnio",700],["CAIXA",1700],["Boiler 5/8",2299],["Feijor 4/8",630],["AC 4/8",1282],["LYME 4/5",3084],
     ["Lumin\xE1rias 3/9",51],["Cama Zidi 3/10",386],["Piso Destro 3/12",808],["Nivelante 3/8",64],
@@ -1459,6 +1464,7 @@ const BASELINE = [
     ["Aspirador Arno 3/10",43],["LYME 3\xBA box 3/5",306],
   ]},
   {m:"2027-01", items:[
+["Persianas gourmet 2/10",99.1],
         ["Projetor sala BTG 5/10",300],
 ["Condom\xEDnio",700],["CAIXA",1700],["Boiler 6/8",2299],["Feijor 5/8",630],["AC 5/8",1282],["LYME 5/5",3084],
     ["Lumin\xE1rias 4/9",51],["Cama Zidi 4/10",386],["Piso Destro 4/12",808],["Nivelante 4/8",64],
@@ -1466,6 +1472,7 @@ const BASELINE = [
     ["Aspirador Arno 4/10",43],["LYME 3\xBA box 4/5",306],
   ]},
   {m:"2027-02", items:[
+["Persianas gourmet 3/10",99.1],
         ["Projetor sala BTG 6/10",300],
 ["Condom\xEDnio",700],["CAIXA",1700],["Boiler 7/8",2299],["Feijor 6/8",630],["AC 6/8",1282],
     ["Lumin\xE1rias 5/9",51],["Cama Zidi 5/10",386],["Piso Destro 5/12",808],["Nivelante 5/8",64],
@@ -1473,6 +1480,7 @@ const BASELINE = [
     ["Aspirador Arno 5/10",43],["LYME 3\xBA box 5/5",306],
   ]},
   {m:"2027-03", items:[
+["Persianas gourmet 4/10",99.1],
         ["Projetor sala BTG 7/10",300],
 ["Condom\xEDnio",700],["CAIXA",1700],["Boiler 8/8",2299],["Feijor 7/8",630],["AC 7/8",1282],
     ["Lumin\xE1rias 6/9",51],["Cama Zidi 6/10",386],["Piso Destro 6/12",808],["Nivelante 6/8",64],
@@ -1480,30 +1488,34 @@ const BASELINE = [
     ["Aspirador Arno 6/10",43],
   ]},
   {m:"2027-04", items:[
+["Persianas gourmet 5/10",99.1],
         ["Projetor sala BTG 8/10",300],
 ["Condom\xEDnio",700],["CAIXA",1700],["Feijor 8/8",630],["AC 8/8",1282],
     ["Lumin\xE1rias 7/9",51],["Cama Zidi 7/10",386],["Piso Destro 7/12",808],["Nivelante 7/8",64],
     ["Deck cumaru 7/7",1349],["Spa Rome 7/10",678],["Aspirador Arno 7/10",43],
   ]},
   {m:"2027-05", items:[
+["Persianas gourmet 6/10",99.1],
         ["Projetor sala BTG 9/10",300],
 ["Condom\xEDnio",700],["CAIXA",1700],
     ["Lumin\xE1rias 8/9",51],["Cama Zidi 8/10",386],["Piso Destro 8/12",808],["Nivelante 8/8",64],
     ["Spa Rome 8/10",678],["Aspirador Arno 8/10",43],
   ]},
   {m:"2027-06", items:[
+["Persianas gourmet 7/10",99.1],
         ["Projetor sala BTG 10/10",300],
 ["Condom\xEDnio",700],["CAIXA",1700],
     ["Lumin\xE1rias 9/9",51],["Cama Zidi 9/10",386],["Piso Destro 9/12",808],
     ["Spa Rome 9/10",678],["Aspirador Arno 9/10",43],
   ]},
   {m:"2027-07", items:[
+["Persianas gourmet 8/10",99.1],
     ["Condom\xEDnio",700],["CAIXA",1700],
     ["Cama Zidi 10/10",386],["Piso Destro 10/12",808],
     ["Spa Rome 10/10",678],["Aspirador Arno 10/10",43],
   ]},
-  {m:"2027-08", items:[["Condom\xEDnio",700],["CAIXA",1700],["Piso Destro 11/12",808]]},
-  {m:"2027-09", items:[["Condom\xEDnio",700],["CAIXA",1700],["Piso Destro 12/12",808]]},
+  {m:"2027-08", items:[["Persianas gourmet 9/10",99.1],["Condom\xEDnio",700],["CAIXA",1700],["Piso Destro 11/12",808]]},
+  {m:"2027-09", items:[["Persianas gourmet 10/10",99.1],["Condom\xEDnio",700],["CAIXA",1700],["Piso Destro 12/12",808]]},
   {m:"2027-10", items:[["Condom\xEDnio",700],["CAIXA",1700]]},
   {m:"2027-11", items:[["Condom\xEDnio",700],["CAIXA",1700]]},
   {m:"2027-12", items:[["Condom\xEDnio",700],["CAIXA",1700]]},

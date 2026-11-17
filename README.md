@@ -20,6 +20,6 @@ Ver seção 1 do próprio HTML — cada rev fica registrada lá com timestamp e 
 
 ## Rev atual
 
-**10.20** — 10/11/2026 · puxadores + pezinhos dos armários R$ 167 · total R$ 671.807 · armários acumulados R$ 29.099
+**10.21** — 17/11/2026 · persianas rolô área gourmet R$ 991 (10× R$ 99,10 Santander) · total R$ 672.798
 
 Obs.: desde a 10.16 o `worker.js` é a fonte viva; `controle-casa-la-reserva.html` está parado na 10.10.
