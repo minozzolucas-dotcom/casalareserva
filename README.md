@@ -12,7 +12,7 @@ Publicado via Cloudflare Worker `casa8-la-reserva-b-invest`.
 
 1. Editar `controle-casa-la-reserva.html` (fonte)
 2. Regenerar `worker.js` (HTML embutido em template literal JS)
-3. Deploy no Cloudflare via painel ou wrangler
+3. Deploy automático: Worker conectado ao GitHub (Workers Builds, branch main) desde 18/11/2026 — todo push publica sozinho
 
 ## Histórico de revisões
 
