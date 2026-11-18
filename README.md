@@ -20,6 +20,6 @@ Ver seção 1 do próprio HTML — cada rev fica registrada lá com timestamp e 
 
 ## Rev atual
 
-**10.22** — 17/11/2026 · nova §1D receitas Airbnb: 3 reservas R$ 9.615,91 líquidos (incl. Réveillon) · investimento líquido R$ 663.182 · total do projeto R$ 672.798
+**10.23** — 18/11/2026 · Adelco R$ 400 (espelhos banheiros quartos + luminárias jardim, pago 17/11) · total R$ 673.198 · receitas Airbnb R$ 9.615,91 · investimento líquido R$ 663.582
 
 Obs.: desde a 10.16 o `worker.js` é a fonte viva; `controle-casa-la-reserva.html` está parado na 10.10.
